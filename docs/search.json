@@ -1,0 +1,828 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "2025年度　数量データ分析",
+    "section": "",
+    "text": "はじめに",
+    "crumbs": [
+      "はじめに"
+    ]
+  },
+  {
+    "objectID": "E1_R_Basics.html",
+    "href": "E1_R_Basics.html",
+    "title": "1  データハンドリングの基礎",
+    "section": "",
+    "text": "2 四則演算\n1 + 2\n\n[1] 3\n\n10 - 5\n\n[1] 5\n\n5 * 2\n\n[1] 10\n\n10 / 5\n\n[1] 2\n\n5 ^ 2\n\n[1] 25\n\nsqrt(25)\n\n[1] 5",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>データハンドリングの基礎</span>"
+    ]
+  },
+  {
+    "objectID": "E1_R_Basics.html#オブジェクトの例",
+    "href": "E1_R_Basics.html#オブジェクトの例",
+    "title": "1  データハンドリングの基礎",
+    "section": "3.1 オブジェクトの例",
+    "text": "3.1 オブジェクトの例\n\nTashizan &lt;- 1 + 2   # この場合は計算結果は出力されない\nTashizan            # オブジェクト名を入力すると出力される\n\n[1] 3\n\nprint(Tashizan)     # printコマンドを使っても良い\n\n[1] 3\n\n(Tashizan &lt;- 1 + 2) # 括弧で括ると結果も出力される\n\n[1] 3",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>データハンドリングの基礎</span>"
+    ]
+  },
+  {
+    "objectID": "E1_R_Basics.html#値の種類",
+    "href": "E1_R_Basics.html#値の種類",
+    "title": "1  データハンドリングの基礎",
+    "section": "3.2 値の種類",
+    "text": "3.2 値の種類\n\nオブジェクトには様々な値を格納できる\n値は「数値」と「文字列」の2つに大別できる\n\n厳密にはより詳細な区別が可能だがひとまず無視してOK\n\n文字列として入力するには引用符で囲めば良い",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>データハンドリングの基礎</span>"
+    ]
+  },
+  {
+    "objectID": "E1_R_Basics.html#リストの作成",
+    "href": "E1_R_Basics.html#リストの作成",
+    "title": "1  データハンドリングの基礎",
+    "section": "7.1 リストの作成",
+    "text": "7.1 リストの作成\nリストの作成にはlistを用いる。\n\nListSample &lt;- list(c(1:3),\n                   c(\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"))\n\nListSample\n\n[[1]]\n[1] 1 2 3\n\n[[2]]\n[1] \"Mon\" \"Tue\" \"Wed\" \"Thu\" \"Fri\" \"Sat\" \"Sun\"\n\n\n上記の例では、ListSampleは要素が2つのリストである。最初の要素は長さ3の数値ベクトル、もうひとつの要素は長さ7の文字ベクトルである。このように、リストには長さの異なるベクトルを格納することができる。",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>データハンドリングの基礎</span>"
+    ]
+  },
+  {
+    "objectID": "E1_R_Basics.html#リストの要素へのアクセス",
+    "href": "E1_R_Basics.html#リストの要素へのアクセス",
+    "title": "1  データハンドリングの基礎",
+    "section": "7.2 リストの要素へのアクセス",
+    "text": "7.2 リストの要素へのアクセス\nリストの要素へのアクセスには[[]]を用いる。\n\nListSample[[1]] # 1つめの要素\n\n[1] 1 2 3\n\nListSample[[2]] # 2つめの要素\n\n[1] \"Mon\" \"Tue\" \"Wed\" \"Thu\" \"Fri\" \"Sat\" \"Sun\"\n\n\nリストの要素には名前をつけることもできる。名前をつけておくとそのラベルを用いて要素へアクセスできる。\n\nnames(ListSample) &lt;- c(\"Numbers\", \"Days\")\nListSample\n\n$Numbers\n[1] 1 2 3\n\n$Days\n[1] \"Mon\" \"Tue\" \"Wed\" \"Thu\" \"Fri\" \"Sat\" \"Sun\"\n\nListSample$Numbers\n\n[1] 1 2 3",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>データハンドリングの基礎</span>"
+    ]
+  },
+  {
+    "objectID": "E1_R_Basics.html#リストの活用例",
+    "href": "E1_R_Basics.html#リストの活用例",
+    "title": "1  データハンドリングの基礎",
+    "section": "7.3 リストの活用例",
+    "text": "7.3 リストの活用例\nリストにはデータの型や長さが異なるオブジェクトを格納することができるので、例えばこの授業に関する様々な情報をひとつのリストにまとめることもできる。\n\nClassTitle  &lt;- \"数量データ分析\"\nDepartment  &lt;- \"社会学科\"\nSchedule    &lt;- c(\"2024-09-20\", \"2024-09-27\", \"2024-10-04\")\nNofStudents &lt;- 20\n\nSocialStats &lt;- list(ClassTitle  = ClassTitle,\n                    Department  = Department,\n                    Schedule    = Schedule,\n                    NofStudents = NofStudents)\n\nSocialStats\n\n$ClassTitle\n[1] \"数量データ分析\"\n\n$Department\n[1] \"社会学科\"\n\n$Schedule\n[1] \"2024-09-20\" \"2024-09-27\" \"2024-10-04\"\n\n$NofStudents\n[1] 20",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>データハンドリングの基礎</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ReadCSV.html",
+    "href": "E2_ReadCSV.html",
+    "title": "2  データの出入力",
+    "section": "",
+    "text": "3 データの読み込み",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>データの出入力</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ReadCSV.html#csvファイルの読み込み",
+    "href": "E2_ReadCSV.html#csvファイルの読み込み",
+    "title": "2  データの出入力",
+    "section": "3.1 CSVファイルの読み込み",
+    "text": "3.1 CSVファイルの読み込み\nデータ解析の第一歩は、分析対象となるデータファイルをRに読み込むことである。Rに読み込むデータのフォーマットはいくつかあるが、最も代表的なものはCSV（comma separated values）ファイルである。後述するように、Rでは他の統計解析パッケージ（SPSS, Stata, SASなど）のデータフォーマットも出入力することができるが、CSVは最も標準的なフォーマットであるがゆえに、まずはRにおけるCSVの処理について習得することを勧める。\n以下では東大社研・若年パネル調査の非制限公開疑似データを例に、データファイルの読み込みを行ってみよう。\n\n3.1.1 read.csv()\nread.csv()はbaseに組み込まれている関数であり、CSVファイルの読み込みに使うことができる。\n\nFN_OrgCSV &lt;- \"data/u001.csv\"        # 読み込むCSVファイル名。パスの指定に注意。\nDF_org &lt;- read.csv(FN_OrgCSV)\nprint(DF_org[1:5, 1:10])       # 最初の5ケースについて1番目から10番目までの変数を表示\n\n  caseid sex ybirth mbirth ZQ03 JC_1 JC_41 ZQ08A ZQ08B ZQ08C\n1  10001   1   1976     10    1    2    12     4     1     3\n2  10002   1   1972      1    1    2     9     6     2     2\n3  10003   1   1975      4    1    2     9     6     6     6\n4  10004   2   1974     11    1    2     7     6     1     1\n5  10005   1   1978      1    2   10    88     6     2     2\n\n\nread.csv()で読み込まれたデータはデータフレームとしてオブジェクトに保存される。\n\nclass(DF_org)\n\n[1] \"data.frame\"\n\n\n\n\n3.1.2 read_csv()\nCSVファイルの読み込みにはread.csv()でも事足りるのであるが、特に{tidyverse}環境で作業を進める場合はread_csv()の方が相性が良い。これは{tidyverse}エコシステムの一部である{readr}の中の関数である。read.csv()と比較するとread_csv()の方がデータの読み込み速度が早く、大規模データを取り扱う際にも向いている関数である。\n\n# install.packages(\"tidyverse\")  # 初回のみでよい\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nFN_RawCSV &lt;- \"data/u001.csv\"        # 読み込むCSVファイル名。パスの指定に注意。\nDF_raw &lt;- read_csv(FN_RawCSV)\n\nRows: 1000 Columns: 72\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nprint(DF_raw[1:5, 1:10])       # 最初の5ケースについて1番目から10番目までの変数を表示\n\n# A tibble: 5 × 10\n  caseid   sex ybirth mbirth  ZQ03  JC_1 JC_41 ZQ08A ZQ08B ZQ08C\n   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1  10001     1   1976     10     1     2    12     4     1     3\n2  10002     1   1972      1     1     2     9     6     2     2\n3  10003     1   1975      4     1     2     9     6     6     6\n4  10004     2   1974     11     1     2     7     6     1     1\n5  10005     1   1978      1     2    10    88     6     2     2\n\n\nread_csv()で読み込まれたデータはtibbleという属性を持つ。tibbleはデータフレームに非常に近いが、現時点では「tidyverse環境に最適化されたデータフレーム」として理解しておけば十分である。\n\nclass(DF_raw)\n\n[1] \"spec_tbl_df\" \"tbl_df\"      \"tbl\"         \"data.frame\"",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>データの出入力</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ReadCSV.html#excelファイルの読み込み",
+    "href": "E2_ReadCSV.html#excelファイルの読み込み",
+    "title": "2  データの出入力",
+    "section": "3.2 Excelファイルの読み込み",
+    "text": "3.2 Excelファイルの読み込み",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>データの出入力</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ReadCSV.html#他の統計解析パッケージのデータファイルの読み込み",
+    "href": "E2_ReadCSV.html#他の統計解析パッケージのデータファイルの読み込み",
+    "title": "2  データの出入力",
+    "section": "3.3 他の統計解析パッケージのデータファイルの読み込み",
+    "text": "3.3 他の統計解析パッケージのデータファイルの読み込み",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>データの出入力</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ReadCSV.html#csvファイル",
+    "href": "E2_ReadCSV.html#csvファイル",
+    "title": "2  データの出入力",
+    "section": "4.1 CSVファイル",
+    "text": "4.1 CSVファイル\nデータをCSVファイルとして保存しておけば、R以外の統計解析パッケージやプログラミング言語を用いる人たちともデータのやり取りができる。そのため、最も汎用性が高いデータ保存フォーマットとしてCSVファイルを選択すべきであろう。データをCSVファイルとして出力するためにはwrite.csv()あるいはreadr::write_csv()を使う。いずれの関数も、1つ目の引数に保存するオブジェクト名を、2つ目の引数（file）に出力するファイル名を指定する。以下の例ではOutputというフォルダ内にCSVファイルを保存している。\n\nDF_Men &lt;-   # データセットから男性のみを抽出\n  DF_raw |&gt; \n  filter(sex == 1)\n\nwrite_csv(DF_Men, file = \"DF_Men.csv\")\n\nOutputフォルダを見てみるとDF_Men.csvという名前のファイルが生成されているはずである。",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>データの出入力</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ReadCSV.html#rdataファイル",
+    "href": "E2_ReadCSV.html#rdataファイル",
+    "title": "2  データの出入力",
+    "section": "4.2 Rdataファイル",
+    "text": "4.2 Rdataファイル\nRを用いた分析で再利用したり、他のRユーザーとデータを共有することが目的であればRdataファイルでデータを保存しても良い。Rdataファイルのメリットは複数のオブジェクトを保存できることである。例えば、データセットを性別で分割してそれぞれDF_Men, DF_Womenというオブジェクトに格納しておき、これら2つのデータセットをRdataファイルとして保存してみよう。\n\nDF_Women &lt;-  # データセットから女性のみを抽出\n  DF_raw |&gt; \n  filter(sex == 2)  \n\nsave(DF_Men, DF_Women,  # DF_Menは前のセクションで定義している \n     file = \"DF_bySex.Rdata\")\n\nOutputフォルダに移ると、DF_bySex.Rdataという名前のファイルが保存されているはずである。\nRdataファイルの読み込みにはload()を用いる。DF_bySex.Rdataの中にDF_MenとDF_Womenが問題なく保存されているかを確認してみよう。まずは、ここまでの作業で作ったオブジェクトを削除（リセット）するためにrm()関数を用いる。この関数は引数にlistを持っており、ここに削除したいオブジェクト名を引き渡す。全てのオブジェクトを削除したい場合はlist=ls()とすれば良い。\n\nrm(list = ls())\n\nls()は作業ディレクトリ内のオブジェクト一覧を返す関数である。先にrm(list = ls())によってオブジェクトが全てリセットされているので、この段階でls()を実行すると\n\nls()\n\ncharacter(0)\n\n\nのように何も返ってこない。それでは、DF_bySex.Rdataを現在の作業ディレクトリに読み込んでみよう。\n\nload(\"DF_bySex.Rdata\")\n\nRStudioのEnviromentパネルをみると、DF_MenとDF_Womenが表示されているはずである。ls()を実行してみても、\n\nls()\n\n[1] \"DF_Men\"   \"DF_Women\"\n\n\nのように、保存されたオブジェクト名が返ってくる。",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>データの出入力</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ReadCSV.html#rdsファイル",
+    "href": "E2_ReadCSV.html#rdsファイル",
+    "title": "2  データの出入力",
+    "section": "4.3 rdsファイル",
+    "text": "4.3 rdsファイル\n上述のように、複数のオブジェクトを保存できることがRdataファイルのメリットである。しかしながら、これは特定のオブジェクトだけをワークスペース内にロードできないことを意味するため、同時にデメリットでもある。そこで、単一のオブジェクトを保存したり、ワークスペース内に読み込みたい場合はrdsファイルを利用するとよい。データをrdsファイルとして保存するためにはsaveRDS()を用いる。\n\nsaveRDS(DF_Men, file = \"DF_Men.rds\")\n\nrdsファイルの読み込みにはreadRDS()を用いる。先と同様に、作業ディレクトリ内のDF_Menを一度削除してからrdsファイルを読み込んでみよう。\n\nrm(list = \"DF_Men\")\nls()  # DF_Womenしか作業環境に残されていないことを確認\n\n[1] \"DF_Women\"\n\n\n\nDF_Men &lt;- readRDS(\"DF_Men.rds\")\nls()  # DF_Menが読み込まれている\n\n[1] \"DF_Men\"   \"DF_Women\"\n\n\nなお、rdsファイルを読み込み際にはオブジェクトを定義してそこに格納する必要がある。そのため、`rds``ファイルとは異なる名前のオブジェクト名にデータを格納しても問題ない。例えば、\n\ndata_Men &lt;- readRDS(\"DF_Men.rds\")\nls()  # オブジェクトdata_Menが追加されている\n\n[1] \"data_Men\" \"DF_Men\"   \"DF_Women\"\n\nidentical(DF_Men, data_Men) # DF_Menとdata_Menの中身は全く同じ\n\n[1] TRUE",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>データの出入力</span>"
+    ]
+  },
+  {
+    "objectID": "E2_AddNewVariables.html",
+    "href": "E2_AddNewVariables.html",
+    "title": "3  変数の作成",
+    "section": "",
+    "text": "4 変数の作成\nデータ分析の過程においては、新しい変数を追加する必要があることが多い。 例えば、「身長」と「体重」という2つの変数が与えられていて、それらをもとに「BMI」という新しい変数をデータフレームに追加することを考えてみる。 以下では、Rにデフォルトでインストールされているサンプルデータwomenを用いる。このサンプルデータの説明には\n\nAverage Heights and Weights for American Women\n\nとあり、アメリカ女性の平均身長と平均体重に関するデータであることがわかる。\n\nDF_sample &lt;- women\nDF_sample\n\n   height weight\n1      58    115\n2      59    117\n3      60    120\n4      61    123\n5      62    126\n6      63    129\n7      64    132\n8      65    135\n9      66    139\n10     67    142\n11     68    146\n12     69    150\n13     70    154\n14     71    159\n15     72    164\n\n\nデータの個数は15、身長（height）、体重（weight）共に欠測値はないことがわかる。身長はインチ、体重はポンドでそれぞれ測定されている。\nそれでは、以下のステップで新規変数BMIを作成してみよう。\n\n身長をm、体重をkgに変換する\n\nBMI(体重kg / [(身長m)^2])を算出する\n\n\n\n5 {base}による方法\nはじめに、Rの{base}にもとづいた、新規変数の作成方法について見ていこう。\nデータフレーム内の変数（ベクトル）にアクセスする場合は$演算子を使うことはすでに学んだ通りである。新規変数を作成する場合もこの$演算子の後に新しい変数名を入力し、&lt;-で変数の中身を代入すれば良い。\n\nDF_sample$height_m  &lt;- DF_sample$height * 0.0254   ## m = inch * 0.0254\nDF_sample$weight_kg &lt;- DF_sample$weight * 0.45359237  ## kg = pound * 0.45359237\nDF_sample\n\n   height weight height_m weight_kg\n1      58    115   1.4732  52.16312\n2      59    117   1.4986  53.07031\n3      60    120   1.5240  54.43108\n4      61    123   1.5494  55.79186\n5      62    126   1.5748  57.15264\n6      63    129   1.6002  58.51342\n7      64    132   1.6256  59.87419\n8      65    135   1.6510  61.23497\n9      66    139   1.6764  63.04934\n10     67    142   1.7018  64.41012\n11     68    146   1.7272  66.22449\n12     69    150   1.7526  68.03886\n13     70    154   1.7780  69.85322\n14     71    159   1.8034  72.12119\n15     72    164   1.8288  74.38915\n\n\nmで測定された身長height_mと、kgで測定された体重weight_kgとがそれぞれデータフレームに追加されたことがわかる。最後に、これらの変数を元にBMIを計算してみよう。\n\nDF_sample$BMI &lt;- DF_sample$weight_kg / (DF_sample$height_m)^2 \nDF_sample\n\n   height weight height_m weight_kg      BMI\n1      58    115   1.4732  52.16312 24.03478\n2      59    117   1.4986  53.07031 23.63089\n3      60    120   1.5240  54.43108 23.43565\n4      61    123   1.5494  55.79186 23.24041\n5      62    126   1.5748  57.15264 23.04546\n6      63    129   1.6002  58.51342 22.85109\n7      64    132   1.6256  59.87419 22.65752\n8      65    135   1.6510  61.23497 22.46495\n9      66    139   1.6764  63.04934 22.43496\n10     67    142   1.7018  64.41012 22.24012\n11     68    146   1.7272  66.22449 22.19900\n12     69    150   1.7526  68.03886 22.15090\n13     70    154   1.7780  69.85322 22.09647\n14     71    159   1.8034  72.12119 22.17577\n15     72    164   1.8288  74.38915 22.24217\n\n\nデータフレームの最後の列にBMIが追加された。以上が{base}による新規変数の作成方法である。その方法自体はそこまで複雑ではないものの、問題はコードの中でデータフレームの名前（この例ではDF_sample）を何度も指定しなければならない点である。これがコードの可読性を低めてしまっている原因のひとつであるが、{tidyverse}を使えばこの問題が解消される。\n\n\n6 {tidyverse}による方法\nはじめに、{tidyverse}は使用する前にライブラリの呼び出しを行う必要がある。さらに、初回のみパッケージのインストールも行う必要がある。パッケージのインストールはinstall.packages()を用いる。\n\n# install.packages(\"tidyverse\")  # 初回のみでよい\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n{tidyverse}には複数のパッケージが組み込まれており、データ前処理で主に活躍するのがdplyrパッケージである。以下で紹介するdplyrの関数は、データフレームあるいはtibbleに適用できる。tibbleとは一言で言えば、「dplyr用に改良されたデータフレーム」である。データフレームはas_tibble()関数でtibbleに変換できる。\n\nDF_raw &lt;- as_tibble(women)\nDF_raw\n\n# A tibble: 15 × 2\n   height weight\n    &lt;dbl&gt;  &lt;dbl&gt;\n 1     58    115\n 2     59    117\n 3     60    120\n 4     61    123\n 5     62    126\n 6     63    129\n 7     64    132\n 8     65    135\n 9     66    139\n10     67    142\n11     68    146\n12     69    150\n13     70    154\n14     71    159\n15     72    164\n\n\ntibbleは最初に行数と列数が表示され、データ行列の大きさが分かるようになっている。また、変数名の下にと表示されているが、これはその変数のデータの型を表している。dblは数値型であり、この他にも因子型（fct）や文字列型（chr）などがある。tibbleはデータフレームと比較して、データの型により厳密であることが特徴のひとつである。詳細はtibbleのヘルプページを参照されたい。\ndplyrによる変数の追加にはmutate関数を用いる。\n\nDF_sample &lt;- \n  DF_raw |&gt;\n  mutate(height_m  = height * 0.0254,\n         weight_kg = weight * 0.45359237,\n         BMI       = weight_kg / height_m^2)\n\nDF_sample\n\n# A tibble: 15 × 5\n   height weight height_m weight_kg   BMI\n    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n 1     58    115     1.47      52.2  24.0\n 2     59    117     1.50      53.1  23.6\n 3     60    120     1.52      54.4  23.4\n 4     61    123     1.55      55.8  23.2\n 5     62    126     1.57      57.2  23.0\n 6     63    129     1.60      58.5  22.9\n 7     64    132     1.63      59.9  22.7\n 8     65    135     1.65      61.2  22.5\n 9     66    139     1.68      63.0  22.4\n10     67    142     1.70      64.4  22.2\n11     68    146     1.73      66.2  22.2\n12     69    150     1.75      68.0  22.2\n13     70    154     1.78      69.9  22.1\n14     71    159     1.80      72.1  22.2\n15     72    164     1.83      74.4  22.2\n\n\n{base}による方法と比較すると、mutateを用いる方法の方が新規変数がどのように定義されたのかがわかりやすい。そのひとつの理由は、{base}による方法と異なり、変数名を指定する際にデータフレーム（ここではtibble)の名前を何度も記述しなくてよいためである。",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>変数の作成</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ConditionalBranch.html",
+    "href": "E2_ConditionalBranch.html",
+    "title": "4  条件分岐",
+    "section": "",
+    "text": "5 条件分岐の重要性\n統計データ分析、あるいはより一般的にプログラミングにおいて、条件分岐を用いると複雑な処理が可能になる。以下では\nの条件分岐の2つの方法について説明する。これらは{base}に組み込まれている関数群である。\nその後、{tidyverse}環境における条件分岐について説明する。",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>条件分岐</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ConditionalBranch.html#if_else",
+    "href": "E2_ConditionalBranch.html#if_else",
+    "title": "4  条件分岐",
+    "section": "9.1 if_else",
+    "text": "9.1 if_else\nif_elseの使用方法はbaseのifelseとほぼ同じである。ただし、いくつか重要な違いもあるため、以下見ていこう。\n\nDF |&gt; mutate(DrinkTooMuch = if_else(BeerConsume &gt; 350, 1, 0))\n\n# A tibble: 7 × 3\n  Youbi BeerConsume DrinkTooMuch\n  &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Mon           350            0\n2 Tue           350            0\n3 Wed           350            0\n4 Thu           350            0\n5 Fri          1000            1\n6 Sat          1000            1\n7 Sun           500            1\n\n\nまず、ifelseよりもif_elseのほうが変数の型により厳密である。特に、欠損値の指定を行うときには変数の型に合わせた欠損値を指定しなくてはならない。\n\nDF |&gt; mutate(DrinkTooMuch = if_else(BeerConsume &gt; 350, 1, NA))\n\n# A tibble: 7 × 3\n  Youbi BeerConsume DrinkTooMuch\n  &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Mon           350           NA\n2 Tue           350           NA\n3 Wed           350           NA\n4 Thu           350           NA\n5 Fri          1000            1\n6 Sat          1000            1\n7 Sun           500            1\n\n\nBeerConsumeがdouble型なので、falseの場合もlogicalではなくdoubleでなくてはならないとエラーメッセージが出ている（現在のバージョンの{tidyverse}ではNAを割り当てても変数の型に合わせて欠損値を指定してくれるようになっている）。そのため、欠損値の指定にはNAではなくNA_real_を用いる。\n\nDF |&gt; mutate(DrinkTooMuch = if_else(BeerConsume &gt; 350, 1, NA_real_))\n\n# A tibble: 7 × 3\n  Youbi BeerConsume DrinkTooMuch\n  &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Mon           350           NA\n2 Tue           350           NA\n3 Wed           350           NA\n4 Thu           350           NA\n5 Fri          1000            1\n6 Sat          1000            1\n7 Sun           500            1\n\n\nこのように{tidyverse}では変数の型に合わせた欠損値が用意されている。\n\nNA            # logical\nNA_character_ # character\nNA_integer_   # integer\nNA_real_      # double",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>条件分岐</span>"
+    ]
+  },
+  {
+    "objectID": "E2_ConditionalBranch.html#case_when",
+    "href": "E2_ConditionalBranch.html#case_when",
+    "title": "4  条件分岐",
+    "section": "9.2 case_when",
+    "text": "9.2 case_when\n{tidyverse}環境でif_elseと並んで条件分岐によく使われるのがcase_whenである。これは複数の条件で場合分けする際に用いる。\n\nDF |&gt; \n  mutate(How2Work = case_when(Youbi %in% c(\"Mon\", \"Tue\", \"Wed\") ~ \"Work_from_home\",\n                              Youbi %in% c(\"Thu\", \"Fri\")        ~ \"Work_in_office\",\n                              Youbi %in% c(\"Sat\", \"Sun\")        ~ \"Childcare\"))\n\n# A tibble: 7 × 3\n  Youbi BeerConsume How2Work      \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;         \n1 Mon           350 Work_from_home\n2 Tue           350 Work_from_home\n3 Wed           350 Work_from_home\n4 Thu           350 Work_in_office\n5 Fri          1000 Work_in_office\n6 Sat          1000 Childcare     \n7 Sun           500 Childcare     \n\n\nいずれの論理式にも該当しない要素はすべて欠損値になる。\n\nDF |&gt; \n  mutate(TypeYoubi = case_when(Youbi %in% c(\"Mon\", \"Tue\", \"Wed\") ~ \"MonTueWed\",\n                               Youbi %in% c(\"Thu\", \"Fri\")        ~ \"ThuFri\"))\n\n# A tibble: 7 × 3\n  Youbi BeerConsume TypeYoubi\n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;    \n1 Mon           350 MonTueWed\n2 Tue           350 MonTueWed\n3 Wed           350 MonTueWed\n4 Thu           350 ThuFri   \n5 Fri          1000 ThuFri   \n6 Sat          1000 &lt;NA&gt;     \n7 Sun           500 &lt;NA&gt;     \n\n\n単一あるいは複数の論理式を指定したのちに、「それ以外の条件」を表す引数にTRUEがある。\n\nDF |&gt; \n  mutate(TypeYoubi = case_when(Youbi %in% c(\"Mon\", \"Tue\", \"Wed\") ~ \"MonTueWed\",\n                               Youbi %in% c(\"Thu\", \"Fri\")        ~ \"ThuFri\",\n                               TRUE                              ~ as.character(Youbi)))\n\n# A tibble: 7 × 3\n  Youbi BeerConsume TypeYoubi\n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;    \n1 Mon           350 MonTueWed\n2 Tue           350 MonTueWed\n3 Wed           350 MonTueWed\n4 Thu           350 ThuFri   \n5 Fri          1000 ThuFri   \n6 Sat          1000 Sat      \n7 Sun           500 Sun",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>条件分岐</span>"
+    ]
+  },
+  {
+    "objectID": "E2_MissingValue.html",
+    "href": "E2_MissingValue.html",
+    "title": "5  欠損値",
+    "section": "",
+    "text": "6 欠損値とは？\n欠損値（missing value）とは、何らかの理由によって変数の値が観察されなかった状態のことを指す。\n例えば、「年齢」という変数が「30歳」という値を取る調査対象者を想定してみよう。この対象者が年齢を答えたくない、あるいは年齢に関する質問項目を見落としていた、などの理由から年齢を回答しなかった場合、本来得られるはずであった「30歳」という値は観測されずに「欠測」してしまう。",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>欠損値</span>"
+    ]
+  },
+  {
+    "objectID": "E2_MissingValue.html#ifelseを使う場合",
+    "href": "E2_MissingValue.html#ifelseを使う場合",
+    "title": "5  欠損値",
+    "section": "9.1 ifelseを使う場合",
+    "text": "9.1 ifelseを使う場合\n\nifelse(is.na(Hako), 0, Hako)\n\n[1] 1 0 2\n\nHako   # 上記の場合は元のHakoというオブジェクトの中身は変わっていないので注意\n\n[1]  1 NA  2\n\n# 置換後のベクトルを保存したい場合はオブジェクトとして保存する\nHako_NAimp &lt;- ifelse(is.na(Hako), 0, Hako)\nHako_NAimp\n\n[1] 1 0 2\n\nHako # 置換前のオブジェクトの中身はそのまま\n\n[1]  1 NA  2",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>欠損値</span>"
+    ]
+  },
+  {
+    "objectID": "E2_MissingValue.html#is.naでベクトル内の欠損値の位置を指定して置換する場合",
+    "href": "E2_MissingValue.html#is.naでベクトル内の欠損値の位置を指定して置換する場合",
+    "title": "5  欠損値",
+    "section": "9.2 is.na()でベクトル内の欠損値の位置を指定して置換する場合",
+    "text": "9.2 is.na()でベクトル内の欠損値の位置を指定して置換する場合\n\nHako2 &lt;- Hako\nHako2[is.na(Hako2)] &lt;- 0\nHako2\n\n[1] 1 0 2",
+    "crumbs": [
+      "Rの基礎",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>欠損値</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html",
+    "href": "E3_DescriptiveStats.html",
+    "title": "6  記述統計量",
+    "section": "",
+    "text": "7 使用データ\n東大社研・若年パネル調査の非制限公開疑似データを用いる。まだデータをダウンロードしていない場合は左のサイトからデータを取得しておくこと。CSV, Stata, SPSSでデータが提供されているが、ここではCSVファイルを使う。\nまずはデータの読み込みである。\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nFN_Data2Load &lt;- \"data/u001.csv\"\nDF &lt;- read_csv(FN_Data2Load)\n\nRows: 1000 Columns: 72\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nデータセットに含まれる個体の数、すなわち行の数を調べたい時はnrow()を用いる。\nnrow(DF)\n\n[1] 1000\n1000人分のデータが含まれていることがわかる。一方で変数の数、すなわち列数をカウントするにはncolを使えば良い。\nncol(DF)\n\n[1] 72\nさらに、colnames()で変数名をリストアップできる。\ncolnames(DF)\n\n [1] \"caseid\"  \"sex\"     \"ybirth\"  \"mbirth\"  \"ZQ03\"    \"JC_1\"    \"JC_41\"  \n [8] \"ZQ08A\"   \"ZQ08B\"   \"ZQ08C\"   \"ZQ08D\"   \"ZQ08E\"   \"ZQ08F\"   \"ZQ08G\"  \n[15] \"ZQ08H\"   \"ZQ11_A\"  \"ZQ11_B\"  \"ZQ11_C\"  \"ZQ11_D\"  \"ZQ11_E\"  \"ZQ11_F\" \n[22] \"ZQ11_G\"  \"ZQ11_H\"  \"ZQ11_I\"  \"ZQ11_J\"  \"ZQ11_K\"  \"ZQ11_L\"  \"ZQ11_M\" \n[29] \"ZQ11_N\"  \"ZQ11_O\"  \"ZQ12\"    \"ZQ14_1A\" \"ZQ14_1B\" \"ZQ14_1C\" \"ZQ14_1D\"\n[36] \"ZQ23A\"   \"ZQ23B\"   \"ZQ23C\"   \"ZQ23D\"   \"ZQ24\"    \"ZQ25\"    \"ZQ26A\"  \n[43] \"ZQ26B\"   \"ZQ26C\"   \"ZQ26D\"   \"ZQ26E\"   \"ZQ26F\"   \"ZQ30D\"   \"ZQ35\"   \n[50] \"ZQ39A\"   \"ZQ42\"    \"ZQ43\"    \"ZQ47A\"   \"ZQ47B\"   \"ZQ47C\"   \"ZQ50\"   \n[57] \"ZQ52A\"   \"ZQ52Y\"   \"ZQ54A\"   \"ZQ54B\"   \"ZQ54C\"   \"ZQ54D\"   \"ZQ61_A\" \n[64] \"ZQ61_B\"  \"ZQ61_C\"  \"ZQ61_D\"  \"ZQ61_E\"  \"ZQ61_F\"  \"ZQ61_G\"  \"ZQ61_H\" \n[71] \"ZQ61_I\"  \"ZQ62\"\n各変数がどのような調査項目に該当するのかについては調査票を確認すること。以下では、回答者の生年（ybirth）を例に記述統計量を算出してみよう。",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html#base",
+    "href": "E3_DescriptiveStats.html#base",
+    "title": "6  記述統計量",
+    "section": "8.1 {base}",
+    "text": "8.1 {base}\n度数分布表を出力するための代表的な関数としてtable()が挙げられる。\n\ntable(DF$ybirth)\n\n\n1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 \n  70   81   82   70   76   84   53   54   48   70   44   67   67   64   70 \n\n\nなお、現バージョンのRではネイティブパイプ演算子（|&gt;）が使えるため、with(table())を用いて以下のように書いてもよい。\n\nDF |&gt; \n  with(table(ybirth))\n\nybirth\n1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 \n  70   81   82   70   76   84   53   54   48   70   44   67   67   64   70 \n\n\n一見すると前者のコードの方がすっきりしていて望ましいようにも見えるが、実は後者の方が拡張性の点で優れている。例えば、度数だけではなく比率も算出したい場合はprop.table()を用いるが、パイプ演算子を用いないと以下のようにコードを書く必要がある。\n\nprop.table(table(DF$ybirth))\n\n\n 1972  1973  1974  1975  1976  1977  1978  1979  1980  1981  1982  1983  1984 \n0.070 0.081 0.082 0.070 0.076 0.084 0.053 0.054 0.048 0.070 0.044 0.067 0.067 \n 1985  1986 \n0.064 0.070 \n\n\nこれくらいであれば何とかひと目でコードの意図することを読み取れるかもしれないが、さらに「合計」の列（周辺度数）を追加するaddmargins()を加えたらどうであろうか。\n\naddmargins(prop.table(table(DF$ybirth)))\n\n\n 1972  1973  1974  1975  1976  1977  1978  1979  1980  1981  1982  1983  1984 \n0.070 0.081 0.082 0.070 0.076 0.084 0.053 0.054 0.048 0.070 0.044 0.067 0.067 \n 1985  1986   Sum \n0.064 0.070 1.000 \n\n\nパッとみただけではどのような処理がなされているのか分からない人も多いのではないだろうか。その原因は、\n\n\n度数を算出する(table())\n比率を計算する(prop.table())\n「合計」の列を追加する(addmargins())\n\n\nという順序で処理がなされているのに対して、コード上では関数がこの逆の順序で現れてくるからである。\n一方で、パイプ演算子を使うと、この順序で関数がコード上で現れてくる。\n\nDF |&gt; \n  with(table(ybirth)) |&gt;\n  prop.table() |&gt; \n  addmargins()\n\nybirth\n 1972  1973  1974  1975  1976  1977  1978  1979  1980  1981  1982  1983  1984 \n0.070 0.081 0.082 0.070 0.076 0.084 0.053 0.054 0.048 0.070 0.044 0.067 0.067 \n 1985  1986   Sum \n0.064 0.070 1.000 \n\n\nこれは直前の処理結果がパイプ演算子によって次の関数に引き渡されていくためである。このように、処理が複雑になるほどパイプ演算子を使うことのメリットが生まれてくる。",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html#tidyverse",
+    "href": "E3_DescriptiveStats.html#tidyverse",
+    "title": "6  記述統計量",
+    "section": "8.2 {tidyverse}",
+    "text": "8.2 {tidyverse}\n{tidyverse}で度数分布表を出力するためにはcount()を用いる。\n\nDF |&gt; \n  count(ybirth)\n\n# A tibble: 15 × 2\n   ybirth     n\n    &lt;dbl&gt; &lt;int&gt;\n 1   1972    70\n 2   1973    81\n 3   1974    82\n 4   1975    70\n 5   1976    76\n 6   1977    84\n 7   1978    53\n 8   1979    54\n 9   1980    48\n10   1981    70\n11   1982    44\n12   1983    67\n13   1984    67\n14   1985    64\n15   1986    70\n\n\n比率を追加したい場合は、以下のようにmutate()で比率を示す変数を追加すればよい。\n\nDF |&gt; \n  count(ybirth) |&gt; \n  mutate(Prop = n / sum(n))\n\n# A tibble: 15 × 3\n   ybirth     n  Prop\n    &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;\n 1   1972    70 0.07 \n 2   1973    81 0.081\n 3   1974    82 0.082\n 4   1975    70 0.07 \n 5   1976    76 0.076\n 6   1977    84 0.084\n 7   1978    53 0.053\n 8   1979    54 0.054\n 9   1980    48 0.048\n10   1981    70 0.07 \n11   1982    44 0.044\n12   1983    67 0.067\n13   1984    67 0.067\n14   1985    64 0.064\n15   1986    70 0.07",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html#base-1",
+    "href": "E3_DescriptiveStats.html#base-1",
+    "title": "6  記述統計量",
+    "section": "9.1 {base}",
+    "text": "9.1 {base}\n{base}環境特有の記述統計量の算出方法というものが特段あるわけではないが（後述するように、これらの関数はすべて{tidyverse}でも使えるため）、上記の関数に変数ベクトルを引き渡せば各統計量が返ってくる。\n\nmean(DF$ybirth)    # 平均値\n\n[1] 1978.682\n\nmedian(DF$ybirth)  # 中央値\n\n[1] 1978\n\nsd(DF$ybirth)      # 標準偏差\n\n[1] 4.439886",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html#tidyverse-1",
+    "href": "E3_DescriptiveStats.html#tidyverse-1",
+    "title": "6  記述統計量",
+    "section": "9.2 {tidyverse}",
+    "text": "9.2 {tidyverse}\n{tidyverse}環境で記述統計量を算出するためにはreframe()を用いる。{base}の時との違いは、返り値がスカラーではなくtibbleのため、記述統計量を格納する新変数名を指定する必要がある。\n\nDF |&gt; \n  reframe(Mean_ybirth = mean(ybirth))\n\n# A tibble: 1 × 1\n  Mean_ybirth\n        &lt;dbl&gt;\n1       1979.\n\n\nなお、返り値をスカラーにしたい場合、列がひとつのみの場合はpull()を使うと良い。\n\nDF |&gt; \n  reframe(Mean_ybirth = mean(ybirth)) |&gt; \n  pull()\n\n[1] 1978.682\n\n\nreframe()は複数の要約統計量を同時に算出することもできる。\n\nDF |&gt; \n  reframe(Mean   = mean  (ybirth),\n          Median = median(ybirth),\n          SD     = sd    (ybirth))\n\n# A tibble: 1 × 3\n   Mean Median    SD\n  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 1979.   1978  4.44\n\n\n返り値をtibbleではなくベクトルにする場合、pull()はひとつの列にしか適用できないのでunlist()を使う。\n\nDF |&gt; \n  reframe(Mean   = mean  (ybirth),\n          Median = median(ybirth),\n          SD     = sd    (ybirth)) |&gt; \n  unlist()\n\n       Mean      Median          SD \n1978.682000 1978.000000    4.439886",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html#度数分布表-1",
+    "href": "E3_DescriptiveStats.html#度数分布表-1",
+    "title": "6  記述統計量",
+    "section": "10.1 度数分布表",
+    "text": "10.1 度数分布表\nこの状態で度数分布表を出力すると、\n\nDF_wNA |&gt; \n  with(table(ybirth))\n\nybirth\n1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 \n  69   81   82   70   76   84   53   54   48   70   44   67   67   64   70 \n\n\nのように、欠測値が表章されない。これはtable()関数にはexcludeという引数があり、これをNULLにしておかないと欠測値が度数分布表から除外されてしまう。\n\nDF_wNA |&gt; \n  with(table(ybirth, exclude = NULL))\n\nybirth\n1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 &lt;NA&gt; \n  69   81   82   70   76   84   53   54   48   70   44   67   67   64   70    1 \n\n\n一方で、{tidyverse}のcount()は特に何も指定せずに欠測値が表章される。\n\nDF_wNA |&gt; \n  count(ybirth)\n\n# A tibble: 16 × 2\n   ybirth     n\n    &lt;dbl&gt; &lt;int&gt;\n 1   1972    69\n 2   1973    81\n 3   1974    82\n 4   1975    70\n 5   1976    76\n 6   1977    84\n 7   1978    53\n 8   1979    54\n 9   1980    48\n10   1981    70\n11   1982    44\n12   1983    67\n13   1984    67\n14   1985    64\n15   1986    70\n16     NA     1",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html#代表値散布度-1",
+    "href": "E3_DescriptiveStats.html#代表値散布度-1",
+    "title": "6  記述統計量",
+    "section": "10.2 代表値・散布度",
+    "text": "10.2 代表値・散布度\nつづいて、欠測値がデータ（ベクトル）に含まれている場合に代表値はどのように算出すれば良いだろうか。例えばmean()ではデフォルトの設定ではNAが返ってきてしまう。\n\nDF_wNA |&gt; \n  with(mean(ybirth))\n\n[1] NA\n\n\nこうした場合、以下の2通りのいずれかで対応すればよい。\n\n10.2.1 欠測値を除いてから関数に引き渡す\n\nDF_wNA |&gt; \n  drop_na(ybirth) |&gt; \n  with(mean(ybirth))\n\n[1] 1978.689\n\n\n\n\n10.2.2 na.rmオプションを用いる\nRの多くの関数には引数としてna.rmというものが実装されている。これは、引き渡されたデータから欠測値を除去してからその関数内で定義された処理を施すためのものである。先に紹介したmean(), median(), sd()はいずれもこの引数を備えている。\n\nmean(DF_wNA$ybirth, na.rm = TRUE)\n\n[1] 1978.689\n\nmedian(DF_wNA$ybirth, na.rm = TRUE)\n\n[1] 1978\n\nsd(DF_wNA$ybirth, na.rm = TRUE)\n\n[1] 4.437066",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html#ヒストグラム",
+    "href": "E3_DescriptiveStats.html#ヒストグラム",
+    "title": "6  記述統計量",
+    "section": "11.1 ヒストグラム",
+    "text": "11.1 ヒストグラム\n単変量の可視化の代表的な方法にヒストグラム（histogram）がある。ヒストグラムは以下の特徴がある。\n\n連続変数の可視化に用いる\n\nカテゴリカル変数の可視化に用いられる類似したグラフが棒グラフ（bar chart）\n\n面積が度数を表す\n\n棒と棒の間には隙間がない\n\n\nヒストグラムを出力するための関数は以下の通りである。\n\n{base}: hist()\n{tidyverse}: geom_histogram()\n\n\n{base} code{base} output{ggplot} code{ggplot} output\n\n\n\nhist(DF$ybirth)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDF |&gt; \n  ggplot(aes(x = ybirth)) +\n  geom_histogram(binwidth = 1,\n                 fill     = \"blue\", \n                 color    = \"black\",\n                 alpha    = 0.7) +\n  labs(x = \"Birth Year\",\n       y = \"Frequency\")",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E3_DescriptiveStats.html#箱ひげ図",
+    "href": "E3_DescriptiveStats.html#箱ひげ図",
+    "title": "6  記述統計量",
+    "section": "11.2 箱ひげ図",
+    "text": "11.2 箱ひげ図\nヒストグラムと同様に単変量の連続変数の可視化によく用いられるのが箱ひげ図である。箱ひげ図の特徴は以下の通りである。\n\n第1四分位数（25パーセンタイル）と第3四分位数（75パーセンタイル）を囲う形で「箱」が描かれる\n箱の中に引かれている太線が中央値（50パーセンタイル）を表す\n第1四分位数と第3四分位数との差（四分位範囲）の1.5倍の長さの「ヒゲ」が上下に描かれる\nその範囲の外に位置するデータが外れ値（outlier）として丸で描かれる\n\nヒストグラムを出力するための関数は以下の通りである。\n\n{base}: boxplot()\n{tidyverse}: geom_boxplot()\n\n\n{base} code{base} output{ggplot} code{ggplot} output\n\n\n\nboxplot(DF$ybirth)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDF |&gt; \n  ggplot(aes(x = \"\",\n             y = ybirth)) +\n  geom_boxplot() +\n  labs(x = \"Birth Year\",\n       y = \"Frequency\")",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>記述統計量</span>"
+    ]
+  },
+  {
+    "objectID": "E4_TTest.html",
+    "href": "E4_TTest.html",
+    "title": "7  母平均の差の検定",
+    "section": "",
+    "text": "8 データ・変数",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>母平均の差の検定</span>"
+    ]
+  },
+  {
+    "objectID": "E4_TTest.html#データ",
+    "href": "E4_TTest.html#データ",
+    "title": "7  母平均の差の検定",
+    "section": "8.1 データ",
+    "text": "8.1 データ\n東大社研・若年パネル調査の非制限公開疑似データを用いる。\n\nlibrary(tidyverse)\nFN_Data2Load &lt;- \"data/u001.csv\"\nDF_org &lt;- read_csv(FN_Data2Load)\n\nRows: 1000 Columns: 72\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n以下では母平均の差の検定を通じて次の問いに答えることを目的とする。\n\nQ: 就業者の労働時間に男女差はあるのか？",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>母平均の差の検定</span>"
+    ]
+  },
+  {
+    "objectID": "E4_TTest.html#変数",
+    "href": "E4_TTest.html#変数",
+    "title": "7  母平均の差の検定",
+    "section": "8.2 変数",
+    "text": "8.2 変数\n\n8.2.1 回答者の性別: sex\n\n\n\n8.2.2 1日あたり労働時間: JC_41\n\nまずはこれらの変数の度数分布表を確認しておこう。\n\n# 使用変数のみ取り出す\nDF_raw &lt;-\n  DF_org |&gt; \n  select(sex, JC_41)\n\n# 原データセットの変数の度数分布表\nDF_raw |&gt; \n  count(sex)\n\n# A tibble: 2 × 2\n    sex     n\n  &lt;dbl&gt; &lt;int&gt;\n1     1   499\n2     2   501\n\nDF_raw |&gt; \n  count(JC_41) |&gt; \n  print(n = 30)  # デフォルトだと途中までしか出力されない\n\n# A tibble: 21 × 2\n   JC_41     n\n   &lt;dbl&gt; &lt;int&gt;\n 1     1     3\n 2     2     9\n 3     3    18\n 4     4    23\n 5     5    37\n 6     6    41\n 7     7    50\n 8     8   250\n 9     9   106\n10    10   138\n11    11    50\n12    12    49\n13    13    15\n14    14    10\n15    15     5\n16    16     1\n17    17     1\n18    18     1\n19    21     1\n20    88   174\n21    99    18\n\n\nここで注意が必要なのは、1日あたり労働時間（JC_41）には88と99というコードが存在することである。基礎集計表をみると、\n\n88: 非該当\n99: 無回答\n\nをそれぞれ意味することがわかる。「非該当」はその設問に回答する必要がないこと、今回の例で言えば調査時点で就業していないことを意味する。それゆえ、以下で見ていくのはあくまで就業者の間における労働時間の男女差であり、非就業者は集計対象に含まれないことに注意されたい。\n非該当コードや無回答コードなど、変数の値コードで注意すべき点が確認できたら、原データに含まれている変数をそのまま使うのではなく、変数名や値コードがわかりやすくなるように変数を作り直すことを推奨する（もちろん、原データの変数に改善の余地がなければそのまま使っても良い）。\n\n# 変数のrename + recode\nDF_temp &lt;- \n  DF_raw |&gt; \n  mutate(Sex         = if_else(sex == 1, \"Men\", \"Women\"),\n         WorkHourDay = if_else(JC_41 %in% c(0:24), JC_41, NA_real_)\n  )\n\n変数のリネーム・リコードが終わったら、必ず元の変数との対応関係を確認して、自身が意図した通りの変数が作成されているかと確認しよう。\n\nDF_temp |&gt; \n  count(sex, Sex)\n\n# A tibble: 2 × 3\n    sex Sex       n\n  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;\n1     1 Men     499\n2     2 Women   501\n\nDF_temp |&gt; \n  count(JC_41, WorkHourDay) |&gt; \n  print(n = 30)\n\n# A tibble: 21 × 3\n   JC_41 WorkHourDay     n\n   &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;\n 1     1           1     3\n 2     2           2     9\n 3     3           3    18\n 4     4           4    23\n 5     5           5    37\n 6     6           6    41\n 7     7           7    50\n 8     8           8   250\n 9     9           9   106\n10    10          10   138\n11    11          11    50\n12    12          12    49\n13    13          13    15\n14    14          14    10\n15    15          15     5\n16    16          16     1\n17    17          17     1\n18    18          18     1\n19    21          21     1\n20    88          NA   174\n21    99          NA    18\n\n\nJC_41をリコードしたWorkHourDayでは「非該当」と「無回答」が欠測値に指定されていることが確認できる。 最後に、集計に用いるサンプルを確定させよう。欠損値をどのように処理するかはそれだけで研究領域を成すほどの重要トピックであるが、ここでは最もオーソドックスな方法のひとつであるリストワイズ（listwise）法にしたがう。リストワイズ法では、使用変数に欠測値を含まないケースが集計対象として用いられる。\n\n# 集計対象の確定\nDF &lt;- \n  DF_temp |&gt; \n  select(Sex, WorkHourDay) |&gt; \n  drop_na()",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>母平均の差の検定</span>"
+    ]
+  },
+  {
+    "objectID": "E4_TTest.html#グループ別の記述統計量の算出",
+    "href": "E4_TTest.html#グループ別の記述統計量の算出",
+    "title": "7  母平均の差の検定",
+    "section": "9.1 グループ別の記述統計量の算出",
+    "text": "9.1 グループ別の記述統計量の算出\n使用変数の準備が完了したら、労働時間の記述統計量を男女別に出力してみよう。ここでは{base}と{tidyverse}のそれぞれを用いた方法を紹介する。\n\n9.1.1 {base}\ntapply()は{base}に実装されている関数で、\n\ntapply(X, INDEX, FUN)\n\nという構造からなり、基本的な3つの引数を持つ。\n\nX: ある処理を施したい変数\nINDEX: グループ変数（のリスト）\nFUN: 施したい処理\n\n今回の例で言えば、Xが労働時間、INDEXが性別、FUNが要約統計量を算出する関数、となる。\n\nDF |&gt; \n  with(tapply(WorkHourDay, Sex, summary))\n\n$Men\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  1.000   8.000   9.000   9.293  10.000  18.000 \n\n$Women\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  1.000   7.000   8.000   7.675   9.000  21.000 \n\n\n\n\n9.1.2 {tidyverse}\n\n\nグルーピングに用いる変数をgroup_by()に引き渡す。これで以下の処理がそのグループ変数ごとに行われる。\n\nreframe()1で要約統計量を集計する。\n\n\n\nDF |&gt;  \n  group_by(Sex) |&gt; \n  reframe(Mean   = mean(WorkHourDay),\n          SD     = sd  (WorkHourDay),\n          NofObs = n())\n\n# A tibble: 2 × 4\n  Sex    Mean    SD NofObs\n  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;\n1 Men    9.29  2.35    433\n2 Women  7.67  2.29    375",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>母平均の差の検定</span>"
+    ]
+  },
+  {
+    "objectID": "E4_TTest.html#ヒストグラム",
+    "href": "E4_TTest.html#ヒストグラム",
+    "title": "7  母平均の差の検定",
+    "section": "10.1 ヒストグラム",
+    "text": "10.1 ヒストグラム\nグループ別にデータを可視化する場合、大きく2つの方法がある。\n\n\nグループごとに別のパネルにグラフを描画する\n同じパネルにグループ別のグラフを重ね合わせる\n\n\n以下ではヒストグラムを例に、男女別に労働時間を可視化してみよう。\n\n10.1.1 グループごとに別のパネルにグラフを描画する\n\n{base} code{base} output{ggplot} code{ggplot} output\n\n\n\nDF_M &lt;- subset(DF, Sex == \"Men\")\nDF_F &lt;- subset(DF, Sex == \"Women\")\n\npar(mfrow = c(1, 2)) # グラフの描画領域を1行2列に分ける\nhist(DF_M$WorkHourDay, xlim = c(0, 24), ylim = c(0, 200), breaks = seq(0, 24))\nhist(DF_F$WorkHourDay, xlim = c(0, 24), ylim = c(0, 200), breaks = seq(0, 24))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDF |&gt;  \n  ggplot(aes(x = WorkHourDay)) +\n  facet_grid(~ Sex) +\n  geom_histogram(binwidth = 1,\n                 fill     = \"blue\", \n                 color    = \"black\",\n                 alpha    = 0.7) +\n  xlim(0, 24) +\n  ylim(0, 200) +\n  theme_few() +\n  theme(strip.text   = element_text(size = rel(1.5)),\n        axis.text.x  = element_text(size = rel(1.5)),\n        axis.text.y  = element_text(size = rel(1.5)),\n        axis.title.x = element_text(size = rel(1.5)),\n        axis.title.y = element_text(size = rel(1.3)))\n\n\n\n\n\nWarning: Removed 4 rows containing missing values or values outside the scale range\n(`geom_bar()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10.1.2 同じパネルにグループ別のグラフを重ね合わせる\n\n{base} code{base} output{ggplot} code{ggplot} output\n\n\n\nDF_M &lt;- subset(DF, Sex == \"Men\")\nDF_F &lt;- subset(DF, Sex == \"Women\")\n\nhist(DF_M$WorkHourDay, col = rgb(0, 0, 1 ,0.2),  xlim = c(0, 24), ylim = c(0, 200))\nhist(DF_F$WorkHourDay, col = rgb(1, 0, 0, 0.2),  add = TRUE)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDF |&gt; \n  ggplot(aes(x = WorkHourDay,\n             group = Sex)) +\n  geom_histogram(aes(fill  = Sex,\n                     color = Sex),\n                 binwidth = 1,\n                 position = \"identity\",\n                 alpha = .5) +\n  xlim(0, 24) +\n  theme_few() +\n  theme(strip.text   = element_text(size = rel(1.5)),\n        axis.text.x  = element_text(size = rel(1.5)),\n        axis.text.y  = element_text(size = rel(1.5)),\n        axis.title.x = element_text(size = rel(1.5)),\n        axis.title.y = element_text(size = rel(1.3)))\n\n\n\n\n\nWarning: Removed 4 rows containing missing values or values outside the scale range\n(`geom_bar()`).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>母平均の差の検定</span>"
+    ]
+  },
+  {
+    "objectID": "E4_TTest.html#箱ひげ図",
+    "href": "E4_TTest.html#箱ひげ図",
+    "title": "7  母平均の差の検定",
+    "section": "10.2 箱ひげ図",
+    "text": "10.2 箱ひげ図\nヒストグラムと並んで、箱ひげ図もグループ別の変数の分布を視覚化するのに適している。以下にそのコード例を示した。\n\n{base} code{base} output{ggplot} code{ggplot} output\n\n\n\nDF |&gt; \n  with(boxplot(WorkHourDay ~ Sex))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDF |&gt; \n  ggplot(aes(x = Sex,\n             y = WorkHourDay)) +\n  geom_boxplot() +\n  theme_few() +\n  theme(strip.text   = element_text(size = rel(1.5)),\n        axis.text.x  = element_text(size = rel(1.5)),\n        axis.text.y  = element_text(size = rel(1.5)),\n        axis.title.x = element_text(size = rel(1.5)),\n        axis.title.y = element_text(size = rel(1.3)))",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>母平均の差の検定</span>"
+    ]
+  },
+  {
+    "objectID": "E4_TTest.html#footnotes",
+    "href": "E4_TTest.html#footnotes",
+    "title": "7  母平均の差の検定",
+    "section": "",
+    "text": "以前の{tidyverse}ではsummarize()という関数が広く用いられていた（summarize()は現在も使うことはできる）。↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>母平均の差の検定</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html",
+    "href": "E5_CrossTabulation.html",
+    "title": "8  クロス集計表",
+    "section": "",
+    "text": "9 データ・変数",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html#データ",
+    "href": "E5_CrossTabulation.html#データ",
+    "title": "8  クロス集計表",
+    "section": "9.1 データ",
+    "text": "9.1 データ\n東大社研・若年パネル調査の非制限公開疑似データを用いる。\n\nlibrary(tidyverse)\nFN_Data2Load &lt;- \"data/u001.csv\"\nDF_org &lt;- read_csv(FN_Data2Load)\n\nRows: 1000 Columns: 72\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n以下ではクロス集計表の分析を通じて次の問いに答えることを目的とする。\n\nQ: 性別によって最終学歴に違いはあるのか？",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html#変数",
+    "href": "E5_CrossTabulation.html#変数",
+    "title": "8  クロス集計表",
+    "section": "9.2 変数",
+    "text": "9.2 変数\n\n9.2.1 回答者の性別: sex\n\n\n9.2.2 回答者の学歴: ZQ23A\n\n\n# 使用変数のみ取り出す\nDF_raw &lt;-\n  DF_org |&gt; \n  select(sex, ZQ23A)\n\nまずはこれらの変数の度数分布表を確認しておこう。\n\nDF_raw |&gt; \n  count(sex)\n\n# A tibble: 2 × 2\n    sex     n\n  &lt;dbl&gt; &lt;int&gt;\n1     1   499\n2     2   501\n\nDF_raw |&gt; \n  count(ZQ23A)\n\n# A tibble: 8 × 2\n  ZQ23A     n\n  &lt;dbl&gt; &lt;int&gt;\n1     1    14\n2     2   241\n3     3   191\n4     4   131\n5     5   368\n6     6    44\n7     7     2\n8     9     9\n\n\nZQ23Aの欠損値コード（9）に注意しつつ、変数をリネーム・リコードしておこう。ここでは回答者の学歴を以下の4カテゴリに再分類する。\n\n中学・高校\n専修学校（専門学校）\n短大\n大学・大学院\n\n\n# 変数のrename + recode\nDF_temp &lt;- \n  DF_raw |&gt; \n  mutate(Sex     = if_else(sex == 1, \"Men\", \"Women\"),\n         Edu4Grp = case_match(ZQ23A,\n                              c(1,2) ~ \"JHS/HS\",\n                              3      ~ \"VS\",\n                              4      ~ \"JC\",\n                              c(5,6) ~ \"Univ\",\n                              TRUE   ~ NA_character_) |&gt; \n                   fct_relevel(\"JHS/HS\", \"VS\", \"JC\", \"Univ\")\n  )\n\n\nDF_temp |&gt; \n  count(sex, Sex)\n\n# A tibble: 2 × 3\n    sex Sex       n\n  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;\n1     1 Men     499\n2     2 Women   501\n\nDF_temp |&gt; \n  count(ZQ23A, Edu4Grp)\n\n# A tibble: 8 × 3\n  ZQ23A Edu4Grp     n\n  &lt;dbl&gt; &lt;fct&gt;   &lt;int&gt;\n1     1 JHS/HS     14\n2     2 JHS/HS    241\n3     3 VS        191\n4     4 JC        131\n5     5 Univ      368\n6     6 Univ       44\n7     7 &lt;NA&gt;        2\n8     9 &lt;NA&gt;        9\n\n\n\n# 集計対象の確定\nDF &lt;- \n  DF_temp |&gt; \n  select(Sex, Edu4Grp) |&gt; \n  drop_na()",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html#base",
+    "href": "E5_CrossTabulation.html#base",
+    "title": "8  クロス集計表",
+    "section": "10.1 {base}",
+    "text": "10.1 {base}\n\n10.1.1 クロス表の作成\n{base}でクロス表を作成する方法はいくつかあるが、代表的なものにxtabs()とtable()がある。\n\nDF |&gt; \n  with(xtabs(~ Sex + Edu4Grp, exclude = NULL))\n\n       Edu4Grp\nSex     JHS/HS  VS  JC Univ\n  Men      135  82  13  260\n  Women    120 109 118  152\n\nDF |&gt; \n  with(table(Sex, Edu4Grp, exclude = NULL))\n\n       Edu4Grp\nSex     JHS/HS  VS  JC Univ\n  Men      135  82  13  260\n  Women    120 109 118  152\n\n\nxtabs()とtable()の出力結果はいずれもtableというクラスになる。\n\nSexEdu_xtabs &lt;- \n  DF |&gt; \n  with(xtabs(~ Sex + Edu4Grp, exclude = NULL))\n\nSexEdu_table &lt;- \n  DF |&gt; \n  with(table(Sex, Edu4Grp, exclude = NULL))\n\nclass(SexEdu_xtabs)\n\n[1] \"xtabs\" \"table\"\n\nclass(SexEdu_table)\n\n[1] \"table\"\n\n\n\n\n10.1.2 行パーセントと列パーセント\n\n10.1.2.1 proportions()\n行パーセントや列パーセントを算出するためにはproportions()を用いる。この関数はmarginという引数を持ち、1が行パーセント、2が列パーセントを示す。\n\nproportions(SexEdu_xtabs, margin = 1) # 行パーセント\n\n       Edu4Grp\nSex         JHS/HS         VS         JC       Univ\n  Men   0.27551020 0.16734694 0.02653061 0.53061224\n  Women 0.24048096 0.21843687 0.23647295 0.30460922\n\nproportions(SexEdu_xtabs, margin = 2) # 列パーセント\n\n       Edu4Grp\nSex         JHS/HS         VS         JC       Univ\n  Men   0.52941176 0.42931937 0.09923664 0.63106796\n  Women 0.47058824 0.57068063 0.90076336 0.36893204\n\n\ntableの次元に名前がついている場合、marginには次元名を指定することもできる\n\nproportions(SexEdu_xtabs, margin = \"Sex\")\n\n       Edu4Grp\nSex         JHS/HS         VS         JC       Univ\n  Men   0.27551020 0.16734694 0.02653061 0.53061224\n  Women 0.24048096 0.21843687 0.23647295 0.30460922\n\nproportions(SexEdu_xtabs, margin = \"Edu4Grp\")\n\n       Edu4Grp\nSex         JHS/HS         VS         JC       Univ\n  Men   0.52941176 0.42931937 0.09923664 0.63106796\n  Women 0.47058824 0.57068063 0.90076336 0.36893204\n\n\nなお、xtabs()やtable()の出力結果には行／列の周辺度数がついていない。クロス表に周辺度数を追加するためにはaddmargins()を用いる。\n\n# 行周辺度数\naddmargins(SexEdu_xtabs, margin = 1)\n\n       Edu4Grp\nSex     JHS/HS  VS  JC Univ\n  Men      135  82  13  260\n  Women    120 109 118  152\n  Sum      255 191 131  412\n\n# 列周辺度数\naddmargins(SexEdu_xtabs, margin = 2)\n\n       Edu4Grp\nSex     JHS/HS  VS  JC Univ Sum\n  Men      135  82  13  260 490\n  Women    120 109 118  152 499\n\n# 行／列周辺度数\naddmargins(SexEdu_xtabs, margin = c(1,2))\n\n       Edu4Grp\nSex     JHS/HS  VS  JC Univ Sum\n  Men      135  82  13  260 490\n  Women    120 109 118  152 499\n  Sum      255 191 131  412 989\n\n\n周辺度数をつけてからproportions()に引き渡せば行全体あるいは列全体の変数の分布を算出できる。\n\n# 列周辺度数を追加\nSexEdu_xtabs |&gt; \n  addmargins(margin = 1) |&gt; \n  proportions(margin = 1)\n\n       Edu4Grp\nSex         JHS/HS         VS         JC       Univ\n  Men   0.27551020 0.16734694 0.02653061 0.53061224\n  Women 0.24048096 0.21843687 0.23647295 0.30460922\n  Sum   0.25783620 0.19312437 0.13245703 0.41658241\n\n# 行周辺度数を追加\nSexEdu_xtabs |&gt; \n  addmargins(margin = 2) |&gt; \n  proportions(margin = 2)\n\n       Edu4Grp\nSex         JHS/HS         VS         JC       Univ        Sum\n  Men   0.52941176 0.42931937 0.09923664 0.63106796 0.49544995\n  Women 0.47058824 0.57068063 0.90076336 0.36893204 0.50455005\n\n\n\n\n10.1.2.2 rowPercents()・colPercents()\nRcmdrMiscパッケージのrowPercents()やcolPercents()を使っても行パーセントや列パーセントを算出できる。これらの関数の便利な点として、デフォルトで周辺度数を出力結果に返してくれる。\n\nlibrary(RcmdrMisc)\n\nrowPercents(SexEdu_xtabs, 1)\n\n       Edu4Grp\nSex     JHS/HS   VS   JC Univ Total Count\n  Men     27.6 16.7  2.7 53.1 100.1   490\n  Women   24.0 21.8 23.6 30.5  99.9   499\n\ncolPercents(SexEdu_xtabs, 2)\n\n       Edu4Grp\nSex     JHS/HS     VS     JC   Univ\n  Men    52.94  42.93   9.92  63.11\n  Women  47.06  57.07  90.08  36.89\n  Total 100.00 100.00 100.00 100.00\n  Count 255.00 191.00 131.00 412.00\n\n\n\n\n\n10.1.3 カイ二乗検定\nカイ二乗検定はchi.test()によって行う。この関数にはクロス表のtableを引き渡すことができる。出力結果をオブジェクトに格納しておけば、期待値・残差・標準化残差などの出力値を後から取り出すことができる。\n\nResult &lt;- chisq.test(SexEdu_xtabs)\nprint(Result)\n\n\n    Pearson's Chi-squared test\n\ndata:  SexEdu_xtabs\nX-squared = 117.1, df = 3, p-value &lt; 2.2e-16\n\n\nカイ二乗検定の結果を見ると、性別と最終学歴とは統計的に独立とは言えないようである。どのセルにおいて期待度数と観測度数との乖離（残差）が大きいのかを見てみよう。\n\n# 期待値\nResult$expected\n\n       Edu4Grp\nSex       JHS/HS       VS       JC     Univ\n  Men   126.3397 94.63094 64.90394 204.1254\n  Women 128.6603 96.36906 66.09606 207.8746\n\n# 残差\nResult$residuals\n\n       Edu4Grp\nSex         JHS/HS         VS         JC       Univ\n  Men    0.7704795 -1.2984317 -6.4426541  3.9108043\n  Women -0.7634997  1.2866691  6.3842896 -3.8753761\n\n# 標準化残差\nResult$stdres\n\n       Edu4Grp\nSex        JHS/HS        VS        JC      Univ\n  Men    1.259097 -2.034997 -9.737942  7.208156\n  Women -1.259097  2.034997  9.737942 -7.208156\n\n\n残差分析の結果、統計的独立の状態に比して、女性は専門学校や短大が多く、一方で男性は大学・大学院が多いようである。 すなわち、結論としては性別によって最終学歴に違いが存在する（より正確に言えば、「性別によって最終学歴の分布が同じとは言えない」）ということになる。",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html#tidyverse",
+    "href": "E5_CrossTabulation.html#tidyverse",
+    "title": "8  クロス集計表",
+    "section": "10.2 {tidyverse}",
+    "text": "10.2 {tidyverse}\nはじめに、少なくともクロス表の分析に限って言えば、{tidyverse}での処理にこだわる必要はあまりない。{tidyverse}の中ではクロス集計表もテーブル形式ではなく、あくまでロング形式のtibbleとして表現されることが一般的であるからである1。そのため、出力結果のわかりやすさの点で言えばxtabs()やtable()の方が優れている（ように個人的には思う）。ただし、{tidyverse}で集計した場合はその結果を{ggplot}に引き渡してグラフを描画できるため、データの可視化の面では便利ではある。\n\n10.2.1 クロス表の作成\n\ntbl_SexEdu &lt;-\n  DF |&gt; \n  count(Sex, Edu4Grp)\n\nprint(tbl_SexEdu)\n\n# A tibble: 8 × 3\n  Sex   Edu4Grp     n\n  &lt;chr&gt; &lt;fct&gt;   &lt;int&gt;\n1 Men   JHS/HS    135\n2 Men   VS         82\n3 Men   JC         13\n4 Men   Univ      260\n5 Women JHS/HS    120\n6 Women VS        109\n7 Women JC        118\n8 Women Univ      152\n\n\n\n\n10.2.2 行パーセントと列パーセント\n\n# 行パーセント（性別に見た学歴の分布）\nProp_bySex &lt;-\n  tbl_SexEdu |&gt; \n  group_by(Sex) |&gt; \n  mutate(Prop = n / sum(n))\n\nprint(Prop_bySex)\n\n# A tibble: 8 × 4\n# Groups:   Sex [2]\n  Sex   Edu4Grp     n   Prop\n  &lt;chr&gt; &lt;fct&gt;   &lt;int&gt;  &lt;dbl&gt;\n1 Men   JHS/HS    135 0.276 \n2 Men   VS         82 0.167 \n3 Men   JC         13 0.0265\n4 Men   Univ      260 0.531 \n5 Women JHS/HS    120 0.240 \n6 Women VS        109 0.218 \n7 Women JC        118 0.236 \n8 Women Univ      152 0.305 \n\n# 列パーセント（学歴別に見た性別の分布）\nProp_byEdu &lt;-\n  tbl_SexEdu |&gt; \n  group_by(Edu4Grp) |&gt; \n  mutate(Prop = n / sum(n))\n\nProp_byEdu |&gt; \n  arrange(Edu4Grp, Sex) |&gt; # 学歴 -&gt; 性別の順でソート\n  print()\n\n# A tibble: 8 × 4\n# Groups:   Edu4Grp [4]\n  Sex   Edu4Grp     n   Prop\n  &lt;chr&gt; &lt;fct&gt;   &lt;int&gt;  &lt;dbl&gt;\n1 Men   JHS/HS    135 0.529 \n2 Women JHS/HS    120 0.471 \n3 Men   VS         82 0.429 \n4 Women VS        109 0.571 \n5 Men   JC         13 0.0992\n6 Women JC        118 0.901 \n7 Men   Univ      260 0.631 \n8 Women Univ      152 0.369 \n\n\n\n\n10.2.3 カイ二乗検定\n先に見たchisq.test()はデータフレームやtibbleに対しても適用できる。\n\nChiTest &lt;-\n  DF |&gt; \n  with(chisq.test(Sex, Edu4Grp))\n\nprint(ChiTest)\n\n\n    Pearson's Chi-squared test\n\ndata:  Sex and Edu4Grp\nX-squared = 117.1, df = 3, p-value &lt; 2.2e-16\n\n# 期待値\nChiTest$expected\n\n       Edu4Grp\nSex       JHS/HS       VS       JC     Univ\n  Men   126.3397 94.63094 64.90394 204.1254\n  Women 128.6603 96.36906 66.09606 207.8746\n\n# 残差\nChiTest$residuals\n\n       Edu4Grp\nSex         JHS/HS         VS         JC       Univ\n  Men    0.7704795 -1.2984317 -6.4426541  3.9108043\n  Women -0.7634997  1.2866691  6.3842896 -3.8753761\n\n# 標準化残差\nChiTest$stdres\n\n       Edu4Grp\nSex        JHS/HS        VS        JC      Univ\n  Men    1.259097 -2.034997 -9.737942  7.208156\n  Women -1.259097  2.034997  9.737942 -7.208156\n\n\nまた、{infer}というパッケージを用いることもできる。以下はこのパッケージ内のchisq_test()という関数を用いてカイ二乗検定を行う例である。ただし、筆者が調べた限りでは、各セルの期待値・残差・標準化残差などを{infer}の中で簡単に出力する方法はなさそうなので、chisq.test()の方が便利かもしれない。\n\nlibrary(infer)\n\nDF |&gt; \n  chisq_test(Edu4Grp ~ Sex)\n\n# A tibble: 1 × 3\n  statistic chisq_df  p_value\n      &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;\n1      117.        3 3.25e-25",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html#比率の可視化",
+    "href": "E5_CrossTabulation.html#比率の可視化",
+    "title": "8  クロス集計表",
+    "section": "11.1 比率の可視化",
+    "text": "11.1 比率の可視化\nクロス集計表を可視化する最も基礎的な方法のひとつは、行パーセントあるいは列パーセントを帯グラフにすることである。{tidyverse}で比率を算出し、tibbleにその結果を格納しておくと、簡単に可視化ができる。\n\n\nCode\nProp_bySex |&gt; \n  ggplot(aes(x = Sex,\n             y = Prop,\n             fill = Edu4Grp)\n         ) +\n  geom_bar(stat = \"identity\",\n           color = \"black\") +\n  geom_text(aes(label = sprintf(\"%.2f\", Prop)),\n            position = position_fill(vjust = 0.5),\n            size = 5) +\n  labs(y = \"Proportion\",\n       fill = \"Education\") +\n  theme_minimal() +\n  theme(legend.title = element_text(size = rel(1.5)),\n        legend.text  = element_text(size = rel(1.5)),\n        axis.text    = element_text(size = rel(1.5)),\n        axis.title   = element_text(size = rel(1.5)))",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html#モザイクプロット",
+    "href": "E5_CrossTabulation.html#モザイクプロット",
+    "title": "8  クロス集計表",
+    "section": "11.2 モザイクプロット",
+    "text": "11.2 モザイクプロット\n行パーセントや列パーセントなどの比率を帯グラフにした場合、行あるいは列の周辺度数の大きさの違いは見えなくなってしまう。そこで、各セル度数の大きさを加味した可視化を可能にする方法としてモザイクプロットが挙げられる。モザイクプロットは以下の特徴を持つ\n\nタイルの各辺の長さが行／列の変数の周辺分布を表す\nタイルの面積がセル度数の大きさを示す\n\nライブラリの呼び起こしをせずにモザイクプロットを描画するための関数としてmosaicplot()がある。\n\nmosaicplot(SexEdu_xtabs)\n\n\n\n\n\n\n\n\n{geom_mosaic}というパッケージをインストールすると、geom_mosaic()を用いて{ggplot}の中でモザイクプロットを描くことができる。\n\n\nCode\nlibrary(ggmosaic)\n\n\n\nAttaching package: 'ggmosaic'\n\n\nThe following objects are masked from 'package:vcd':\n\n    mosaic, spine\n\n\nCode\nDF |&gt; \n  ggplot() +\n  geom_mosaic(aes(x = product(Sex, Edu4Grp), fill = Edu4Grp)) +\n  labs(\n    title = \"Mosaic Plot of Gender and Education\",\n    x = \"Education\",\n    fill = \"Education\"\n  ) +\n  theme_minimal() +\n  theme(plot.title   = element_text(size = rel(1.5), hjust = 0.5),\n        legend.title = element_text(size = rel(1.5)),\n        legend.text  = element_text(size = rel(1.5)),\n        axis.text    = element_text(size = rel(1.5)),\n        axis.title   = element_text(size = rel(1.5)))\n\n\nWarning: The `scale_name` argument of `continuous_scale()` is deprecated as of ggplot2\n3.5.0.\n\n\nWarning: The `trans` argument of `continuous_scale()` is deprecated as of ggplot2 3.5.0.\nℹ Please use the `transform` argument instead.\n\n\nWarning: `unite_()` was deprecated in tidyr 1.2.0.\nℹ Please use `unite()` instead.\nℹ The deprecated feature was likely used in the ggmosaic package.\n  Please report the issue at &lt;https://github.com/haleyjeppson/ggmosaic&gt;.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html#バルーンプロット",
+    "href": "E5_CrossTabulation.html#バルーンプロット",
+    "title": "8  クロス集計表",
+    "section": "11.3 バルーンプロット",
+    "text": "11.3 バルーンプロット\nセル度数の大きさを可視化する別の方法としてバルーンプロットも挙げられる。これは、セル度数に比例したマーカーをクロス表のセル上にプロットするものである。\nballoonplot()は{gplots}の中に含まれており、ライブラリから呼び出してから使う必要がある。\n\nlibrary(gplots)\n\nballoonplot(SexEdu_xtabs, \n            main = \"\",\n            xlab = \"Sex\",\n            ylab = \"Education\")\n\n\n\n\n\n\n\n\n{ggplot}でバルーンプロットを描く方法はいくつかあるが、以下はその一例である。\n\n\nCode\nDF |&gt; \n  count(Sex, Edu4Grp) |&gt; \n  ggplot(aes(x = Sex, y = Edu4Grp)) +\n  geom_point(aes(size = n), color = \"lightblue\", alpha = 0.7) +  # 円の大きさを度数に比例\n  geom_text(aes(label = n), vjust = 0.5, color = \"black\") +      # 度数ラベルを円の中央に表示\n  scale_size_area(max_size = 20) +                               # 最大サイズの設定\n  labs(title = \"Balloon Plot of Gender and Education\",\n       x = \"Sex\",\n       y = \"Education\") +\n  guides(size = \"none\") +\n  theme_minimal() +\n  theme(plot.title   = element_text(size = rel(1.5), hjust = 0.5),\n        legend.title = element_text(size = rel(1.5)),\n        legend.text  = element_text(size = rel(1.5)),\n        axis.text    = element_text(size = rel(1.5)),\n        axis.title   = element_text(size = rel(1.5)))",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E5_CrossTabulation.html#footnotes",
+    "href": "E5_CrossTabulation.html#footnotes",
+    "title": "8  クロス集計表",
+    "section": "",
+    "text": "pivot_wider()を用いてtibbleの出力結果をクロス表のそれに近づけることはできるものの、xtabs()やtable()のようにクラスがテーブルになるわけではないので、結局はそのままの形では先に紹介した他の関数に引き渡すことはできない。↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>クロス集計表</span>"
+    ]
+  },
+  {
+    "objectID": "E6_Elaboration.html",
+    "href": "E6_Elaboration.html",
+    "title": "9  エラボレイション",
+    "section": "",
+    "text": "10 使用データ\nRのサンプルデータTitanicを用いる。データの解説には\n\nSurvival of Passengers on the Titanic\n\nとある。まずはオブジェクトの中身を見てみよう。\n\nTitanic\n\n, , Age = Child, Survived = No\n\n      Sex\nClass  Male Female\n  1st     0      0\n  2nd     0      0\n  3rd    35     17\n  Crew    0      0\n\n, , Age = Adult, Survived = No\n\n      Sex\nClass  Male Female\n  1st   118      4\n  2nd   154     13\n  3rd   387     89\n  Crew  670      3\n\n, , Age = Child, Survived = Yes\n\n      Sex\nClass  Male Female\n  1st     5      1\n  2nd    11     13\n  3rd    13     14\n  Crew    0      0\n\n, , Age = Adult, Survived = Yes\n\n      Sex\nClass  Male Female\n  1st    57    140\n  2nd    14     80\n  3rd    75     76\n  Crew  192     20\n\n\nと、データフレームではないことがわかる。データの型を確認すると、tableであることがわかる。\n\nclass(Titanic)\n\n[1] \"table\"\n\n\n集計済みのtableを扱う場合、各次元の変数名、各変数が取りうる値（カテゴリ）、そしてテーブルの大きさ（集計客体数）を確認しておくとよい。\n\n# 変数名と値カテゴリを表示させたい場合\ndimnames(Titanic)\n\n$Class\n[1] \"1st\"  \"2nd\"  \"3rd\"  \"Crew\"\n\n$Sex\n[1] \"Male\"   \"Female\"\n\n$Age\n[1] \"Child\" \"Adult\"\n\n$Survived\n[1] \"No\"  \"Yes\"\n\n# テーブルの次元数だけ確認する場合\ndim(Titanic)\n\n[1] 4 2 2 2\n\n# 集計客体数\nsum(Titanic)\n\n[1] 2201\n\n\nこのように、Titanicは2201件のデータを含み、以下の4変数からなる多元クロス表である。\n\nClass:客室の階級\nSex:性別\nAge:年齢\nSurvived:生死\n\n\n\n11 エラボレーションの例\n以下ではTitanicに含まれる4変数のうち、客室の階級、性別、生死の3変数を用いてエラボレーションを行っていく。具体的には、以下の問いに答えてみよう。\n\nタイタニック号の成人乗員の生存割合が客室の階級によって異なっていたことは（よく？）知られている。この2変数間（客室の階級・乗員の生死）の関係は乗員の性別によって異なるか？\n\nまず、データを成人に限定する。\n\nTBL &lt;- Titanic[,,\"Adult\",]\ndimnames(TBL)\n\n$Class\n[1] \"1st\"  \"2nd\"  \"3rd\"  \"Crew\"\n\n$Sex\n[1] \"Male\"   \"Female\"\n\n$Survived\n[1] \"No\"  \"Yes\"\n\n\n\n\n12 乗員の性別と生存割合の関係\n乗員の性別によって生存者の割合がどれほど異なっていたかを見てみよう。そのためには、客室の階級（Class）を無視した、性別×生死の2元クロス表を作成する必要がある。最も愚直な方法はClassごとに分割した性別×生死の2元クロス表を合併するというものである。\n\nTabSex_temp &lt;- TBL[\"1st\",,] + TBL[\"2nd\",,] + TBL[\"3rd\",,] + TBL[\"Crew\",,]\nTabSex_temp\n\n        Survived\nSex        No  Yes\n  Male   1329  338\n  Female  109  316\n\n\nただし、上記のような2元クロス表の作成方法は、特に変数のカテゴリ数が多い場合にはあまりスマートではない。apply関数を用いると同じ処理をより簡単に施すことができる。\n\n# TBLの第2次元（Sex）と第3次元（Survived）の組み合わせごとにセル度数を合計（sum）する\nTabSex &lt;- apply(TBL, c(2,3), sum)\nTabSex\n\n        Survived\nSex        No Yes\n  Male   1329 338\n  Female  109 316\n\n\n行パーセントを表示させるにはRcmdrMiscパッケージのrowPercentsが便利である。\n\nrowPercents(TabSex)\n\n        Survived\nSex        No  Yes Total Count\n  Male   79.7 20.3   100  1667\n  Female 25.6 74.4   100   425\n\n\n男性よりも女性の乗員の方が生存割合が高いことがわかる。\n\n\n13 客室の階級と生存割合の関係\nつぎに、客室の階級によって生存者の割合がどれほど異なっていたかを見てみよう。今度は性別（Sex）を無視した、客室の階級×生死の2元クロス表を作成する必要がある。\n\nTabClass &lt;- apply(TBL, c(1,3), sum)\nTabClass\n\n      Survived\nClass   No Yes\n  1st  122 197\n  2nd  167  94\n  3rd  476 151\n  Crew 673 212\n\n\n先ほどと同様に、行パーセントを算出してみよう。\n\nrowPercents(TabClass)\n\n      Survived\nClass    No  Yes Total Count\n  1st  38.2 61.8   100   319\n  2nd  64.0 36.0   100   261\n  3rd  75.9 24.1   100   627\n  Crew 76.0 24.0   100   885\n\n\n乗客の間では客室の階級が高いほど生存割合が高く、クルーの生存割合は客室が”3rd”の乗客とほぼ同じであることがわかる。\n\n\n14 性別・客室の階級・生存割合の関係\n最後に、客室の階級と生存割合との関係が性別によって異なるかを見てみる。そのためには、客室の階級ごとの生存割合を乗員の性別で分割して算出すればよい。そのためのコードの一例は以下の通りである。\n\nrowPercents(TBL[,\"Male\",])\n\n      Survived\nClass    No  Yes Total Count\n  1st  67.4 32.6   100   175\n  2nd  91.7  8.3   100   168\n  3rd  83.8 16.2   100   462\n  Crew 77.7 22.3   100   862\n\nrowPercents(TBL[,\"Female\",])\n\n      Survived\nClass    No  Yes Total Count\n  1st   2.8 97.2   100   144\n  2nd  14.0 86.0   100    93\n  3rd  53.9 46.1   100   165\n  Crew 13.0 87.0   100    23\n\n\nここでも apply関数を用いるとよりシンプルにコードを書くことができる。\n\nRstCS &lt;- apply(TBL, 2, rowPercents, simplify = FALSE)\nRstCS\n\n$Male\n      Survived\nClass    No  Yes Total Count\n  1st  67.4 32.6   100   175\n  2nd  91.7  8.3   100   168\n  3rd  83.8 16.2   100   462\n  Crew 77.7 22.3   100   862\n\n$Female\n      Survived\nClass    No  Yes Total Count\n  1st   2.8 97.2   100   144\n  2nd  14.0 86.0   100    93\n  3rd  53.9 46.1   100   165\n  Crew 13.0 87.0   100    23\n\n\n集計結果を見やすくするために、上記の出力結果から必要な部分だけを別のオブジェクトに収納してみよう。\n\nPropSurv &lt;- cbind(RstCS$Male  [, \"Yes\"],\n                  RstCS$Female[, \"Yes\"])\n\ncolnames(PropSurv) &lt;- c(\"Male\", \"Female\")\nPropSurv\n\n     Male Female\n1st  32.6   97.2\n2nd   8.3   86.0\n3rd  16.2   46.1\nCrew 22.3   87.0\n\n\n客室の階級が”1st”の乗客の生存割合が最も高いことは男女で共通しているが、男性ではなぜか客室が”2nd”よりも”3rd”の乗客の方が生存割合が高い。また、性別を考慮しなかった場合にはクルーの生存割合は客室が”3rd’の乗客のそれとほぼ同程度であったが、性別を考慮した後ではクルーの方が生存割合が高いことがわかる。\n\n\n15 データの可視化（Data Visualization）\n\nmatplot(PropSurv, \n        type = \"o\", \n        lty  = 1,\n        pch  = c(15, 17),\n        ylim = c(0,100),\n        cex = 1.5,\n        axes = FALSE,\n        ann = FALSE)\naxis(1, at = seq(1,4), labels = rownames(PropSurv))\naxis(2, at = seq(0, 100, 25), las = 1)\nmtext(\"Class\", side = 1, line = 2.5)\nmtext(\"Survival Rate (%)\",   side = 2, line = 2.5)\nlegend(\"bottomleft\",\n       colnames(PropSurv),\n       lty = 1,\n       pch = c(15, 17),\n       col = c(\"black\", \"red\"),\n       bty = \"n\",\n       cex = 1.2)",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>エラボレイション</span>"
+    ]
+  },
+  {
+    "objectID": "E7_Anova.html",
+    "href": "E7_Anova.html",
+    "title": "10  分散分析",
+    "section": "",
+    "text": "11 データ・変数",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E7_Anova.html#データ",
+    "href": "E7_Anova.html#データ",
+    "title": "10  分散分析",
+    "section": "11.1 データ",
+    "text": "11.1 データ\n東大社研・若年パネル調査の非制限公開疑似データを用いる。\n\nlibrary(tidyverse)\nFN_Data2Load &lt;- \"data/u001.csv\"\nDF_org &lt;- read_csv(FN_Data2Load)\n\nRows: 1000 Columns: 72\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n以下では次の問いに答えることを目的とする。\n\nQ: 学歴によって個人収入に違いはあるのか？\n\nなお、今回は分析対象を25-34歳の男性に限定する。",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E7_Anova.html#変数",
+    "href": "E7_Anova.html#変数",
+    "title": "10  分散分析",
+    "section": "11.2 変数",
+    "text": "11.2 変数\n\n回答者の性別: sex\n回答者の生年月: ybirth, mbirth\n回答者の学歴: ZQ23A\n\n以下の3カテゴリにリコード\n\n中学・高校(JHS/HS)\n専門・短大(VS/JC)\n大学・大学院(Univ)\n\n\n回答者の個人収入: ZQ47A\n\n回答選択肢の中央値にリコード\n例：「100万円くらい（75〜150万円未満）」 -&gt; 100万円\n\n\n\n11.2.1 「調査時年齢」の作成\nまず、分析対象を25-34歳の男性に限定するために、「調査時点の満年齢」を新規変数として作成する必要がある。調査票で測定されているのは回答者の生年月（ybirth, mbirth）であるからである。同じ生年（ybirth）でも誕生月（mbirth）が調査月よりも前か後かで調査時点の満年齢が異なることに注意されたい。例えば以下のようなコードの書き方が挙げられる。\n\nSurveyYear  &lt;- 2007\nMonthSurvey &lt;- 1\n\nDF_temp_1 &lt;-\n  DF_org |&gt; \n  select(sex, ybirth, mbirth, ZQ23A, ZQ47A) |&gt; \n  mutate(CAgeSvy = if_else(\n          (MonthSurvey - mbirth) &lt; 0,  # 調査月より誕生月が遅い場合\n          SurveyYear - ybirth - 1,     # 誕生日がまだ来ていないので1歳引く\n          SurveyYear - ybirth          # 誕生日がすでに来ているのでそのまま\n        )\n  )\n\nDF_temp_1 |&gt;\n  select(ybirth, mbirth, CAgeSvy) |&gt; \n  head()\n\n# A tibble: 6 × 3\n  ybirth mbirth CAgeSvy\n   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1   1976     10      30\n2   1972      1      35\n3   1975      4      31\n4   1974     11      32\n5   1978      1      29\n6   1984      2      22\n\n\nまた、{tidyverse}には{lubridate}という時間処理を行うためのパッケージも含まれており、このパッケージ内の関数群を使うと、時間に関する処理を効率よく行うことができる（ことも多い）。今回の例（調査時点の満年齢の計算）の場合は{lubridate}を使わずとも比較的簡単に変数を作成できたが、参考として{lubridate}を用いた場合のコード例を示しておく。\n\n\nCode\n# 調査日を定義\nSurveyDate &lt;- ymd(\"2007-01-01\")\n\nprint(SurveyDate)\n\n# 満年齢を計算するコード\nDF_temp_1 &lt;-\n  DF_org |&gt; \n  select(sex, ybirth, mbirth, ZQ23A, ZQ47A) |&gt; \n  mutate(BthDate = make_date(ybirth, mbirth, 1),                 # 生年月をDate型に変換\n         CAgeSvy = as.period(interval(BthDate, SurveyDate))$year # 調査日時点の満年齢を計算\n  ) |&gt; \n  select(-BthDate)\n\nDF_temp_1 |&gt;\n  select(ybirth, mbirth, CAgeSvy) |&gt; \n  head()\n\n\n\n\n11.2.2 「学歴」と「個人収入」の準備\nつづいて、分散分析において独立変数と従属変数となる、「学歴」と「個人収入」を準備しよう。学歴変数のリコードについては「第4回　母平均の差の検定」の際にも同様の作業を行ったのでそちらを参照のこと。個人収入の元変数ZQ47Aの度数分布表を確認しておくと、\n\nDF_temp_1 |&gt; \n  count(ZQ47A)\n\n# A tibble: 14 × 2\n   ZQ47A     n\n   &lt;dbl&gt; &lt;int&gt;\n 1     1   113\n 2     2    61\n 3     3    60\n 4     4   133\n 5     5   163\n 6     6   176\n 7     7   118\n 8     8    76\n 9     9    16\n10    10     7\n11    11     1\n12    12     1\n13    14    42\n14    99    33\n\n\n不詳コードが99であることが確認できる（コードブックも参照のこと）。これに注意して、新規変数Incomeを作成しておく。なおオープンエンドのカテゴリである「13.　2500万円以上」にどのような数値を割り当てるかは難しいところではあるが、今回はあくまで分散分析の練習が目的であるため、便宜的に「2500万円」を割り当てることにする。\n\nDF_temp_2 &lt;-\n  DF_temp_1 |&gt; \n  mutate(Edu3Grp = case_match(ZQ23A,\n                              c(1,2) ~ \"JHS/HS\",\n                              c(3,4) ~ \"VS/JC\",\n                              c(5,6) ~ \"Univ\",\n                              TRUE   ~ NA_character_) |&gt; \n                   fct_relevel(\"JHS/HS\", \"VS/JC\", \"Univ\")\n         ) |&gt; \n  mutate(Income = case_match(ZQ47A,\n                             1 ~    0,\n                             2 ~   12.5,\n                             3 ~   50,\n                             4 ~  100,\n                             5 ~  200,\n                             6 ~  300,\n                             7 ~  400,\n                             8 ~  500,\n                             9 ~  700,\n                            10 ~ 1000,\n                            11 ~ 1500,\n                            12 ~ 2000,\n                            13 ~ 2500,\n                            c(14,99) ~ NA_real_)\n  )\n\n# 新規変数Incomeが問題なく定義できているかチェック\nDF_temp_2 |&gt; \n  count(ZQ47A, Income)\n\n# A tibble: 14 × 3\n   ZQ47A Income     n\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;\n 1     1    0     113\n 2     2   12.5    61\n 3     3   50      60\n 4     4  100     133\n 5     5  200     163\n 6     6  300     176\n 7     7  400     118\n 8     8  500      76\n 9     9  700      16\n10    10 1000       7\n11    11 1500       1\n12    12 2000       1\n13    14   NA      42\n14    99   NA      33\n\n\n\n\n11.2.3 集計対象の限定と使用変数の指定\nデータ前処理の最後の段階として、集計対象の限定（25-34歳の男性回答者）をした上で、分散分析に使用する変数（学歴と個人収入）だけをデータフレームの中に残す。\n\nDF &lt;-\n  DF_temp_2 |&gt; \n  filter(sex == 1 & CAgeSvy %in% c(25:34)) |&gt; \n  select(Edu3Grp, Income) |&gt; \n  drop_na()",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E7_Anova.html#グループ別に記述統計量を算出",
+    "href": "E7_Anova.html#グループ別に記述統計量を算出",
+    "title": "10  分散分析",
+    "section": "12.1 グループ別に記述統計量を算出",
+    "text": "12.1 グループ別に記述統計量を算出\nまずは学歴グループ別に個人収入の記述統計量を算出しておく。ここでは\n\n平均値\n標準偏差\n客体数\n\nを出力しておこう。\n\nDF |&gt; \n  group_by(Edu3Grp) |&gt; \n  reframe(Mean = mean(Income),\n          SD   = sd(Income),\n          n    = n())\n\n# A tibble: 3 × 4\n  Edu3Grp  Mean    SD     n\n  &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n1 JHS/HS   326.  211.   104\n2 VS/JC    306.  156.    62\n3 Univ     376.  180.   164\n\n\n少なくとも平均値の点推定量を見る限りでは、大学卒の個人年収が最も高く、中学・高校卒、専門・短大卒とつづく。個人収入の分布を比較するために、学歴別に箱ひげ図を描画してみよう。\n\n\nCode\nDF |&gt; \n  ggplot(aes(x = Edu3Grp,\n             y = Income)) +\n  geom_boxplot() +\n  theme_few() +\n  theme(strip.text   = element_text(size = rel(1.5)),\n        axis.text.x  = element_text(size = rel(1.5)),\n        axis.text.y  = element_text(size = rel(1.5)),\n        axis.title.x = element_text(size = rel(1.5)),\n        axis.title.y = element_text(size = rel(1.3)))",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E7_Anova.html#分散分析",
+    "href": "E7_Anova.html#分散分析",
+    "title": "10  分散分析",
+    "section": "12.2 分散分析",
+    "text": "12.2 分散分析\n分散分析を実行するにはanova()コマンドを用いる。\n\nDF |&gt; \n  with(anova(lm(Income ~ Edu3Grp)))\n\nAnalysis of Variance Table\n\nResponse: Income\n           Df   Sum Sq Mean Sq F value Pr(&gt;F)  \nEdu3Grp     2   294300  147150  4.2408 0.0152 *\nResiduals 327 11346545   34699                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nlmの後にはモデル式を「従属変数 ~ 独立変数」の形式で指定する。anova()コマンドは分散分析表を返し、上記の例では「全ての学歴の平均収入が等しい」という帰無仮説は棄却されていることがわかる。",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E7_Anova.html#多重比較",
+    "href": "E7_Anova.html#多重比較",
+    "title": "10  分散分析",
+    "section": "12.3 多重比較",
+    "text": "12.3 多重比較\nanova()によって帰無仮説（「全ての平均値が等しい」）が棄却された場合、どのカテゴリ間で平均値に差があるのかを確認するために多重比較を行う（ただし、別の考え方として、初めから多重比較のみを行うべきという立場も存在する）。多重比較の方法は数多く存在するが、以下では代表的なものとして、Tukey法、Holm法、bonferroni法を紹介する。\n\nTukey法Holm法bonferroni法\n\n\n\nDF |&gt; \n  with(aov(Income ~ Edu3Grp)) |&gt; \n  TukeyHSD()\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = Income ~ Edu3Grp)\n\n$Edu3Grp\n                  diff        lwr       upr     p adj\nVS/JC-JHS/HS -19.87438 -90.244183  50.49542 0.7839801\nUniv-JHS/HS   50.72702  -4.249043 105.70308 0.0774768\nUniv-VS/JC    70.60140   5.215925 135.98687 0.0307479\n\n\n\n\n\nDF |&gt; \n  with(pairwise.t.test(Income, Edu3Grp))\n\n\n    Pairwise comparisons using t tests with pooled SD \n\ndata:  Income and Edu3Grp \n\n      JHS/HS VS/JC\nVS/JC 0.507  -    \nUniv  0.061  0.034\n\nP value adjustment method: holm \n\n\n\n\n\nDF |&gt; \n  with(pairwise.t.test(Income, Edu3Grp, p.adjust.method = \"bonferroni\"))\n\n\n    Pairwise comparisons using t tests with pooled SD \n\ndata:  Income and Edu3Grp \n\n      JHS/HS VS/JC\nVS/JC 1.000  -    \nUniv  0.092  0.034\n\nP value adjustment method: bonferroni \n\n\n\n\n\n今回の例の場合、有意水準を5%に設定すると、個人収入の平均値に統計的な有意差が確認されるのは「大学卒」と「専門・短大卒」との間であることがわかる。",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E8_Two-wayAnova.html",
+    "href": "E8_Two-wayAnova.html",
+    "title": "11  多元配置分散分析",
+    "section": "",
+    "text": "12 データ・変数",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>多元配置分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E8_Two-wayAnova.html#データ",
+    "href": "E8_Two-wayAnova.html#データ",
+    "title": "11  多元配置分散分析",
+    "section": "12.1 データ",
+    "text": "12.1 データ\n東大社研・若年パネル調査の非制限公開疑似データを用いる。\n以下では次の問いに答えることを目的とする。\n\nQ: 学歴と性別によって個人収入に違いはあるのか？\n\nなお、今回は分析対象を25-34歳の男女に限定する。",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>多元配置分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E8_Two-wayAnova.html#変数",
+    "href": "E8_Two-wayAnova.html#変数",
+    "title": "11  多元配置分散分析",
+    "section": "12.2 変数",
+    "text": "12.2 変数\n「第7回 分散分析」の最後のセクションで保存したAnova_SexEduIncome.rdsを用いる。以下の変数が格納されたtibbleになっているはずである。\n\n回答者の性別: sex\n回答者の学歴: Edu\n\n以下の3カテゴリにリコード済み\n\n中学・高校(JHS/HS)\n専門・短大(VS/JC)\n大学・大学院(Univ)\n\n\n回答者の個人収入: Income\n\n回答選択肢の中央値にリコード済み\n\n\nなお、回答者の年齢もすでに25-34歳に限定されている。\n\nlibrary(tidyverse)\nFN_Data2Load &lt;- \"data/Anova_SexEduIncome.rds\"\nDF_org &lt;- read_rds(FN_Data2Load)\n\n回答者の性別sexは原データの変数がそのまま入ったものなので、カテゴリカル変数として定義し直しておこう。\n\nDF &lt;- \n  DF_org |&gt; \n  mutate(Sex = if_else(sex == 1, \"Men\", \"Women\")) |&gt; \n  select(Sex, Edu3Grp, Income)",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>多元配置分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E8_Two-wayAnova.html#base",
+    "href": "E8_Two-wayAnova.html#base",
+    "title": "11  多元配置分散分析",
+    "section": "13.1 {base}",
+    "text": "13.1 {base}\n{base}環境でグループ別に統計量を算出するためにはtapply()が便利である。これはapply()関数族の一種であり、apply()は行列や配列に適用するのに対してtapply()はベクトルに適用される。tapply()は主に3つの引数からなり、\n\nX: 関数を適用する対象となるベクトル\nINDEX: グループ化するためのカテゴリを指定する要素（ベクトルやリスト）\nFUN: 適用する関数\n\n2変数以上の組み合わせからなるグループ別に統計量を算出する場合、2つめの引数INDEXをリストで引き渡すことがポイントである。\n\nDF |&gt; with(tapply(Income, list(Sex, Edu3Grp), mean))  # tapplyで複数の要因ごとに処理を施すためにはlistで引き渡す\n\n        JHS/HS    VS/JC     Univ\nMen   325.7212 305.8468 376.4482\nWomen 118.4593 178.5948 247.2403\n\nDF |&gt; with(tapply(Income, list(Sex, Edu3Grp), sd)) \n\n        JHS/HS    VS/JC     Univ\nMen   210.6165 156.4481 180.0562\nWomen 108.9679 208.7452 176.3531\n\nDF |&gt; with(tapply(Income, list(Sex, Edu3Grp), length)) # グループ別の客体数\n\n      JHS/HS VS/JC Univ\nMen      104    62  164\nWomen     86   153   77\n\n\nこのように、tapply()の返り値は行列（や配列）のため、グループ別の集計結果も視覚的にわかりやすい。",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>多元配置分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E8_Two-wayAnova.html#tidyverse",
+    "href": "E8_Two-wayAnova.html#tidyverse",
+    "title": "11  多元配置分散分析",
+    "section": "13.2 {tidyverse}",
+    "text": "13.2 {tidyverse}\n「第7回 分散分析」でも確認したように、グループ別の集計は{tidyverse}でも簡単に行うことができる。グルーピングに用いる変数が2つ以上の場合は、group_by()にそれらの変数を指定する。\n\nDF |&gt;  \n  group_by(Sex, Edu3Grp) |&gt;  \n  reframe(Mean = mean(Income),\n          SD   =   sd(Income),\n          Obs  = n())\n\n# A tibble: 6 × 5\n  Sex   Edu3Grp  Mean    SD   Obs\n  &lt;chr&gt; &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n1 Men   JHS/HS   326.  211.   104\n2 Men   VS/JC    306.  156.    62\n3 Men   Univ     376.  180.   164\n4 Women JHS/HS   118.  109.    86\n5 Women VS/JC    179.  209.   153\n6 Women Univ     247.  176.    77",
+    "crumbs": [
+      "分散分析",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>多元配置分散分析</span>"
+    ]
+  },
+  {
+    "objectID": "E9_Correlation.html",
+    "href": "E9_Correlation.html",
+    "title": "12  相関と偏相関",
+    "section": "",
+    "text": "13 使用データ\nRにデフォルトで実装されているサンプルデータswissを用いる。?swissと入力すると、このサンプルデータに関する説明を見ることができる。以下、Descriptionの項目を抜粋すると、\nとあり、1888年スイスの出生率および社会経済指標に関するデータであることがわかる。\nhead(swiss)\n\n             Fertility Agriculture Examination Education Catholic\nCourtelary        80.2        17.0          15        12     9.96\nDelemont          83.1        45.1           6         9    84.84\nFranches-Mnt      92.5        39.7           5         5    93.40\nMoutier           85.8        36.5          12         7    33.77\nNeuveville        76.9        43.5          17        15     5.16\nPorrentruy        76.1        35.3           9         7    90.57\n             Infant.Mortality\nCourtelary               22.2\nDelemont                 22.2\nFranches-Mnt             20.2\nMoutier                  20.3\nNeuveville               20.6\nPorrentruy               26.6\nデータセットには以下の6つの変数が含まれている。",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>相関と偏相関</span>"
+    ]
+  },
+  {
+    "objectID": "E9_Correlation.html#相関係数の算出",
+    "href": "E9_Correlation.html#相関係数の算出",
+    "title": "12  相関と偏相関",
+    "section": "14.1 相関係数の算出",
+    "text": "14.1 相関係数の算出\n相関係数を算出したい2つのベクトル（変数）がある場合、それらをcor()に引き渡せば相関係数が算出される。例えば、出生率Fertilityと教育水準Educationとの相関係数を算出するには以下のようにすれば良い。\n\nswiss |&gt; \n  with(cor(Fertility, Education))\n\n[1] -0.6637889\n\n\ncor()にはベクトルだけではなくて行列やデータフレームを引き渡すこともできる。その場合、返り値として相関行列が得られる。\n\ncor(swiss)\n\n                  Fertility Agriculture Examination   Education   Catholic\nFertility         1.0000000  0.35307918  -0.6458827 -0.66378886  0.4636847\nAgriculture       0.3530792  1.00000000  -0.6865422 -0.63952252  0.4010951\nExamination      -0.6458827 -0.68654221   1.0000000  0.69841530 -0.5727418\nEducation        -0.6637889 -0.63952252   0.6984153  1.00000000 -0.1538589\nCatholic          0.4636847  0.40109505  -0.5727418 -0.15385892  1.0000000\nInfant.Mortality  0.4165560 -0.06085861  -0.1140216 -0.09932185  0.1754959\n                 Infant.Mortality\nFertility              0.41655603\nAgriculture           -0.06085861\nExamination           -0.11402160\nEducation             -0.09932185\nCatholic               0.17549591\nInfant.Mortality       1.00000000",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>相関と偏相関</span>"
+    ]
+  },
+  {
+    "objectID": "E9_Correlation.html#相関係数の有意性検定",
+    "href": "E9_Correlation.html#相関係数の有意性検定",
+    "title": "12  相関と偏相関",
+    "section": "14.2 相関係数の有意性検定",
+    "text": "14.2 相関係数の有意性検定\n相関係数の有意性検定を行うにはcor.test()を使う。\n\nデフォルト片側検定：“less” or “greater”有意水準の設定\n\n\n\nswiss |&gt; with(cor.test(Fertility, Education))\n\n\n    Pearson's product-moment correlation\n\ndata:  Fertility and Education\nt = -5.9536, df = 45, p-value = 3.659e-07\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7987075 -0.4653206\nsample estimates:\n       cor \n-0.6637889 \n\n\n\n\n\nswiss |&gt; with(cor.test(Fertility, Education, alternative = \"greater\"))\n\n\n    Pearson's product-moment correlation\n\ndata:  Fertility and Education\nt = -5.9536, df = 45, p-value = 1\nalternative hypothesis: true correlation is greater than 0\n95 percent confidence interval:\n -0.7808433  1.0000000\nsample estimates:\n       cor \n-0.6637889 \n\n\n\n\n\nswiss |&gt; with(cor.test(Fertility, Education, conf.level = 0.90))\n\n\n    Pearson's product-moment correlation\n\ndata:  Fertility and Education\nt = -5.9536, df = 45, p-value = 3.659e-07\nalternative hypothesis: true correlation is not equal to 0\n90 percent confidence interval:\n -0.7808433 -0.5017077\nsample estimates:\n       cor \n-0.6637889",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>相関と偏相関</span>"
+    ]
+  },
+  {
+    "objectID": "E9_Correlation.html#変数の場合",
+    "href": "E9_Correlation.html#変数の場合",
+    "title": "12  相関と偏相関",
+    "section": "15.1 2変数の場合",
+    "text": "15.1 2変数の場合\n2変数の場合はplot()で簡単に散布図を作成できる。plot()は引数としてxとyを持っており、それぞれ散布図のx軸とy軸にプロットするベクトルを指定する。\n\nplot(x = swiss$Education, y = swiss$Fertility)",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>相関と偏相関</span>"
+    ]
+  },
+  {
+    "objectID": "E9_Correlation.html#変数以上の場合",
+    "href": "E9_Correlation.html#変数以上の場合",
+    "title": "12  相関と偏相関",
+    "section": "15.2 3変数以上の場合",
+    "text": "15.2 3変数以上の場合\n\n15.2.1 pairs()\n3変数以上の相関関係を可視化する場合、ひとつひとつの変数のペアについてplot()で散布図を作成するのは手間がかかる。そこで、別の関数を用いて相関行列そのものを可視化することが一般的である。例えば、pairs()はRのbaseに組み込まれている関数のひとつである。引数として、相関行列を構成する変数が含まれた行列やデータフレームをそのまま引き渡せばよい。\n\npairs(swiss)\n\n\n\n\n\n\n\n\n\n\n15.2.2 pairs.panels()\npsychパッケージに含まれるpairs.panels()を使って相関行列を可視化することも可能である。\n\n上三角行列：相関係数\n下三角行列：散布図\n対角セル　：ヒストグラム\n\n\nlibrary(psych)\n\n\nAttaching package: 'psych'\n\n\nThe following objects are masked from 'package:ggplot2':\n\n    %+%, alpha\n\npairs.panels(swiss,\n             hist.col = \"white\",\n             rug = FALSE,\n             ellipses = FALSE,\n             lm = TRUE)",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>相関と偏相関</span>"
+    ]
+  },
+  {
+    "objectID": "E10_Regression.html",
+    "href": "E10_Regression.html",
+    "title": "13  単回帰分析",
+    "section": "",
+    "text": "14 データ・変数",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>単回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E10_Regression.html#データ",
+    "href": "E10_Regression.html#データ",
+    "title": "13  単回帰分析",
+    "section": "14.1 データ",
+    "text": "14.1 データ\n東大社研・若年パネル調査の非制限公開疑似データを用いる。\n\nlibrary(tidyverse)\nFN_Data2Load &lt;- \"data/u001.csv\"\nDF_org &lt;- read_csv(FN_Data2Load)\n\nRows: 1000 Columns: 72\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n以下では次の問いに答えることを目的とする。\n\nQ: 個人収入が高いほど階層帰属意識が高いのか？\n\nなお、今回は分析対象を調査時点で就業している回答者に限定する。",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>単回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E10_Regression.html#変数",
+    "href": "E10_Regression.html#変数",
+    "title": "13  単回帰分析",
+    "section": "14.2 変数",
+    "text": "14.2 変数\n\n回答者の個人収入: ZQ47A\n\n回答選択肢の中央値にリコード\n例：「100万円くらい（75〜150万円未満）」 -&gt; 100万円\n\n階層帰属意識: ZQ35\n\n1:一番上 〜　10:一番下\n10が「一番上」になるようにリコード\n\n\n\n\n# 使用する変数のみを取り出す\nDF_raw &lt;-\n  DF_org |&gt; \n  select(ZQ47A, ZQ35, ZQ03, sex)\n\n# 変数のリコード\nDF_temp &lt;-\n  DF_raw |&gt; \n  mutate(StatIden = case_when(ZQ35 == 99        ~ NA_integer_,\n                              ZQ35 %in% c(1:10) ~ 11 - ZQ35),\n         \n         Income = case_match(ZQ47A,\n                             1 ~    0,\n                             2 ~   12.5,\n                             3 ~   50,\n                             4 ~  100,\n                             5 ~  200,\n                             6 ~  300,\n                             7 ~  400,\n                             8 ~  500,\n                             9 ~  700,\n                            10 ~ 1000,\n                            11 ~ 1500,\n                            12 ~ 2000,\n                            13 ~ 2500,\n                            c(14,99) ~ NA_real_)\n  )\n\n# 新規変数が意図した通りにリコードされているか確認\nDF_temp |&gt; \n  count(ZQ35, StatIden)\n\n# A tibble: 11 × 3\n    ZQ35 StatIden     n\n   &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;\n 1     1       10     3\n 2     2        9    13\n 3     3        8    45\n 4     4        7   115\n 5     5        6   265\n 6     6        5   166\n 7     7        4   174\n 8     8        3   121\n 9     9        2    48\n10    10        1    30\n11    99       NA    20\n\n# 集計対象の限定\nDF &lt;-\n  DF_temp |&gt; \n  filter(ZQ03 == 1) |&gt;   # 調査時点で就業している回答者に限定\n  select(StatIden, Income)",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>単回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E10_Regression.html#散布図の作成",
+    "href": "E10_Regression.html#散布図の作成",
+    "title": "13  単回帰分析",
+    "section": "15.1 散布図の作成",
+    "text": "15.1 散布図の作成\nはじめに、個人収入と階層帰属意識の散布図を書いてみよう。ここで注意すべきことは、「個人収入」も「階層帰属意識」も連続変数として便宜上取り扱うが、実際の測定においては離散的にしか観測されないことである。\n例えば、「東大社研・若年パネル調査」では、回答者は自身の個人収入についてその金額を記入するのではなく、あらかじめプリコードされたカテゴリの中からひとつを選択する形式をとっている。そうして得られた回答に対して、回答選択肢の中間値を割り当てることで連続変数としてみなしているに過ぎない。\n階層帰属意識も同様である。回答者は自身の社会的地位を表す数値として、1から10までの整数値の中からひとつを選択する。\nこのように、個人レベルでは測定が離散的にしかなされないことで、個人レベルのデータを用いて散布図を描くと、2変数で同じ値を取る客体が重なってプロットされてしまう。これでは2変数間の関係性を読み取りにくい。そこで、jitter()関数を用いて個々のケースにノイズを加えてから散布図を描くことで、2変数間の大まかな関係性を把握することができる。ただし、これは元データを恣意的にずらしていることになるので、jitter()で与えるノイズは大き過ぎないように注意する必要がある。\n\n観測値をそのままプロットgeom_jitter()でずらす\n\n\n\nDF |&gt; \n  ggplot(aes(x = Income,\n             y = StatIden)) +\n  geom_point() +\n  scale_y_continuous(limits = c(1,10)) +\n  scale_x_continuous(limits = c(0, 2000))\n\nWarning: Removed 72 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\nDF |&gt; \n  ggplot(aes(x = Income,\n             y = StatIden)) +\n  geom_jitter(width = 40, height = 1) +\n  scale_y_continuous(limits = c(1,10)) +\n  scale_x_continuous(limits = c(0, 2000))\n\nWarning: Removed 113 rows containing missing values or values outside the scale range\n(`geom_point()`).",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>単回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E10_Regression.html#単回帰分析",
+    "href": "E10_Regression.html#単回帰分析",
+    "title": "13  単回帰分析",
+    "section": "15.2 単回帰分析",
+    "text": "15.2 単回帰分析\nRにおいて線形回帰分析を行うにはlm()を用いる。引数として左辺に従属変数、右辺に説明変数を置き、両者をチルダ（~）でつなぐ。さらに、使用するデータフレームのオブジェクト名をdataに引き渡す。\n\nDF |&gt; \n  with(lm(StatIden ~ Income))\n\n\nCall:\nlm(formula = StatIden ~ Income)\n\nCoefficients:\n(Intercept)       Income  \n   4.478363     0.002093  \n\n\nlm()コマンドの結果をそのまま出力させると、回帰式の切片と回帰係数のみが表示される。より詳しい推定結果を見るためには、回帰分析の結果を一度オブジェクトに格納するとよい。\n\nResult &lt;- \n  DF |&gt; \n  with(lm(StatIden ~ Income))\n  \nsummary(Result)\n\n\nCall:\nlm(formula = StatIden ~ Income)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-4.316 -1.106  0.103  1.103  5.312 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 4.4783628  0.1045776  42.823  &lt; 2e-16 ***\nIncome      0.0020931  0.0003219   6.503 1.44e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.669 on 752 degrees of freedom\n  (72 observations deleted due to missingness)\nMultiple R-squared:  0.05324,   Adjusted R-squared:  0.05198 \nF-statistic: 42.29 on 1 and 752 DF,  p-value: 1.437e-10\n\n\n推定結果が格納されたオブジェクトをsummary()に引き渡すことで、残差の分布、回帰係数とp値、決定係数などの統計量が得られていることがわかる。なお、ある特定の統計量だけ取り出すこともできる。\n\nResult$coefficients\n\n(Intercept)      Income \n4.478362823 0.002093113 \n\n\n回帰分析の推定結果として他にどのような情報が格納されているかを確認するにはstr()に推定結果のオブジェクトを引き渡せばよい。\n\nstr(Result)\n\nList of 13\n $ coefficients : Named num [1:2] 4.47836 0.00209\n  ..- attr(*, \"names\")= chr [1:2] \"(Intercept)\" \"Income\"\n $ residuals    : Named num [1:754] 1.8937 0.0565 1.8937 0.8937 0.6844 ...\n  ..- attr(*, \"names\")= chr [1:754] \"1\" \"2\" \"3\" \"4\" ...\n $ effects      : Named num [1:754] -138.169 -10.85 1.827 0.827 0.618 ...\n  ..- attr(*, \"names\")= chr [1:754] \"(Intercept)\" \"Income\" \"\" \"\" ...\n $ rank         : int 2\n $ fitted.values: Named num [1:754] 5.11 5.94 5.11 5.11 5.32 ...\n  ..- attr(*, \"names\")= chr [1:754] \"1\" \"2\" \"3\" \"4\" ...\n $ assign       : int [1:2] 0 1\n $ qr           :List of 5\n  ..$ qr   : num [1:754, 1:2] -27.4591 0.0364 0.0364 0.0364 0.0364 ...\n  .. ..- attr(*, \"dimnames\")=List of 2\n  .. .. ..$ : chr [1:754] \"1\" \"2\" \"3\" \"4\" ...\n  .. .. ..$ : chr [1:2] \"(Intercept)\" \"Income\"\n  .. ..- attr(*, \"assign\")= int [1:2] 0 1\n  ..$ qraux: num [1:2] 1.04 1.08\n  ..$ pivot: int [1:2] 1 2\n  ..$ tol  : num 1e-07\n  ..$ rank : int 2\n  ..- attr(*, \"class\")= chr \"qr\"\n $ df.residual  : int 752\n $ na.action    : 'omit' Named int [1:72] 14 19 40 84 90 107 110 118 150 168 ...\n  ..- attr(*, \"names\")= chr [1:72] \"14\" \"19\" \"40\" \"84\" ...\n $ xlevels      : Named list()\n $ call         : language lm(formula = StatIden ~ Income)\n $ terms        :Classes 'terms', 'formula'  language StatIden ~ Income\n  .. ..- attr(*, \"variables\")= language list(StatIden, Income)\n  .. ..- attr(*, \"factors\")= int [1:2, 1] 0 1\n  .. .. ..- attr(*, \"dimnames\")=List of 2\n  .. .. .. ..$ : chr [1:2] \"StatIden\" \"Income\"\n  .. .. .. ..$ : chr \"Income\"\n  .. ..- attr(*, \"term.labels\")= chr \"Income\"\n  .. ..- attr(*, \"order\")= int 1\n  .. ..- attr(*, \"intercept\")= int 1\n  .. ..- attr(*, \"response\")= int 1\n  .. ..- attr(*, \".Environment\")=&lt;environment: 0x10ee21348&gt; \n  .. ..- attr(*, \"predvars\")= language list(StatIden, Income)\n  .. ..- attr(*, \"dataClasses\")= Named chr [1:2] \"numeric\" \"numeric\"\n  .. .. ..- attr(*, \"names\")= chr [1:2] \"StatIden\" \"Income\"\n $ model        :'data.frame':  754 obs. of  2 variables:\n  ..$ StatIden: num [1:754] 7 6 7 6 6 4 2 6 4 7 ...\n  ..$ Income  : num [1:754] 300 700 300 300 400 300 100 200 500 12.5 ...\n  ..- attr(*, \"terms\")=Classes 'terms', 'formula'  language StatIden ~ Income\n  .. .. ..- attr(*, \"variables\")= language list(StatIden, Income)\n  .. .. ..- attr(*, \"factors\")= int [1:2, 1] 0 1\n  .. .. .. ..- attr(*, \"dimnames\")=List of 2\n  .. .. .. .. ..$ : chr [1:2] \"StatIden\" \"Income\"\n  .. .. .. .. ..$ : chr \"Income\"\n  .. .. ..- attr(*, \"term.labels\")= chr \"Income\"\n  .. .. ..- attr(*, \"order\")= int 1\n  .. .. ..- attr(*, \"intercept\")= int 1\n  .. .. ..- attr(*, \"response\")= int 1\n  .. .. ..- attr(*, \".Environment\")=&lt;environment: 0x10ee21348&gt; \n  .. .. ..- attr(*, \"predvars\")= language list(StatIden, Income)\n  .. .. ..- attr(*, \"dataClasses\")= Named chr [1:2] \"numeric\" \"numeric\"\n  .. .. .. ..- attr(*, \"names\")= chr [1:2] \"StatIden\" \"Income\"\n  ..- attr(*, \"na.action\")= 'omit' Named int [1:72] 14 19 40 84 90 107 110 118 150 168 ...\n  .. ..- attr(*, \"names\")= chr [1:72] \"14\" \"19\" \"40\" \"84\" ...\n - attr(*, \"class\")= chr \"lm\"\n\n\nあるいは、lm()のヘルプページのValueのセクションに返り値の一覧があるのでそちらも参考にすると良い。",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>単回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E11_MultipleRegression.html",
+    "href": "E11_MultipleRegression.html",
+    "title": "14  重回帰分析",
+    "section": "",
+    "text": "15 データ・変数",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>重回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E11_MultipleRegression.html#データ",
+    "href": "E11_MultipleRegression.html#データ",
+    "title": "14  重回帰分析",
+    "section": "15.1 データ",
+    "text": "15.1 データ\n東大社研・若年パネル調査の非制限公開疑似データを用いる。\n\nlibrary(tidyverse)\nFN_Data2Load &lt;- \"data/u001.csv\"\nDF_org &lt;- read_csv(FN_Data2Load)\n\nRows: 1000 Columns: 72\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n以下では次の問いに答えることを目的とする。\n\nQ: 自身の収入と配偶者の収入のどちらがより階層帰属意識を規定するのか？\n\n分析対象は調査時点で結婚している回答者に限定する。また、分析は男女別に行う。",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>重回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E11_MultipleRegression.html#変数",
+    "href": "E11_MultipleRegression.html#変数",
+    "title": "14  重回帰分析",
+    "section": "15.2 変数",
+    "text": "15.2 変数\n\n回答者および配偶者の個人収入: ZQ47A, ZQ47B\n\n回答選択肢の中央値にリコード\n例：「100万円くらい（75〜150万円未満）」 -&gt; 100万円\n\n階層帰属意識: ZQ35\n\n1:一番上 〜　10:一番下\n10が「一番上」になるようにリコード\n\n\n\n# 使用する変数のみを取り出す\nDF_raw &lt;-\n  DF_org |&gt; \n  select(ZQ47A, ZQ47B, ZQ35, ZQ50, sex)\n\n# 変数のリコード\nDF_temp &lt;-\n  DF_raw |&gt; \n  mutate(StatIden = case_when(ZQ35 == 99        ~ NA_integer_,\n                              ZQ35 %in% c(1:10) ~ 11 - ZQ35),\n         \n         Income = case_match(ZQ47A,\n                             1 ~    0,\n                             2 ~   12.5,\n                             3 ~   50,\n                             4 ~  100,\n                             5 ~  200,\n                             6 ~  300,\n                             7 ~  400,\n                             8 ~  500,\n                             9 ~  700,\n                            10 ~ 1000,\n                            11 ~ 1500,\n                            12 ~ 2000,\n                            13 ~ 2500,\n                            c(14,99) ~ NA_real_),\n         \n        IncomeSpo = case_match(ZQ47B,\n                             1 ~    0,\n                             2 ~   12.5,\n                             3 ~   50,\n                             4 ~  100,\n                             5 ~  200,\n                             6 ~  300,\n                             7 ~  400,\n                             8 ~  500,\n                             9 ~  700,\n                            10 ~ 1000,\n                            11 ~ 1500,\n                            12 ~ 2000,\n                            13 ~ 2500,\n                            c(14,15,99) ~ NA_real_)\n  )\n\n# 集計対象の限定\nDF &lt;-\n  DF_temp |&gt; \n  filter(ZQ50 == 2) |&gt; # 調査時点で結婚している回答者に限定\n  select(StatIden, Income, IncomeSpo, sex) |&gt; \n  drop_na()",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>重回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E11_MultipleRegression.html#モデルの推定",
+    "href": "E11_MultipleRegression.html#モデルの推定",
+    "title": "14  重回帰分析",
+    "section": "17.1 モデルの推定",
+    "text": "17.1 モデルの推定\nRで重回帰分析を行うにはlm()を用いる。基本的な使い方は単回帰分析の時と同様である。モデル式の右辺において独立変数を+でつなげばよい。\n\nModel_M &lt;- \n  DF |&gt; \n  filter(sex == 1) |&gt; \n  with(\n    lm(StatIden ~ Income + IncomeSpo)\n  )\n\nsummary(Model_M)\n\n\nCall:\nlm(formula = StatIden ~ Income + IncomeSpo)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.7668 -1.1524  0.2591  0.8937  3.8643 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  4.2279846  0.3819346  11.070  &lt; 2e-16 ***\nIncome       0.0030259  0.0007838   3.861 0.000174 ***\nIncomeSpo   -0.0005899  0.0010556  -0.559 0.577229    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.703 on 136 degrees of freedom\nMultiple R-squared:  0.1002,    Adjusted R-squared:  0.08695 \nF-statistic: 7.571 on 2 and 136 DF,  p-value: 0.000763\n\n\n回帰分析の結果は、summary()に引き渡した出力結果をExcelなどにコピペして表の形に整形しても良い。しかしながら、次節で見るように複数のモデルを推定した結果をまとめたり、あるいは説明変数の数が多くなってくると、手作業でのコピペ作業は煩雑であるしミスも誘発されすい。\n幸いなことに、Rでは回帰分析の結果を表にまとめてくれるパッケージが提供されている。その全てを紹介することはできないが、ここでは{memisc}パッケージのmtable()と{modelsummary}パッケージを使ってみよう。\n\nmtable()modelsummary()\n\n\n\nlibrary(memisc)\n\nLoading required package: lattice\n\n\nLoading required package: MASS\n\n\n\nAttaching package: 'MASS'\n\n\nThe following object is masked from 'package:dplyr':\n\n    select\n\n\n\nAttaching package: 'memisc'\n\n\nThe following objects are masked from 'package:lubridate':\n\n    as.interval, is.interval\n\n\nThe following objects are masked from 'package:dplyr':\n\n    collect, recode, rename, syms\n\n\nThe following object is masked from 'package:purrr':\n\n    %@%\n\n\nThe following object is masked from 'package:tibble':\n\n    view\n\n\nThe following object is masked from 'package:ggplot2':\n\n    syms\n\n\nThe following objects are masked from 'package:stats':\n\n    contr.sum, contr.treatment, contrasts\n\n\nThe following object is masked from 'package:base':\n\n    as.array\n\nmtable(Model_M)\n\n\nCalls:\nModel_M: lm(formula = StatIden ~ Income + IncomeSpo)\n\n===========================\n  (Intercept)    4.228***  \n                (0.382)    \n  Income         0.003***  \n                (0.001)    \n  IncomeSpo     -0.001     \n                (0.001)    \n---------------------------\n  R-squared      0.100     \n  N            139         \n===========================\n  Significance:   \n                *** = p &lt; 0.001;   \n                ** = p &lt; 0.01;   \n                * = p &lt; 0.05  \n\n\n\n\n\nlibrary(modelsummary)\n\n\nAttaching package: 'modelsummary'\n\n\nThe following objects are masked from 'package:memisc':\n\n    Max, Mean, Median, Min, Var\n\nmodelsummary(Model_M)\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                 \n                (1)\n              \n        \n        \n        \n                \n                  (Intercept)\n                  4.228\n                \n                \n                  \n                  (0.382)\n                \n                \n                  Income\n                  0.003\n                \n                \n                  \n                  (0.001)\n                \n                \n                  IncomeSpo\n                  -0.001\n                \n                \n                  \n                  (0.001)\n                \n                \n                  Num.Obs.\n                  139\n                \n                \n                  R2\n                  0.100\n                \n                \n                  R2 Adj.\n                  0.087\n                \n                \n                  AIC\n                  547.5\n                \n                \n                  BIC\n                  559.2\n                \n                \n                  Log.Lik.\n                  -269.749\n                \n                \n                  F\n                  7.571\n                \n                \n                  RMSE\n                  1.68\n                \n        \n      \n    \n\n\n\n\n\n\nいずれも回帰分析の結果が保存されたオブジェクトを関数にそのまま引き渡すだけで、回帰係数や標準誤差、さらにはモデル統計量を表形式にまとめてくれる。ただし、デフォルトの設定ではそのまま論文やレポートに掲載するまでには体裁が整っていない。次節ではこれらの表の体裁を修正してみよう。",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>重回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E11_MultipleRegression.html#複数のモデルの推定",
+    "href": "E11_MultipleRegression.html#複数のモデルの推定",
+    "title": "14  重回帰分析",
+    "section": "17.2 複数のモデルの推定",
+    "text": "17.2 複数のモデルの推定\n回帰分析では複数のモデルを推定して、それらの結果を比較するということをしばしば行う。ここでは例として、階層帰属意識を従属変数、本人収入と配偶者収入を説明変数にした重回帰モデルを男女別に推定し、その結果を比較してみよう。\n\nModel_M &lt;- lm(StatIden ~ Income + IncomeSpo, data = subset(DF, sex == 1))\nModel_F &lt;- lm(StatIden ~ Income + IncomeSpo, data = subset(DF, sex == 2))\n\nこれで、男性の結果がModel_Mに、女性の結果がModel_Fにそれぞれ保存された。これらの推定結果を表にまとめてみよう。\n\nmtable()modelsummary()\n\n\n\nmtable(\"Men\"   = Model_M,\n       \"Women\" = Model_F) |&gt; \n  relabel(\"(Intercept)\" = \"(Intercept)\",\n          Income        = \"Respondent's Income\",\n          IncomeSpo     = \"Spouse's Income\")\n\n\nCalls:\nMen: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF, \n    sex == 1))\nWomen: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF, \n    sex == 2))\n\n===============================================\n                          Men        Women     \n-----------------------------------------------\n  (Intercept)            4.228***    4.435***  \n                        (0.382)     (0.312)    \n  Respondent's Income    0.003***    0.002*    \n                        (0.001)     (0.001)    \n  Spouse's Income       -0.001       0.001*    \n                        (0.001)     (0.001)    \n-----------------------------------------------\n  R-squared              0.100       0.050     \n  N                    139         168         \n===============================================\n  Significance: *** = p &lt; 0.001;   \n                ** = p &lt; 0.01; * = p &lt; 0.05  \n\n\n\n\n\nListModel &lt;- list(\"Men\"   = Model_M,\n                  \"Women\" = Model_F)\n\nCoefLab &lt;- \n  c(\"Income\"      = \"Respondent's Income\",\n    \"IncomeSpo\"   = \"Spouse's Income\",\n    \"(Intercept)\" = \"(Intercept)\"\n  )\n\n\nmodelsummary(ListModel, coef_map = CoefLab,\n             stars = c('*' = 0.05, '**' = 0.01, '***' = 0.001),\n             gof_omit = \"AIC|BIC|Log.Lik.|RMSE\",\n             output = \"gt\")\n\nRegistered S3 method overwritten by 'sass':\n  method    from  \n  print.css memisc\n\n\n\n\n\n\n\n\n\nMen\nWomen\n\n\n\n\nRespondent's Income\n0.003***\n0.002*\n\n\n\n(0.001)\n(0.001)\n\n\nSpouse's Income\n-0.001\n0.001*\n\n\n\n(0.001)\n(0.001)\n\n\n(Intercept)\n4.228***\n4.435***\n\n\n\n(0.382)\n(0.312)\n\n\nNum.Obs.\n139\n168\n\n\nR2\n0.100\n0.050\n\n\nR2 Adj.\n0.087\n0.039\n\n\nF\n7.571\n4.355\n\n\n\n* p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001\n\n\n\n\n\n\n\n\n\n\n\n本人収入が高いほど階層帰属意識も高い傾向にあることは男女ともに共通している。一方で、配偶者収入についてみると、男性の場合は階層帰属意識との関連は有意ではない。一方で、女性の場合、夫の収入が高いほど階層帰属意識が高い傾向が確認される。",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>重回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E11_MultipleRegression.html#多重共線性のチェック",
+    "href": "E11_MultipleRegression.html#多重共線性のチェック",
+    "title": "14  重回帰分析",
+    "section": "17.3 多重共線性のチェック",
+    "text": "17.3 多重共線性のチェック\nVIF（Variance Inflation Factor: 分散拡大要因）を算出するにはcarパッケージのvif()コマンドを使えばよい。\n\nlibrary(car)\n\nLoading required package: carData\n\n\n\nAttaching package: 'car'\n\n\nThe following object is masked from 'package:memisc':\n\n    recode\n\n\nThe following object is masked from 'package:dplyr':\n\n    recode\n\n\nThe following object is masked from 'package:purrr':\n\n    some\n\nvif(Model_M)\n\n   Income IncomeSpo \n  1.00035   1.00035 \n\n\n（あくまでひとつの目安に過ぎないが）VIFが2を下回っているため、この例では多重共線性の可能性は低いといえる。",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>重回帰分析</span>"
+    ]
+  },
+  {
+    "objectID": "E12_Regression_DummyVariable.html",
+    "href": "E12_Regression_DummyVariable.html",
+    "title": "15  ダミー変数",
+    "section": "",
+    "text": "16 データ・変数\n東大社研・若年パネル調査の非制限公開疑似データを用いる。\n以下では次の問いに答えることを目的とする。\n\nQ: 学歴によって個人収入に違いはあるのか？\n\n分析対象を25-34歳の男性に限定する。なお、これは「第7回　分散分析1」で取り上げたResearch Questionと同じものである。後に見ていくように、ダミー変数を用いることで分散分析と同じことが、重回帰分析として行うことができる。\nraw dataを最初から読み込み、変数の加工を行っても良いが、「第7回　分散分析1」の最後に性別、学歴、本人年収のみを格納したデータセットAnova_SexEduIncome.rdsを保存しているのでこれを用いる。\n\nFN_Data2Load &lt;- \"data/Anova_SexEduIncome.rds\"\nDF_org &lt;- readRDS(FN_Data2Load)\nDF &lt;- DF_org |&gt; filter(sex == 1)\n\nまずは学歴別に平均収入を算出して可視化してみよう。\n\n# 学歴別に平均収入を算出\nDF |&gt;\n  group_by(Edu3Grp) |&gt; \n  reframe(Income_mean = mean(Income))\n\n# A tibble: 3 × 2\n  Edu3Grp Income_mean\n  &lt;fct&gt;         &lt;dbl&gt;\n1 JHS/HS         326.\n2 VS/JC          306.\n3 Univ           376.\n\n# 学歴別の収入の分布\nDF |&gt; \n  ggplot(aes(x = Edu3Grp,\n             y = Income)) +\n  geom_boxplot() +\n  theme_few() +\n  theme(strip.text   = element_text(size = rel(1.5)),\n        axis.text.x  = element_text(size = rel(1.5)),\n        axis.text.y  = element_text(size = rel(1.5)),\n        axis.title.x = element_text(size = rel(1.5)),\n        axis.title.y = element_text(size = rel(1.3)))\n\n\n\n\n\n\n\n\n\n\n17 名義ダミー変数（nominal dummy variable）\n最初のダミー変数のコーディング方法は最も基本的なもので、あるカテゴリに該当する場合に1、それ以外の場合に0を取る変数を作成する。\n\n\n\n\n\n\n\n\n学歴Edu\n高専短大ダミーVSJC_dum\n大学ダミーUniv_dum\n\n\n\n\n2(短大・高専)\n1\n0\n\n\n3(大学)\n0\n1\n\n\n1(中学・高校)\n0\n0\n\n\n\n\nDF &lt;- \n  DF |&gt; \n  mutate(HS_dum   = ifelse(Edu3Grp == \"JHS/HS\", 1L, 0L),\n         VSJC_dum = ifelse(Edu3Grp == \"VS/JC\",  1L, 0L),\n         Univ_dum = ifelse(Edu3Grp == \"Univ\",   1L, 0L))\n\n# コーディングが意図した通りになされているか確認\nDF |&gt; \n  count(Edu3Grp, HS_dum, VSJC_dum, Univ_dum)\n\n# A tibble: 3 × 5\n  Edu3Grp HS_dum VSJC_dum Univ_dum     n\n  &lt;fct&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt; &lt;int&gt;\n1 JHS/HS       1        0        0   104\n2 VS/JC        0        1        0    62\n3 Univ         0        0        1   164\n\n\nダミー変数が作成できたらそれらを重回帰モデルに投入していく。ここで重要なことは参照カテゴリ（reference category）（基準カテゴリ（baseline category）とも呼ばれる）を決めることである。はじめに、中学・高校（HS）を参照カテゴリにしてみよう。その場合、以下のように中学以外の学歴ダミー変数、 すなわちVS/JC_dumとUniv_dumを説明変数として回帰式に含める。\n\nRegDum &lt;- \n  DF |&gt; \n  with(\n    lm(Income ~ VSJC_dum + Univ_dum)\n  )\n\nsummary(RegDum)\n\n\nCall:\nlm(formula = Income ~ VSJC_dum + Univ_dum)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-376.45 -105.85   23.55   94.15 1174.28 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   325.72      18.27  17.832   &lt;2e-16 ***\nVSJC_dum      -19.87      29.89  -0.665   0.5065    \nUniv_dum       50.73      23.35   2.172   0.0305 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 186.3 on 327 degrees of freedom\nMultiple R-squared:  0.02528,   Adjusted R-squared:  0.01932 \nF-statistic: 4.241 on 2 and 327 DF,  p-value: 0.0152\n\n\n推定された回帰係数とp値を見ると、\n\n「高専・短大」は「中学・高校」よりも19.9万円ほど収入低い\n「大学」は「中学・高校」よりも50.7万円ほど収入が高い\n\nことがわかる。\nつぎに、参照カテゴリを「高専・短大（HS）」に変えて、回帰モデルを推定し直してみよう。この場合は、HS_dumとUniv_dumを説明変数に投入すればよい。\n\nRegDum_refVSJC &lt;- \n  DF |&gt; \n  with(\n    lm(Income ~ HS_dum + Univ_dum)\n  )\n\nsummary(RegDum_refVSJC)\n\n\nCall:\nlm(formula = Income ~ HS_dum + Univ_dum)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-376.45 -105.85   23.55   94.15 1174.28 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   305.85      23.66  12.928   &lt;2e-16 ***\nHS_dum         19.87      29.89   0.665   0.5065    \nUniv_dum       70.60      27.77   2.542   0.0115 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 186.3 on 327 degrees of freedom\nMultiple R-squared:  0.02528,   Adjusted R-squared:  0.01932 \nF-statistic: 4.241 on 2 and 327 DF,  p-value: 0.0152\n\n\n推定された回帰係数とp値を見ると、\n\n「中学・高校」は「高専・短大」よりも19.9万円ほど収入が高い\n「大学」は「高専・短大」よりも70.6万円ほど収入が高い\n\nことがわかる。\nこのように、参照カテゴリを変えれば、ダミー変数の推定値も変化する。これは比較対象となるカテゴリが変化しているので当然のことである。むしろ重要なことは、参照カテゴリを変えても回帰モデルのデータへの当てはまりには影響がないことである。例えば、上記の2つの回帰モデルの間で、決定係数（\\(R^2\\)）が一致していることを確認されたい。\n\n\n18 順序ダミー変数（ordered dummy variable）\nつぎに、ダミーコーディングする変数のカテゴリが順序性を持つ場合、ひとつ下のカテゴリを参照カテゴリにする（すなわちカテゴリごとに参照カテゴリが変わっていく）コーディング方法もある。例えば教育年数ごとに変数Edu3Grpのカテゴリを並べると、JHS/HS-VS/JC-Univの順になる。そこで、Edu3Grpに順序づけられたダミーコーディングを施すと、以下の2つのダミー変数が作成される。\n\nVSJC_o: 「高専・短大」あるいは「大学」の場合に1、それ以外は0\nUniv_o: 「大学」の場合に1、それ以外は0\n\nまず、上記のルールに従ってダミー変数を作成しよう。\n\n\n\n\nVSJC_o\nUniv_o\n\n\n\n\n中学・高校\n0\n0\n\n\n高専・短大\n1\n0\n\n\n大学\n1\n1\n\n\n\n\nDF &lt;- \n  DF |&gt; \n  mutate(VSJC_o = ifelse(Edu3Grp == \"JHS/HS\", 0L, 1L),\n         Univ_o = ifelse(Edu3Grp == \"Univ\",   1L, 0L))\n\n# コーディングが意図した通りになされているか確認\nDF |&gt; \n  count(Edu3Grp, VSJC_o, Univ_o)\n\n# A tibble: 3 × 4\n  Edu3Grp VSJC_o Univ_o     n\n  &lt;fct&gt;    &lt;int&gt;  &lt;int&gt; &lt;int&gt;\n1 JHS/HS       0      0   104\n2 VS/JC        1      0    62\n3 Univ         1      1   164\n\n\nこれらの順序ダミー変数を回帰モデルに説明変数として投入してみよう。\n\nRegDum_o &lt;- \n  DF |&gt; \n  with(\n    lm(Income ~ VSJC_o + Univ_o)\n  )\n\nsummary(RegDum_o)\n\n\nCall:\nlm(formula = Income ~ VSJC_o + Univ_o)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-376.45 -105.85   23.55   94.15 1174.28 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   325.72      18.27  17.832   &lt;2e-16 ***\nVSJC_o        -19.87      29.89  -0.665   0.5065    \nUniv_o         70.60      27.77   2.542   0.0115 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 186.3 on 327 degrees of freedom\nMultiple R-squared:  0.02528,   Adjusted R-squared:  0.01932 \nF-statistic: 4.241 on 2 and 327 DF,  p-value: 0.0152\n\n\n推定された回帰係数とp値を見ると、\n\n「高専・短大」は「中学・高校」よりも19.9万円ほど収入が低い\n「大学」は「高専・短大」よりも70.6万円ほど収入が高い\n\nことがわかる。HS_oとUniv_oとでは参照カテゴリが変わっていることを再度確認してほしい。\n\n\n19 ANOVAコーディング（エフェクトコーディング）\nANOVAコーディングは、特定のカテゴリを参照カテゴリに設定せず、各カテゴリの係数の平均を0に固定し、そことの比較を行う方法である。言い換えると、カテゴリ平均のunweighted meanとの比較を行うためのダミーコーディングである。ANOVAコーディングの方法は以下の通りである。\n\n基準カテゴリを-1にする\n各ダミー変数で着目するカテゴリは1\nそれ以外のカテゴリーは0\n\n以下では「中学・高校」を基準カテゴリにしてANOVAコーディングによるダミー変数を作成してみよう。\n\n\n\n\nVSJC_a\nUniv_a\n\n\n\n\n中学・高校\n-1\n-1\n\n\n高専・短大\n1\n0\n\n\n大学\n0\n1\n\n\n\n\nDF &lt;- \n  DF |&gt; \n  mutate(VSJC_a = case_match(Edu3Grp,\n                             \"JHS/HS\" ~ -1L,\n                             \"VS/JC\"  ~  1L,\n                             \"Univ\"   ~  0L),\n         \n         Univ_a = case_match(Edu3Grp,\n                             \"JHS/HS\" ~ -1L,\n                             \"VS/JC\"  ~  0L,\n                             \"Univ\"   ~  1L)\n  )\n\n# コーディングが意図した通りになされているか確認\nDF |&gt; count(Edu3Grp, VSJC_a, Univ_a)\n\n# A tibble: 3 × 4\n  Edu3Grp VSJC_a Univ_a     n\n  &lt;fct&gt;    &lt;int&gt;  &lt;int&gt; &lt;int&gt;\n1 JHS/HS      -1     -1   104\n2 VS/JC        1      0    62\n3 Univ         0      1   164\n\n\nANOVAコーディングされたこれらのダミー変数を回帰モデルに説明変数として投入してみよう。\n\nRegDum_a &lt;- \n  DF |&gt; \n  with(\n    lm(Income ~ VSJC_a + Univ_a)\n  )\n\nsummary(RegDum_a)\n\n\nCall:\nlm(formula = Income ~ VSJC_a + Univ_a)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-376.45 -105.85   23.55   94.15 1174.28 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   336.01      11.08  30.326  &lt; 2e-16 ***\nVSJC_a        -30.16      17.59  -1.715  0.08733 .  \nUniv_a         40.44      13.90   2.909  0.00387 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 186.3 on 327 degrees of freedom\nMultiple R-squared:  0.02528,   Adjusted R-squared:  0.01932 \nF-statistic: 4.241 on 2 and 327 DF,  p-value: 0.0152\n\n\n推定された回帰係数とp値を見ると、\n\nカテゴリ平均のunweighted meanは336万円。これが各ダミー変数の比較対象となる。\n「高専・短大」はカテゴリ平均のunweighted meanよりも30.2万円ほど収入が低いが、この差は統計的に有意ではない（有意水準を5%とした場合）。\n「大学」はカテゴリ平均のunweighted meanよりも40.4万円ほど収入が高い\n「中学・高校」の収入の平均値はカテゴリ平均のunweighted meanよりも(-30.2 + 40.4) = 10.3万円高い\n\nことがわかる。\n\n\n20 Constastコーディング\n最後に紹介するContrastコーディングは、変数のカテゴリ間に入れ子構造が存在する場合に有効なダミーコーディングのひとつである。例えば平均収入について、以下の2つの比較に関心があるとしよう。\n\n「四年制大学卒の人々」と「それ以外の人々」との間の収入格差\n非四年制大学卒の人々の中での収入の学歴差、すなわち「中学・高校」と「高専・短大」の間の収入格差\n\nすなわち、「中学・高校」「高専・短大」「大学」というカテゴリ区分の中には、まず「四年制大学卒か否か」という区分が存在し、さらに「非四年制大学卒」の中で「中学・高校」と「高専・短大」の区分が存在する。こうした2つの比較を行うためにはまず以下のようにダミーコーディングを施せばよい。\n\n\n\n\nContDum1\nContDum2\n\n\n\n\n中学・高校\n-.5\n-1\n\n\n高専・短大\n-.5\n1\n\n\n大学\n1\n0\n\n\n\n\nDF &lt;- \n  DF  |&gt;  \n  mutate(ContDum1 = case_match(Edu3Grp,\n                               \"JHS/HS\" ~ -.5,\n                               \"VS/JC\"  ~ -.5,\n                               \"Univ\"   ~   1),\n       \n         ContDum2 = case_match(Edu3Grp,\n                               \"JHS/HS\" ~ -1,\n                               \"VS/JC\"  ~  1,\n                               \"Univ\"   ~  0)\n  )\n\n# コーディングが意図した通りになされているか確認\nDF |&gt; count(Edu3Grp, ContDum1, ContDum2)\n\n# A tibble: 3 × 4\n  Edu3Grp ContDum1 ContDum2     n\n  &lt;fct&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;\n1 JHS/HS      -0.5       -1   104\n2 VS/JC       -0.5        1    62\n3 Univ         1          0   164\n\n\nこれらのダミー変数を回帰モデルに説明変数として投入してみよう。\n\nRegDum_c &lt;- \n  DF |&gt; \n  with(\n    lm(Income ~ ContDum1 + ContDum2)\n  )\n\nsummary(RegDum_c)\n\n\nCall:\nlm(formula = Income ~ ContDum1 + ContDum2)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-376.45 -105.85   23.55   94.15 1174.28 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  336.005     11.080  30.326  &lt; 2e-16 ***\nContDum1      40.443     13.903   2.909  0.00387 ** \nContDum2      -9.937     14.944  -0.665  0.50655    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 186.3 on 327 degrees of freedom\nMultiple R-squared:  0.02528,   Adjusted R-squared:  0.01932 \nF-statistic: 4.241 on 2 and 327 DF,  p-value: 0.0152\n\n\n推定結果から以下のことがわかる。\n\nカテゴリ平均のunweighted mean（全体平均）は336万円である\n「大学」の平均収入は、「全体平均」よりも40.4万円高い\n「非四年制大学卒（中学・高校・高専・短大）の平均収入」（「中学・高校」と「高専・短大」のunweighted mean）は「全体平均」よりも0.5 \\(\\times\\) 40.4 = 20.2万円低い\n「高専・短大」の平均収入は、「中学・高校・高専・短大の平均収入」よりも9.9万円低い\n「中学・高校」の平均収入は、「非四年制大学卒（中学・高校・高専・短大）の平均収入」よりも9.9万円高い",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>ダミー変数</span>"
+    ]
+  },
+  {
+    "objectID": "E13_MultipleRegression.html",
+    "href": "E13_MultipleRegression.html",
+    "title": "16  交互作用効果",
+    "section": "",
+    "text": "17 交互作用効果のパターン\n2次の交互作用効果について考える場合、交互作用項を構成する独立変数の尺度水準によって、以下の3パターンに分類できる。\n以下では、1と2のパターンについて説明する。3のパターンは2が理解できていればその応用として理解できる。\n交互作用効果について理解するために、東大社研・若年パネル調査の非制限公開疑似データを用いて次の問いに答えることを目的とする。\nCode\nlibrary(tidyverse)\nFN_Data2Load &lt;- \"data/u001.csv\"\nDF_org &lt;- read_csv(FN_Data2Load)\n\n\nRows: 1000 Columns: 72\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nCode\nSurveyDate &lt;- ymd(\"2007-01-01\")\n\nDF_temp &lt;-\n  DF_org |&gt; \n  select(sex, ybirth, mbirth, ZQ23A, ZQ47A) |&gt; \n  mutate(BthDate = make_date(ybirth, mbirth, 1),                 # 生年月をDate型に変換\n         CAgeSvy = as.period(interval(BthDate, SurveyDate))$year # 調査日時点の満年齢を計算\n  ) |&gt; \n  mutate(Sex = if_else(sex == 1, \"Men\", \"Women\"),\n         \n         CAgeSvy2Grp = if_else(CAgeSvy %in% c(25:29), \"25-29\", \"30-34\")) |&gt; \n  mutate(Edu2Grp = case_match(ZQ23A,\n                              c(1,2,3,4) ~ \"Non-Univ\",\n                              c(5,6)     ~ \"Univ\",\n                              TRUE       ~ NA_character_) |&gt; \n                   fct_relevel(\"Non-Univ\", \"Univ\")\n         ) |&gt; \n  mutate(Income = case_match(ZQ47A,\n                             1 ~    0,\n                             2 ~   12.5,\n                             3 ~   50,\n                             4 ~  100,\n                             5 ~  200,\n                             6 ~  300,\n                             7 ~  400,\n                             8 ~  500,\n                             9 ~  700,\n                            10 ~ 1000,\n                            11 ~ 1500,\n                            12 ~ 2000,\n                            13 ~ 2500,\n                            c(14,99) ~ NA_real_)\n  )\n\nDF &lt;-\n  DF_temp |&gt; \n  filter(CAgeSvy %in% c(25:34)) |&gt; \n  select(Sex, CAgeSvy, CAgeSvy2Grp, Income) |&gt; \n  drop_na()\n# 性別・年齢階級別に平均収入を算出\nMeanIncome_bySexAge &lt;-\n  DF |&gt;\n    group_by(Sex, CAgeSvy2Grp) |&gt; \n    reframe(Mean = mean(Income),\n            SE   = sd(Income) / sqrt(n())\n            ) |&gt; \n    mutate(\n      CI_lower = Mean - qt(0.975, df = n()-1) * SE,  # 95%信頼区間下限\n      CI_upper = Mean + qt(0.975, df = n()-1) * SE   # 95%信頼区間上限\n    )\n\nprint(MeanIncome_bySexAge)\n\n# A tibble: 4 × 6\n  Sex   CAgeSvy2Grp  Mean    SE CI_lower CI_upper\n  &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 Men   25-29        317.  14.7     270.     363.\n2 Men   30-34        369.  14.2     324.     415.\n3 Women 25-29        216.  17.1     161.     270.\n4 Women 30-34        146.  11.7     109.     183.\nCode\n# data vis\nMeanIncome_bySexAge |&gt; \n  ggplot(aes(x = Sex,\n             y = Mean)\n         ) +\n  facet_grid(~ CAgeSvy2Grp) +\n  geom_point() +\n  geom_errorbar(aes(ymin = CI_lower, ymax = CI_upper), width = 0.2) +\n  ylim(0, 500) +\n  theme_few() +\n  theme(strip.text   = element_text(size = rel(1.5)),\n        axis.text.x  = element_text(size = rel(1.5)),\n        axis.text.y  = element_text(size = rel(1.5)),\n        axis.title.x = element_text(size = rel(1.5)),\n        axis.title.y = element_text(size = rel(1.3)))",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>交互作用効果</span>"
+    ]
+  },
+  {
+    "objectID": "E13_MultipleRegression.html#結果の解釈",
+    "href": "E13_MultipleRegression.html#結果の解釈",
+    "title": "16  交互作用効果",
+    "section": "18.1 結果の解釈",
+    "text": "18.1 結果の解釈\n交互作用効果を理解するためには、まず表中の性別（Sex）と年齢（Age）の一次の項について正しく解釈する必要がある。Model2では交互作用項が含まれているため、SexとAgeの一次の項はそれぞれ以下のように解釈する。\n\nSex：「25-29歳」における性別の効果\nAge：「男性」における年齢の効果\n\nすなわち、\n\nModel2のWomenの回帰係数から、25-29歳においては、女性は男性よりも年収が100.951万円低いことがわかる。\n同様に、Ageの係数の推定値から、30-34歳男性は25-29歳男性と比較して年収が 52.736万円高い。\n\nつぎに、交互作用項の係数はどのように解釈すればいいだろうか。これには2通りの解釈の仕方がある。\n\n\n年齢の効果が性別によって異なる\n\n\n\n男性の場合、「30-34歳」は「25-29歳」よりも年収が52.736万円高い。\n女性の場合、「25-29歳」は「30-34歳」よりも年収が-69.665(=52.736+-122.401)万円高い。\n\nすなわち、男性は20代後半よりも30代前半の方が年収が高いのに対して、女性は反対に30代前半の方が20代後半よりも年収が低くなっている。\n\n\n性別の効果が年齢によって異なる\n\n\n\n「25-29歳」では、女性は男性と比べて年収が100.951万円低い。\n「30-34歳」では、女性は男性と比べて年収が223.352(=-100.951+-122.401)万円低い。\n\nすなわち、男女間の賃金格差は20代後半ですでに確認されると同時に、30代前半ではさらに拡大していることがわかる。\nこのように、交互作用項の係数を理解するためには主効果（一次の項）とセットで解釈する必要がある。",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>交互作用効果</span>"
+    ]
+  },
+  {
+    "objectID": "E13_MultipleRegression.html#結果の解釈-1",
+    "href": "E13_MultipleRegression.html#結果の解釈-1",
+    "title": "16  交互作用効果",
+    "section": "19.1 結果の解釈",
+    "text": "19.1 結果の解釈\n離散変数どうしの交互作用効果の時と同様に、まずはModel2の一次の項から始めよう。\nAgeの回帰係数はNAと推定されており、これは男性の場合、年齢が1歳増えることで平均的に個人年収がNA万円多い傾向にあることを示している。\n問題はWomenの回帰係数（-100.951）である。これは、年齢が0であるときの（すなわち0歳の時の）男性と女性の年収の格差を示している。当然のことながら、データにはそのような男女は含まれていない。しかし、交互作用効果を含んだモデルの一次の項は、「交互作用効果を構成するもうひとつの変数の値が0の時の効果」を表すため、このような解釈になる。一次の項の解釈をより自然なものにするためには、次節で",
+    "crumbs": [
+      "回帰分析",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>交互作用効果</span>"
+    ]
+  }
+]
