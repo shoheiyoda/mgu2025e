@@ -1,0 +1,333 @@
+---
+title: "記述統計量"
+---
+
+# 使用データ
+[東大社研・若年パネル調査の非制限公開疑似データ](https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/)を用いる。まだデータをダウンロードしていない場合は左のサイトからデータを取得しておくこと。CSV, Stata, SPSSでデータが提供されているが、ここではCSVファイルを使う。
+
+まずはデータの読み込みである。
+
+```{r}
+library(tidyverse)
+FN_Data2Load <- "data/u001.csv"
+DF <- read_csv(FN_Data2Load)
+```
+
+データセットに含まれる個体の数、すなわち行の数を調べたい時は`nrow()`を用いる。
+
+```{r}
+nrow(DF)
+```
+
+1000人分のデータが含まれていることがわかる。一方で変数の数、すなわち列数をカウントするには`ncol`を使えば良い。
+
+```{r}
+ncol(DF)
+```
+
+さらに、`colnames()`で変数名をリストアップできる。
+
+```{r}
+colnames(DF)
+```
+
+各変数がどのような調査項目に該当するのかについては調査票を確認すること。以下では、回答者の生年（`ybirth`）を例に記述統計量を算出してみよう。
+
+# 度数分布表
+平均値や標準偏差などの変数の要約統計量（変数の分布の何らかの特徴をひとつの数値で表したもの）を算出する前に、必ずやっておくべきことは度数分布表を出力することである。これを怠ると、データの中に外れ値（異常値）が含まれていたり、欠測値の処理を忘れている（例えば欠測値に`9999`が割り当てられているが`NA`として処理していない）ことを見落とす可能性がある。
+
+## {base}
+度数分布表を出力するための代表的な関数として`table()`が挙げられる。
+
+```{r}
+table(DF$ybirth)
+```
+
+なお、現バージョンの`R`ではネイティブパイプ演算子（`|>`）が使えるため、`with(table())`を用いて以下のように書いてもよい。
+
+```{r}
+DF |> 
+  with(table(ybirth))
+```
+
+一見すると前者のコードの方がすっきりしていて望ましいようにも見えるが、実は後者の方が拡張性の点で優れている。例えば、度数だけではなく比率も算出したい場合は`prop.table()`を用いるが、パイプ演算子を用いないと以下のようにコードを書く必要がある。
+
+```{r}
+prop.table(table(DF$ybirth))
+```
+
+これくらいであれば何とかひと目でコードの意図することを読み取れるかもしれないが、さらに「合計」の列（周辺度数）を追加する`addmargins()`を加えたらどうであろうか。
+
+```{r}
+addmargins(prop.table(table(DF$ybirth)))
+```
+
+パッとみただけではどのような処理がなされているのか分からない人も多いのではないだろうか。その原因は、
+
+> 1. 度数を算出する(`table()`)
+> 2. 比率を計算する(`prop.table()`)
+> 3. 「合計」の列を追加する(`addmargins()`)
+
+という順序で処理がなされているのに対して、**コード上では関数がこの逆の順序で現れてくる**からである。
+
+一方で、パイプ演算子を使うと、この順序で関数がコード上で現れてくる。
+
+```{r}
+DF |> 
+  with(table(ybirth)) |>
+  prop.table() |> 
+  addmargins()
+```
+
+これは直前の処理結果がパイプ演算子によって次の関数に引き渡されていくためである。このように、処理が複雑になるほどパイプ演算子を使うことのメリットが生まれてくる。
+
+## {tidyverse}
+{tidyverse}で度数分布表を出力するためには`count()`を用いる。
+
+```{r}
+DF |> 
+  count(ybirth)
+```
+
+比率を追加したい場合は、以下のように`mutate()`で比率を示す変数を追加すればよい。
+
+```{r}
+DF |> 
+  count(ybirth) |> 
+  mutate(Prop = n / sum(n))
+```
+
+# 代表値・散布度
+度数分布表を出力して異常値や欠損値の有無を確認できたら、つづいて代表値や散布度を算出してみよう。これらの記述統計量を算出する際によく使うものを以下にいくつか列挙した。
+
+|            |          | 
+| ---------- | -------- | 
+| `mean()`   | 平均値   | 
+| `median()` | 中央値   | 
+| `max()`    | 最大値   | 
+| `min()`    | 最小値   | 
+| `sd()`     | 標準偏差 | 
+
+## {base}
+{base}環境特有の記述統計量の算出方法というものが特段あるわけではないが（後述するように、これらの関数はすべて{tidyverse}でも使えるため）、上記の関数に変数ベクトルを引き渡せば各統計量が返ってくる。
+
+```{r}
+mean(DF$ybirth)    # 平均値
+median(DF$ybirth)  # 中央値
+sd(DF$ybirth)      # 標準偏差
+```
+
+## {tidyverse}
+{tidyverse}環境で記述統計量を算出するためには`reframe()`を用いる。{base}の時との違いは、返り値がスカラーではなく`tibble`のため、記述統計量を格納する新変数名を指定する必要がある。
+
+```{r}
+DF |> 
+  reframe(Mean_ybirth = mean(ybirth))
+```
+
+
+なお、返り値をスカラーにしたい場合、列がひとつのみの場合は`pull()`を使うと良い。
+
+```{r}
+DF |> 
+  reframe(Mean_ybirth = mean(ybirth)) |> 
+  pull()
+```
+
+`reframe()`は複数の要約統計量を同時に算出することもできる。
+
+```{r}
+DF |> 
+  reframe(Mean   = mean  (ybirth),
+          Median = median(ybirth),
+          SD     = sd    (ybirth))
+```
+
+返り値を`tibble`ではなくベクトルにする場合、`pull()`はひとつの列にしか適用できないので`unlist()`を使う。
+
+```{r}
+DF |> 
+  reframe(Mean   = mean  (ybirth),
+          Median = median(ybirth),
+          SD     = sd    (ybirth)) |> 
+  unlist()
+```
+
+# 変数に欠測値が含まれる場合
+ここまでの例では、変数`ybirth`に欠測値が含まれていなかったが、もし欠測値がひとつでも含まれていたらどのように処理すれば良いだろうか。それを確認するために、まずは意図的に要素のひとつを欠測値に置き換えてみよう。
+
+```{r}
+# ybirthの10番目の要素を欠測値にしてみる
+DF_wNA <- DF
+DF_wNA$ybirth[10] <- NA
+DF_wNA$ybirth[1:10] # 最初の10ケースのみ表示
+```
+
+最初の10ケースのみについて`ybirth`を出力してみると、最後の要素のみが`NA`になっていることが確認できた。
+
+## 度数分布表
+この状態で度数分布表を出力すると、
+
+```{r}
+DF_wNA |> 
+  with(table(ybirth))
+```
+
+のように、欠測値が表章されない。これは`table()`関数には`exclude`という引数があり、これを`NULL`にしておかないと欠測値が度数分布表から除外されてしまう。
+
+```{r}
+DF_wNA |> 
+  with(table(ybirth, exclude = NULL))
+```
+一方で、{tidyverse}の`count()`は特に何も指定せずに欠測値が表章される。
+
+```{r}
+DF_wNA |> 
+  count(ybirth)
+```
+
+## 代表値・散布度
+つづいて、欠測値がデータ（ベクトル）に含まれている場合に代表値はどのように算出すれば良いだろうか。例えば`mean()`ではデフォルトの設定では`NA`が返ってきてしまう。
+
+```{r}
+DF_wNA |> 
+  with(mean(ybirth))
+```
+
+こうした場合、以下の2通りのいずれかで対応すればよい。
+
+### 欠測値を除いてから関数に引き渡す
+```{r}
+DF_wNA |> 
+  drop_na(ybirth) |> 
+  with(mean(ybirth))
+```
+
+### `na.rm`オプションを用いる
+`R`の多くの関数には引数として`na.rm`というものが実装されている。これは、引き渡されたデータから欠測値を除去してからその関数内で定義された処理を施すためのものである。先に紹介した`mean()`, `median()`, `sd()`はいずれもこの引数を備えている。
+
+```{r}
+mean(DF_wNA$ybirth, na.rm = TRUE)
+median(DF_wNA$ybirth, na.rm = TRUE)
+sd(DF_wNA$ybirth, na.rm = TRUE)
+```
+
+# 単変数の可視化
+## ヒストグラム
+単変量の可視化の代表的な方法に**ヒストグラム（histogram）**がある。ヒストグラムは以下の特徴がある。
+
+- 連続変数の可視化に用いる
+  - カテゴリカル変数の可視化に用いられる類似したグラフが棒グラフ（bar chart）
+- 面積が度数を表す
+  - 棒と棒の間には隙間がない
+  
+ヒストグラムを出力するための関数は以下の通りである。
+
+- {base}: `hist()`
+- {tidyverse}: `geom_histogram()`
+
+::: {.panel-tabset}
+## {base} code
+```{r}
+#| echo: true
+#| eval: false
+
+hist(DF$ybirth)
+```
+
+## {base} output
+```{r}
+#| echo: false
+#| eval: true
+
+hist(DF$ybirth)
+```
+
+## {ggplot} code
+```{r}
+#| echo: true
+#| eval: false
+
+DF |> 
+  ggplot(aes(x = ybirth)) +
+  geom_histogram(binwidth = 1,
+                 fill     = "blue", 
+                 color    = "black",
+                 alpha    = 0.7) +
+  labs(x = "Birth Year",
+       y = "Frequency")
+```
+
+## {ggplot} output
+```{r}
+#| echo: false
+#| eval: true
+
+DF |> 
+  ggplot(aes(x = ybirth)) +
+  geom_histogram(binwidth = 1,
+                 fill     = "blue", 
+                 color    = "black",
+                 alpha    = 0.7) +
+  labs(x = "Birth Year",
+       y = "Frequency")
+```
+:::
+
+
+
+## 箱ひげ図
+ヒストグラムと同様に単変量の連続変数の可視化によく用いられるのが**箱ひげ図**である。箱ひげ図の特徴は以下の通りである。
+
+- 第1四分位数（25パーセンタイル）と第3四分位数（75パーセンタイル）を囲う形で「箱」が描かれる
+- 箱の中に引かれている太線が中央値（50パーセンタイル）を表す
+- 第1四分位数と第3四分位数との差（四分位範囲）の1.5倍の長さの「ヒゲ」が上下に描かれる
+- その範囲の外に位置するデータが外れ値（outlier）として丸で描かれる
+
+ヒストグラムを出力するための関数は以下の通りである。
+
+- {base}: `boxplot()`
+- {tidyverse}: `geom_boxplot()`
+
+::: {.panel-tabset}
+## {base} code
+```{r}
+#| echo: true
+#| eval: false
+
+boxplot(DF$ybirth)
+```
+
+## {base} output
+```{r}
+#| echo: false
+#| eval: true
+
+boxplot(DF$ybirth)
+```
+
+## {ggplot} code
+```{r}
+#| echo: true
+#| eval: false
+
+DF |> 
+  ggplot(aes(x = "",
+             y = ybirth)) +
+  geom_boxplot() +
+  labs(x = "Birth Year",
+       y = "Frequency")
+```
+
+## {ggplot} output
+```{r}
+#| echo: false
+#| eval: true
+
+DF |> 
+  ggplot(aes(x = "", 
+             y = ybirth)) +
+  geom_boxplot() +
+  labs(x = "Birth Year",
+       y = "Frequency")
+```

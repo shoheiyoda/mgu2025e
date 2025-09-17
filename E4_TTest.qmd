@@ -1,0 +1,359 @@
+---
+title: "母平均の差の検定"
+---
+
+```{r setup}
+#| include: false
+
+library(tidyverse)
+library(ggthemes)
+```
+
+# データ・変数
+## データ
+[東大社研・若年パネル調査の非制限公開疑似データ](https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/)を用いる。
+
+```{r}
+library(tidyverse)
+FN_Data2Load <- "data/u001.csv"
+DF_org <- read_csv(FN_Data2Load)
+```
+
+以下では母平均の差の検定を通じて次の問いに答えることを目的とする。
+
+> Q: 就業者の労働時間に男女差はあるのか？
+
+## 変数
+### 回答者の性別: `sex`
+
+![](image/E4/u001_sex.png){width="70%"}
+
+### 1日あたり労働時間: `JC_41`
+
+![](image/E4/u001_JC_41.png)
+
+まずはこれらの変数の度数分布表を確認しておこう。
+
+```{r}
+# 使用変数のみ取り出す
+DF_raw <-
+  DF_org |> 
+  select(sex, JC_41)
+
+# 原データセットの変数の度数分布表
+DF_raw |> 
+  count(sex)
+
+DF_raw |> 
+  count(JC_41) |> 
+  print(n = 30)  # デフォルトだと途中までしか出力されない
+```  
+
+ここで注意が必要なのは、1日あたり労働時間（`JC_41`）には`88`と`99`というコードが存在することである。[基礎集計表](https://ssjda.iss.u-tokyo.ac.jp/chosa-hyo/PY010s.pdf)をみると、
+
+- `88`: 非該当
+- `99`: 無回答
+
+をそれぞれ意味することがわかる。「非該当」はその設問に回答する必要がないこと、今回の例で言えば調査時点で就業していないことを意味する。それゆえ、以下で見ていくのはあくまで**就業者の間における**労働時間の男女差であり、非就業者は集計対象に含まれないことに注意されたい。
+
+非該当コードや無回答コードなど、変数の値コードで注意すべき点が確認できたら、原データに含まれている変数をそのまま使うのではなく、変数名や値コードがわかりやすくなるように変数を作り直すことを推奨する（もちろん、原データの変数に改善の余地がなければそのまま使っても良い）。
+
+```{r}
+# 変数のrename + recode
+DF_temp <- 
+  DF_raw |> 
+  mutate(Sex         = if_else(sex == 1, "Men", "Women"),
+         WorkHourDay = if_else(JC_41 %in% c(0:24), JC_41, NA_real_)
+  )
+```
+
+変数のリネーム・リコードが終わったら、必ず元の変数との対応関係を確認して、自身が意図した通りの変数が作成されているかと確認しよう。
+
+```{r}
+DF_temp |> 
+  count(sex, Sex)
+
+DF_temp |> 
+  count(JC_41, WorkHourDay) |> 
+  print(n = 30)
+```
+
+`JC_41`をリコードした`WorkHourDay`では「非該当」と「無回答」が欠測値に指定されていることが確認できる。
+最後に、集計に用いるサンプルを確定させよう。欠損値をどのように処理するかはそれだけで研究領域を成すほどの重要トピックであるが、ここでは最もオーソドックスな方法のひとつであるリストワイズ（listwise）法にしたがう。リストワイズ法では、使用変数に欠測値を含まないケースが集計対象として用いられる。
+
+```{r}
+# 集計対象の確定
+DF <- 
+  DF_temp |> 
+  select(Sex, WorkHourDay) |> 
+  drop_na()
+```
+
+# 分析
+## グループ別の記述統計量の算出
+使用変数の準備が完了したら、労働時間の記述統計量を男女別に出力してみよう。ここでは{base}と{tidyverse}のそれぞれを用いた方法を紹介する。
+
+### {base}
+`tapply()`は{base}に実装されている関数で、
+
+> `tapply(X, INDEX, FUN)`
+
+という構造からなり、基本的な3つの引数を持つ。
+
+> `X`: ある処理を施したい変数  
+> `INDEX`: グループ変数（のリスト）  
+> `FUN`: 施したい処理  
+
+今回の例で言えば、`X`が労働時間、`INDEX`が性別、`FUN`が要約統計量を算出する関数、となる。
+
+```{r}
+DF |> 
+  with(tapply(WorkHourDay, Sex, summary))
+```
+
+### {tidyverse}
+
+> 1. グルーピングに用いる変数を`group_by()`に引き渡す。これで以下の処理がそのグループ変数ごとに行われる。  
+> 2. `reframe()`[^1]で要約統計量を集計する。
+
+```{r}
+DF |>  
+  group_by(Sex) |> 
+  reframe(Mean   = mean(WorkHourDay),
+          SD     = sd  (WorkHourDay),
+          NofObs = n())
+```
+
+
+# 変数の分布をグループ別に可視化する
+## ヒストグラム
+グループ別にデータを可視化する場合、大きく2つの方法がある。
+
+> 1. グループごとに別のパネルにグラフを描画する
+> 2. 同じパネルにグループ別のグラフを重ね合わせる
+
+以下ではヒストグラムを例に、男女別に労働時間を可視化してみよう。
+
+### グループごとに別のパネルにグラフを描画する
+::: {.panel-tabset}
+#### {base} code
+```{r}
+#| echo: true
+#| eval: false
+
+DF_M <- subset(DF, Sex == "Men")
+DF_F <- subset(DF, Sex == "Women")
+
+par(mfrow = c(1, 2)) # グラフの描画領域を1行2列に分ける
+hist(DF_M$WorkHourDay, xlim = c(0, 24), ylim = c(0, 200), breaks = seq(0, 24))
+hist(DF_F$WorkHourDay, xlim = c(0, 24), ylim = c(0, 200), breaks = seq(0, 24))
+```
+
+#### {base} output
+```{r}
+#| echo: false
+#| eval: true
+
+DF_M <- subset(DF, Sex == "Men")
+DF_F <- subset(DF, Sex == "Women")
+
+par(mfrow = c(1, 2)) # グラフの描画領域を1行2列に分ける
+hist(DF_M$WorkHourDay, xlim = c(0, 24), ylim = c(0, 200), breaks = seq(0, 24))
+hist(DF_F$WorkHourDay, xlim = c(0, 24), ylim = c(0, 200), breaks = seq(0, 24))
+```
+
+#### {ggplot} code
+```{r}
+#| echo: true
+#| eval: false
+
+DF |>  
+  ggplot(aes(x = WorkHourDay)) +
+  facet_grid(~ Sex) +
+  geom_histogram(binwidth = 1,
+                 fill     = "blue", 
+                 color    = "black",
+                 alpha    = 0.7) +
+  xlim(0, 24) +
+  ylim(0, 200) +
+  theme_few() +
+  theme(strip.text   = element_text(size = rel(1.5)),
+        axis.text.x  = element_text(size = rel(1.5)),
+        axis.text.y  = element_text(size = rel(1.5)),
+        axis.title.x = element_text(size = rel(1.5)),
+        axis.title.y = element_text(size = rel(1.3)))
+```
+
+#### {ggplot} output
+```{r}
+#| echo: false
+#| eval: true
+
+DF |>  
+  ggplot(aes(x = WorkHourDay)) +
+  facet_grid(~ Sex) +
+  geom_histogram(binwidth = 1,
+                 fill     = "blue", 
+                 color    = "black",
+                 alpha    = 0.7) +
+  xlim(0, 24) +
+  ylim(0, 200) +
+  theme_few() +
+  theme(strip.text   = element_text(size = rel(1.5)),
+        axis.text.x  = element_text(size = rel(1.5)),
+        axis.text.y  = element_text(size = rel(1.5)),
+        axis.title.x = element_text(size = rel(1.5)),
+        axis.title.y = element_text(size = rel(1.3)))
+```
+:::
+
+### 同じパネルにグループ別のグラフを重ね合わせる
+::: {.panel-tabset}
+#### {base} code
+```{r}
+#| echo: true
+#| eval: false
+
+DF_M <- subset(DF, Sex == "Men")
+DF_F <- subset(DF, Sex == "Women")
+
+hist(DF_M$WorkHourDay, col = rgb(0, 0, 1 ,0.2),  xlim = c(0, 24), ylim = c(0, 200))
+hist(DF_F$WorkHourDay, col = rgb(1, 0, 0, 0.2),  add = TRUE)
+```
+
+#### {base} output
+```{r}
+#| echo: false
+#| eval: true
+
+DF_M <- subset(DF, Sex == "Men")
+DF_F <- subset(DF, Sex == "Women")
+
+hist(DF_M$WorkHourDay, col = rgb(0, 0, 1 ,0.2),  xlim = c(0, 24), ylim = c(0, 200))
+hist(DF_F$WorkHourDay, col = rgb(1, 0, 0, 0.2),  add = TRUE)
+```
+
+#### {ggplot} code
+```{r}
+#| echo: true
+#| eval: false
+
+DF |> 
+  ggplot(aes(x = WorkHourDay,
+             group = Sex)) +
+  geom_histogram(aes(fill  = Sex,
+                     color = Sex),
+                 binwidth = 1,
+                 position = "identity",
+                 alpha = .5) +
+  xlim(0, 24) +
+  theme_few() +
+  theme(strip.text   = element_text(size = rel(1.5)),
+        axis.text.x  = element_text(size = rel(1.5)),
+        axis.text.y  = element_text(size = rel(1.5)),
+        axis.title.x = element_text(size = rel(1.5)),
+        axis.title.y = element_text(size = rel(1.3)))
+```
+
+#### {ggplot} output
+```{r}
+#| echo: false
+#| eval: true
+
+DF |> 
+  ggplot(aes(x = WorkHourDay,
+             group = Sex)) +
+  geom_histogram(aes(fill  = Sex,
+                     color = Sex),
+                 binwidth = 1,
+                 position = "identity",
+                 alpha = .5) +
+  xlim(0, 24) +
+  theme_few() +
+  theme(strip.text   = element_text(size = rel(1.5)),
+        axis.text.x  = element_text(size = rel(1.5)),
+        axis.text.y  = element_text(size = rel(1.5)),
+        axis.title.x = element_text(size = rel(1.5)),
+        axis.title.y = element_text(size = rel(1.3)))
+```
+:::
+
+
+## 箱ひげ図
+ヒストグラムと並んで、箱ひげ図もグループ別の変数の分布を視覚化するのに適している。以下にそのコード例を示した。
+
+::: {.panel-tabset}
+### {base} code
+```{r}
+#| echo: true
+#| eval: false
+
+DF |> 
+  with(boxplot(WorkHourDay ~ Sex))
+```
+### {base} output
+```{r}
+#| echo: false
+#| eval: true
+
+DF |> 
+  with(boxplot(WorkHourDay ~ Sex))
+```
+
+### {ggplot} code
+```{r}
+#| echo: true
+#| eval: false
+
+DF |> 
+  ggplot(aes(x = Sex,
+             y = WorkHourDay)) +
+  geom_boxplot() +
+  theme_few() +
+  theme(strip.text   = element_text(size = rel(1.5)),
+        axis.text.x  = element_text(size = rel(1.5)),
+        axis.text.y  = element_text(size = rel(1.5)),
+        axis.title.x = element_text(size = rel(1.5)),
+        axis.title.y = element_text(size = rel(1.3)))
+```
+
+### {ggplot} output
+```{r}
+#| echo: false
+#| eval: true
+
+DF |> 
+  ggplot(aes(x = Sex,
+             y = WorkHourDay)) +
+  geom_boxplot() +
+  theme_few() +
+  theme(strip.text   = element_text(size = rel(1.5)),
+        axis.text.x  = element_text(size = rel(1.5)),
+        axis.text.y  = element_text(size = rel(1.5)),
+        axis.title.x = element_text(size = rel(1.5)),
+        axis.title.y = element_text(size = rel(1.3)))
+```
+:::
+
+# t検定
+t検定には`t.test()`を用いる。従属変数とグループ変数は以下の形で指定する。
+
+> 従属変数 ~ グループ変数
+
+すなわち、従属変数を左辺、グループ変数を右辺に置き、両者をチルダ（~）でつなぐ。その他、特に重要なオプションとして以下の引数がある。
+
+- `alternative`: 両側検定（`two.sided`）か片側検定（`less`, `greater`）。デフォルトでは両側検定。
+- `paired`: 対応のないt検定（`FALSE`：デフォルト）か対応のあるt検定（`TRUE`）か。
+- `var.equal`: 等分散性を仮定する（`TRUE`）か仮定しない（`FALSE`：デフォルト）か
+- `conf.level`: 検定の棄却水準。デフォルトは.95。
+
+以下ではデフォルトの設定でt検定を行ってみよう。
+
+```{r}
+DF |> 
+  with(t.test(WorkHourDay ~ Sex))
+```
+
+t検定の結果を見ると、**女性就業者に比べて男性就業者は1日あたりの労働時間が有意に長い**ことがわかる。
+
+[^1]: 以前の{tidyverse}では`summarize()`という関数が広く用いられていた（`summarize()`は現在も使うことはできる）。

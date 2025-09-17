@@ -1,0 +1,210 @@
+---
+title: "重回帰分析"
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(ggthemes)
+library(here)
+library(GGally)
+```
+
+# データ・変数
+## データ
+[東大社研・若年パネル調査の非制限公開疑似データ](https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/)を用いる。
+
+```{r}
+library(tidyverse)
+FN_Data2Load <- "data/u001.csv"
+DF_org <- read_csv(FN_Data2Load)
+```
+
+以下では次の問いに答えることを目的とする。
+
+> Q: 自身の収入と配偶者の収入のどちらがより階層帰属意識を規定するのか？
+
+分析対象は**調査時点で結婚している回答者**に限定する。また、分析は男女別に行う。
+
+## 変数
+- 回答者および配偶者の個人収入: `ZQ47A`, `ZQ47B`
+  - 回答選択肢の中央値にリコード
+  - 例：「100万円くらい（75〜150万円未満）」 -> 100万円
+
+- 階層帰属意識: `ZQ35`
+  - 1:一番上 〜　10:一番下
+  - 10が「一番上」になるようにリコード
+
+```{r}
+# 使用する変数のみを取り出す
+DF_raw <-
+  DF_org |> 
+  select(ZQ47A, ZQ47B, ZQ35, ZQ50, sex)
+
+# 変数のリコード
+DF_temp <-
+  DF_raw |> 
+  mutate(StatIden = case_when(ZQ35 == 99        ~ NA_integer_,
+                              ZQ35 %in% c(1:10) ~ 11 - ZQ35),
+         
+         Income = case_match(ZQ47A,
+                             1 ~    0,
+                             2 ~   12.5,
+                             3 ~   50,
+                             4 ~  100,
+                             5 ~  200,
+                             6 ~  300,
+                             7 ~  400,
+                             8 ~  500,
+                             9 ~  700,
+                            10 ~ 1000,
+                            11 ~ 1500,
+                            12 ~ 2000,
+                            13 ~ 2500,
+                            c(14,99) ~ NA_real_),
+         
+        IncomeSpo = case_match(ZQ47B,
+                             1 ~    0,
+                             2 ~   12.5,
+                             3 ~   50,
+                             4 ~  100,
+                             5 ~  200,
+                             6 ~  300,
+                             7 ~  400,
+                             8 ~  500,
+                             9 ~  700,
+                            10 ~ 1000,
+                            11 ~ 1500,
+                            12 ~ 2000,
+                            13 ~ 2500,
+                            c(14,15,99) ~ NA_real_)
+  )
+
+# 集計対象の限定
+DF <-
+  DF_temp |> 
+  filter(ZQ50 == 2) |> # 調査時点で結婚している回答者に限定
+  select(StatIden, Income, IncomeSpo, sex) |> 
+  drop_na()
+```
+
+# 散布図・相関行列の出力
+説明変数間の相関関係、および各説明変数と従属変数との相関関係を把握するために、散布図と相関行列が有益である。
+
+::: {.panel-tabset}
+## 散布図
+```{r}
+# {GGally}パッケージの中のggpairs()を使うと、複数の変数間の関係を可視化できる
+
+library(GGally)
+
+DF |> 
+  filter(sex == 1) |> 
+  select(Income, IncomeSpo, StatIden, -sex) |> 
+  ggpairs(
+    lower = list(
+              continuous = wrap("points", position = position_jitter(width = 0, height = 0)) # jitterでずらす場合はposition_jitter()のパラメータを変更する
+            )
+  )
+```
+
+## 相関行列
+```{r}
+# cor()関数で相関行列が得られる。以下の例は男性に限定した場合の相関行列。
+DF |> 
+  filter(sex == 1) |> 
+  select(-sex) |> 
+  cor()
+```
+:::
+
+男性の場合、自身の年収と階層帰属意識との間には正の相関関係がある一方で、配偶者の年収は階層帰属意識とほぼ無相関のようである。
+
+# 重回帰分析
+## モデルの推定
+`R`で重回帰分析を行うには`lm()`を用いる。基本的な使い方は単回帰分析の時と同様である。モデル式の右辺において独立変数を`+`でつなげばよい。
+
+
+```{r}
+Model_M <- 
+  DF |> 
+  filter(sex == 1) |> 
+  with(
+    lm(StatIden ~ Income + IncomeSpo)
+  )
+
+summary(Model_M)
+```
+回帰分析の結果は、`summary()`に引き渡した出力結果をExcelなどにコピペして表の形に整形しても良い。しかしながら、次節で見るように複数のモデルを推定した結果をまとめたり、あるいは説明変数の数が多くなってくると、手作業でのコピペ作業は煩雑であるしミスも誘発されすい。
+
+幸いなことに、`R`では回帰分析の結果を表にまとめてくれるパッケージが提供されている。その全てを紹介することはできないが、ここでは`{memisc}`パッケージの`mtable()`と`{modelsummary}`パッケージを使ってみよう。
+
+::: {.panel-tabset}
+## mtable()
+```{r}
+library(memisc)
+mtable(Model_M)
+```
+
+## modelsummary()
+```{r}
+library(modelsummary)
+modelsummary(Model_M)
+```
+:::
+
+いずれも回帰分析の結果が保存されたオブジェクトを関数にそのまま引き渡すだけで、回帰係数や標準誤差、さらにはモデル統計量を表形式にまとめてくれる。ただし、デフォルトの設定ではそのまま論文やレポートに掲載するまでには体裁が整っていない。次節ではこれらの表の体裁を修正してみよう。
+
+## 複数のモデルの推定
+回帰分析では複数のモデルを推定して、それらの結果を比較するということをしばしば行う。ここでは例として、階層帰属意識を従属変数、本人収入と配偶者収入を説明変数にした重回帰モデルを男女別に推定し、その結果を比較してみよう。
+
+```{r}
+Model_M <- lm(StatIden ~ Income + IncomeSpo, data = subset(DF, sex == 1))
+Model_F <- lm(StatIden ~ Income + IncomeSpo, data = subset(DF, sex == 2))
+```
+
+これで、男性の結果が`Model_M`に、女性の結果が`Model_F`にそれぞれ保存された。これらの推定結果を表にまとめてみよう。
+
+::: {.panel-tabset}
+## mtable()
+```{r}
+mtable("Men"   = Model_M,
+       "Women" = Model_F) |> 
+  relabel("(Intercept)" = "(Intercept)",
+          Income        = "Respondent's Income",
+          IncomeSpo     = "Spouse's Income")
+```
+
+## modelsummary()
+```{r}
+ListModel <- list("Men"   = Model_M,
+                  "Women" = Model_F)
+
+CoefLab <- 
+  c("Income"      = "Respondent's Income",
+    "IncomeSpo"   = "Spouse's Income",
+    "(Intercept)" = "(Intercept)"
+  )
+
+
+modelsummary(ListModel, coef_map = CoefLab,
+             stars = c('*' = 0.05, '**' = 0.01, '***' = 0.001),
+             gof_omit = "AIC|BIC|Log.Lik.|RMSE",
+             output = "gt")
+```
+:::
+
+本人収入が高いほど階層帰属意識も高い傾向にあることは男女ともに共通している。一方で、配偶者収入についてみると、男性の場合は階層帰属意識との関連は有意ではない。一方で、女性の場合、夫の収入が高いほど階層帰属意識が高い傾向が確認される。
+
+## 多重共線性のチェック
+VIF（Variance Inflation Factor: 分散拡大要因）を算出するには`car`パッケージの`vif()`コマンドを使えばよい。
+
+```{r}
+library(car)
+vif(Model_M)
+```
+
+（あくまでひとつの目安に過ぎないが）VIFが2を下回っているため、この例では多重共線性の可能性は低いといえる。
+
+
+

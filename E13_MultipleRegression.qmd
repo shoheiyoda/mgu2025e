@@ -1,0 +1,382 @@
+---
+title: "交互作用効果"
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(ggthemes)
+```
+
+# 交互作用効果のパターン
+2次の交互作用効果について考える場合、交互作用項を構成する独立変数の尺度水準によって、以下の3パターンに分類できる。
+
+1. 離散 × 離散
+2. 離散 × 連続
+3. 連続 × 連続
+
+以下では、1と2のパターンについて説明する。3のパターンは2が理解できていればその応用として理解できる。
+
+交互作用効果について理解するために、[東大社研・若年パネル調査の非制限公開疑似データ](https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/)を用いて次の問いに答えることを目的とする。
+
+> Q: 個人収入の男女間格差は年齢階層（ライフステージ）によって異なるのか？
+
+```{r}
+#| code-fold: true
+
+library(tidyverse)
+FN_Data2Load <- "data/u001.csv"
+DF_org <- read_csv(FN_Data2Load)
+
+SurveyDate <- ymd("2007-01-01")
+
+DF_temp <-
+  DF_org |> 
+  select(sex, ybirth, mbirth, ZQ23A, ZQ47A) |> 
+  mutate(BthDate = make_date(ybirth, mbirth, 1),                 # 生年月をDate型に変換
+         CAgeSvy = as.period(interval(BthDate, SurveyDate))$year # 調査日時点の満年齢を計算
+  ) |> 
+  mutate(Sex = if_else(sex == 1, "Men", "Women"),
+         
+         CAgeSvy2Grp = if_else(CAgeSvy %in% c(25:29), "25-29", "30-34")) |> 
+  mutate(Edu2Grp = case_match(ZQ23A,
+                              c(1,2,3,4) ~ "Non-Univ",
+                              c(5,6)     ~ "Univ",
+                              TRUE       ~ NA_character_) |> 
+                   fct_relevel("Non-Univ", "Univ")
+         ) |> 
+  mutate(Income = case_match(ZQ47A,
+                             1 ~    0,
+                             2 ~   12.5,
+                             3 ~   50,
+                             4 ~  100,
+                             5 ~  200,
+                             6 ~  300,
+                             7 ~  400,
+                             8 ~  500,
+                             9 ~  700,
+                            10 ~ 1000,
+                            11 ~ 1500,
+                            12 ~ 2000,
+                            13 ~ 2500,
+                            c(14,99) ~ NA_real_)
+  )
+
+DF <-
+  DF_temp |> 
+  filter(CAgeSvy %in% c(25:34)) |> 
+  select(Sex, CAgeSvy, CAgeSvy2Grp, Income) |> 
+  drop_na()
+```
+
+```{r}
+# 性別・年齢階級別に平均収入を算出
+MeanIncome_bySexAge <-
+  DF |>
+    group_by(Sex, CAgeSvy2Grp) |> 
+    reframe(Mean = mean(Income),
+            SE   = sd(Income) / sqrt(n())
+            ) |> 
+    mutate(
+      CI_lower = Mean - qt(0.975, df = n()-1) * SE,  # 95%信頼区間下限
+      CI_upper = Mean + qt(0.975, df = n()-1) * SE   # 95%信頼区間上限
+    )
+
+print(MeanIncome_bySexAge)
+```
+
+```{r}
+#| code-fold: true
+
+# data vis
+MeanIncome_bySexAge |> 
+  ggplot(aes(x = Sex,
+             y = Mean)
+         ) +
+  facet_grid(~ CAgeSvy2Grp) +
+  geom_point() +
+  geom_errorbar(aes(ymin = CI_lower, ymax = CI_upper), width = 0.2) +
+  ylim(0, 500) +
+  theme_few() +
+  theme(strip.text   = element_text(size = rel(1.5)),
+        axis.text.x  = element_text(size = rel(1.5)),
+        axis.text.y  = element_text(size = rel(1.5)),
+        axis.title.x = element_text(size = rel(1.5)),
+        axis.title.y = element_text(size = rel(1.3)))
+```
+
+# 「離散変数 x 離散変数」の場合
+はじめに、交互作用効果が2つの離散変数から構成されるケースについて説明する。ここでは、以下の2つの重回帰モデルを推定する。
+
+$$
+\begin{align}
+&Model1: Income = Inc + Female + Age_{30-34} \\
+&Model2: Income = Inc + Female + Age_{30-34} + Female \times Age_{30-34}
+\end{align}
+$$
+
+説明変数として「性別」と「年齢」の2つの離散変数が回帰モデルに含まれており、それぞれの基準カテゴリは「男性」と「20-25歳」になっている。
+
+```{r}
+M1_DD <- lm(Income ~  as.factor(Sex) + as.factor(CAgeSvy2Grp), data = DF) 
+M2_DD <- update(M1_DD, .~. + as.factor(Sex):as.factor(CAgeSvy2Grp)) 
+```
+
+上記のように、交互作用項は変数同士を`:`でつなぐことで指定できる。交互作用項を含まないモデル（`Model1`）と含むモデル（`Model2`）とを比較してみよう。
+
+```{r}
+#| code-fold: true
+
+library(modelsummary)
+library(tinytable)
+
+ListModel_DD <- list("Model1" = M1_DD, "Model2" = M2_DD)
+
+CoefLab_DD <- 
+  c("as.factor(Sex)Women" = "Women",
+    "as.factor(Sex)Men"   = "Men",
+    
+    "as.factor(CAgeSvy2Grp)25-29" = "25-29",
+    "as.factor(CAgeSvy2Grp)30-34"  = "30-34",
+    
+    "as.factor(Sex)Women:as.factor(CAgeSvy2Grp)25-29" = "Women:25-29",
+    "as.factor(Sex)Women:as.factor(CAgeSvy2Grp)30-34" = "Women:30-34"
+  )
+
+modelsummary(ListModel_DD, 
+             include_reference = TRUE,
+             coef_rename = CoefLab_DD,
+             coef_omit = "Intercept",
+             stars = c('*' = 0.05, '**' = 0.01, '***' = 0.001),
+             gof_omit = "AIC|BIC|Log.Lik.|RMSE|F") |> 
+  group_tt(i = list("Sex" = 1,
+                    "Age" = 4,
+                    "Sex × Age" = 7),
+           indent = 1) |> 
+  style_tt(
+      i = c(0:1, 12, 15),
+      line = "t",
+      line_width = 0.15,
+      line_color = "black") |> 
+  style_tt(
+      i = 9,
+      line = "t",
+      line_width = 0.15,
+      line_color = "white")
+```
+
+```{r}
+#| include: false
+
+CoefM2SexAge <- round(M2_DD$coefficients["as.factor(Sex)Women:as.factor(CAgeSvy2Grp)30-34"], 3)
+CoefM2Sex    <- round(M2_DD$coefficients["as.factor(Sex)Women"],                             3)
+CoefM2Age    <- round(M2_DD$coefficients["as.factor(CAgeSvy2Grp)30-34"],                     3)
+```
+
+`Model2`の列に表示されている`Women:30-34`が性別と年齢との交互作用項である。これらの交互作用項の回帰係数は`r CoefM2SexAge`、で0.1%水準で統計的に有意である。
+
+## 結果の解釈
+交互作用効果を理解するためには、まず表中の性別（`Sex`）と年齢（`Age`）の一次の項について正しく解釈する必要がある。`Model2`では交互作用項が含まれているため、`Sex`と`Age`の一次の項はそれぞれ以下のように解釈する。
+
+- `Sex`：「25-29歳」における性別の効果
+- `Age`：「男性」における年齢の効果
+
+すなわち、
+
+- `Model2`の`Women`の回帰係数から、25-29歳においては、女性は男性よりも年収が`r abs(CoefM2Sex)`万円低いことがわかる。
+
+- 同様に、`Age`の係数の推定値から、30-34歳男性は25-29歳男性と比較して年収が
+`r CoefM2Age`万円高い。
+
+つぎに、交互作用項の係数はどのように解釈すればいいだろうか。これには2通りの解釈の仕方がある。
+
+> 1. 年齢の効果が性別によって異なる
+
+- 男性の場合、「30-34歳」は「25-29歳」よりも年収が`r CoefM2Age`万円高い。
+- 女性の場合、「25-29歳」は「30-34歳」よりも年収が`r (CoefM2Age + CoefM2SexAge)`(=`r CoefM2Age`+`r CoefM2SexAge`)万円高い。
+
+すなわち、男性は20代後半よりも30代前半の方が年収が高いのに対して、女性は反対に30代前半の方が20代後半よりも年収が低くなっている。
+
+> 2. 性別の効果が年齢によって異なる
+
+- 「25-29歳」では、女性は男性と比べて年収が`r abs(CoefM2Sex)`万円低い。
+- 「30-34歳」では、女性は男性と比べて年収が`r abs(CoefM2Sex + CoefM2SexAge)`(=`r CoefM2Sex`+`r CoefM2SexAge`)万円低い。
+
+すなわち、男女間の賃金格差は20代後半ですでに確認されると同時に、30代前半ではさらに拡大していることがわかる。
+
+このように、交互作用項の係数を理解するためには主効果（一次の項）とセットで解釈する必要がある。
+
+# 「離散変数 x 連続変数」の場合
+つぎに、調査時年齢を連続変数として扱った場合、性別と年齢の交互作用効果を含んだ回帰モデルはどのように推定・解釈すればいいだろうか。
+
+$$
+\begin{align}
+&Model1: Income = Inc + Female + Age \\
+&Model2: Income = Inc + Female + Age + Female \times Age
+\end{align}
+$$
+
+```{r}
+M1_DC <- lm(Income ~ as.factor(Sex) + CAgeSvy, data = DF) 
+M2_DC <- update(M1_DC, .~. + as.factor(Sex):CAgeSvy) 
+```
+
+```{r}
+#| code-fold: true
+
+ListModel_DC <- list("Model1" = M1_DC, "Model2" = M2_DC)
+
+CoefLab_DC <- 
+  c("as.factor(Sex)Women" = "Women",
+    "as.factor(Sex)Men"   = "Men",
+    
+    "CAgeSvy" = "Age",
+    
+    "as.factor(Sex)Women:CAgeSvy" = "Women:Age"
+  )
+
+modelsummary(ListModel_DC, 
+             include_reference = TRUE,
+             coef_rename = CoefLab_DC,
+             coef_omit = "Intercept",
+             stars = c('*' = 0.05, '**' = 0.01, '***' = 0.001),
+             gof_omit = "AIC|BIC|Log.Lik.|RMSE|F") |> 
+  group_tt(i = list("Sex" = 1,
+                    "Sex × Age" = 6),
+           indent = 1) |> 
+  style_tt(
+      i = c(0:1, 10, 13),
+      line = "t",
+      line_width = 0.15,
+      line_color = "black") |> 
+  style_tt(
+      i = 8,
+      line = "t",
+      line_width = 0.15,
+      line_color = "white")
+```
+
+## 結果の解釈
+```{r}
+#| include: false
+
+CoefM2SexAge <- round(M2_DD$coefficients["as.factor(Sex)Women:CAgeSvy"], 3)
+CoefM2Sex    <- round(M2_DD$coefficients["as.factor(Sex)Women"],         3)
+CoefM2Age    <- round(M2_DD$coefficients["CAgeSvy"],                     3)
+```
+
+離散変数どうしの交互作用効果の時と同様に、まずは`Model2`の一次の項から始めよう。
+
+`Age`の回帰係数は`r CoefM2Age`と推定されており、これは男性の場合、年齢が1歳増えることで平均的に個人年収が`r CoefM2Age`万円多い傾向にあることを示している。
+
+問題は`Women`の回帰係数（`r CoefM2Sex`）である。これは、[年齢が0であるときの（すなわち0歳の時の）]{style="color:#cc0000;"}男性と女性の年収の格差を示している。当然のことながら、データにはそのような男女は含まれていない。しかし、交互作用効果を含んだモデルの一次の項は、[「交互作用効果を構成するもうひとつの変数の値が0の時の効果」]{style="color:#cc0000;"}を表すため、このような解釈になる。一次の項の解釈をより自然なものにするためには、次節で
+
+
+
+# 中心化（センタリング：Centering）
+交互作用項を構成する変数の中に連続変数が含まれている場合、中心化（センタリング：centering）を施すか否かを検討する必要がある。
+
+まずは調査時年齢（`CAgeSvy`）を平均値で中心化してみよう。
+
+```{r}
+DF_cnt <-
+  DF |> 
+  mutate(CAgeSvy_cnt = CAgeSvy - mean(CAgeSvy))
+
+mean(DF_cnt$CAgeSvy_cnt)
+```
+
+このように平均値で中心化された後の`CAgeSvy_cnt`はその平均値が0であることがわかる。これは、中心化を施す前後の変数の分布を比較するとよくわかる。
+
+
+```{r}
+#| code-fold: true
+
+DF_cnt |> 
+  select(CAgeSvy, CAgeSvy_cnt) |> 
+  pivot_longer(cols = c(CAgeSvy, CAgeSvy_cnt),
+               names_to  = "RawCnt",
+               values_to = "Age") |> 
+  ggplot(aes(x = Age)) +
+  facet_grid(~ RawCnt) +
+  geom_histogram(binwidth = 1, color = "black") +
+  xlim(-10, 40) +
+  theme_few() +
+  theme(strip.text   = element_text(size = rel(1.5)),
+        axis.text.x  = element_text(size = rel(1.5)),
+        axis.text.y  = element_text(size = rel(1.5)),
+        axis.title.x = element_text(size = rel(1.5)),
+        axis.title.y = element_text(size = rel(1.3)))
+```
+
+変数の分布の形状はそのままで、`CAgeSvy_cnt`の重心（平均）が0に移動していることがわかる。
+
+それでは、この中心化された変数を用いて、重回帰モデルを推定してみよう。
+
+```{r}
+M1_DC_cnt <- lm(Income ~ CAgeSvy_cnt + as.factor(Sex), data = DF_cnt) 
+M2_DC_cnt <- update(M1_DC_cnt, .~. + CAgeSvy_cnt:as.factor(Sex)) 
+```
+
+```{r}
+#| code-fold: true
+
+ListModel_cnt <- list("Model1" = M1_DC, 
+                      "Model2" = M2_DC,
+                      "Model3" = M1_DC_cnt,
+                      "Model4" = M2_DC_cnt)
+
+CoefLab_DC <- 
+  c("as.factor(Sex)Women" = "Women",
+    "as.factor(Sex)Men"   = "Men",
+    
+    "CAgeSvy" = "Age",
+    
+    "as.factor(Sex)Women:CAgeSvy" = "Women:Age",
+    
+    "CAgeSvy_cnt" = "Age(centered)",
+    "CAgeSvy_cnt:as.factor(Sex)Women" = "Women:Age(centered)"
+  )
+
+modelsummary(ListModel_cnt, 
+             include_reference = TRUE,
+             coef_rename = CoefLab_DC,
+             coef_omit = "Intercept",
+             stars = c('*' = 0.05, '**' = 0.01, '***' = 0.001),
+             gof_omit = "AIC|BIC|Log.Lik.|RMSE|F") |> 
+  group_tt(i = list("Sex" = 1,
+                    "Sex × Age" = 6,
+                    "Sex × Age(centered)" = 10),
+           indent = 1) |> 
+  style_tt(
+      i = c(0:1, 15, 18),
+      line = "t",
+      line_width = 0.15,
+      line_color = "black") |> 
+  style_tt(
+      i = 12,
+      line = "t",
+      line_width = 0.15,
+      line_color = "white")
+```
+
+`Model1`から`Model4`を比較すると変数の中心化が回帰係数に与える影響について以下のことがわかる
+
+**交互作用効果を含まないとき**
+
+- 中心化された変数（`Age_cnt`）もその他の変数（`Male_dum`）も、その回帰係数には中心化の影響はない（`Model1`と`Model3`の比較）
+
+- 中心化の有無によって変化するのは切片のみ
+  - 中心化されていない場合（`Model1`）：年齢が0歳の女性の収入の予測値  
+  - 中心化されている場合（`Model3`）：年齢が（全体）平均値の女性の収入の予測値
+
+
+**交互作用効果を含むとき**
+
+- 「年齢」の回帰係数は年齢が中心化されていてもされていなくても変わらない（$\hat{\beta}=$ `r round(M2_DC$coefficients["CAgeSvy"], 3)`）
+
+- 「男性ダミーと年齢の交互作用項」の回帰係数は、年齢が中心化されていてもされていなくても変わらない（$\hat{\beta}=$ `r round(M2_DC$coefficients["as.factor(Sex)Women:CAgeSvy"], 3)`）
+
+- 「男性ダミー」の回帰係数は年齢が中心化されているかいないかで大きく異なる
+  - 中心化されていない場合（`Model2`）：年齢が0歳の時の収入の男女差
+  - 中心化されている場合（`Model4`）  ：年齢が平均値の時の収入の男女差

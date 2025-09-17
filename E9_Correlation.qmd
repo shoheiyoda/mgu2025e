@@ -1,0 +1,101 @@
+---
+title: "相関と偏相関"
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(ggthemes)
+```
+
+# 使用データ
+`R`にデフォルトで実装されているサンプルデータ`swiss`を用いる。`?swiss`と入力すると、このサンプルデータに関する説明を見ることができる。以下、Descriptionの項目を抜粋すると、
+
+> Standardized fertility measure and socioeconomic indicators for each of 47 French-speaking provinces of Switzerland at about 1888.
+
+とあり、1888年スイスの出生率および社会経済指標に関するデータであることがわかる。
+
+```{r}
+head(swiss)
+```
+
+データセットには以下の6つの変数が含まれている。
+
+- `Fertility`: 出生率（1,000人の女性あたりの出生数）。
+- `Agriculture`: 農業従事者の割合（成人男性のうち、農業従事者の割合）。
+- `Examination`: 徴兵検査で最高点を取得した徴兵者の割合。
+- `Education`: 高等教育を受けた成人男性の割合。
+- `Catholic`: カトリック信者の割合。
+- `Infant.Mortality`: 乳児死亡率（生後1年未満の乳児の死亡率）。
+
+
+# 相関係数
+## 相関係数の算出
+相関係数を算出したい2つのベクトル（変数）がある場合、それらを`cor()`に引き渡せば相関係数が算出される。例えば、出生率`Fertility`と教育水準`Education`との相関係数を算出するには以下のようにすれば良い。
+
+```{r}
+swiss |> 
+  with(cor(Fertility, Education))
+```
+
+`cor()`にはベクトルだけではなくて行列やデータフレームを引き渡すこともできる。その場合、返り値として相関行列が得られる。
+
+```{r}
+cor(swiss)
+```
+
+## 相関係数の有意性検定
+相関係数の有意性検定を行うには`cor.test()`を使う。
+
+::: {.panel-tabset}
+### デフォルト
+```{r}
+swiss |> with(cor.test(Fertility, Education))
+```
+
+### 片側検定："less" or "greater"
+```{r}
+swiss |> with(cor.test(Fertility, Education, alternative = "greater"))
+```
+
+### 有意水準の設定
+```{r}
+swiss |> with(cor.test(Fertility, Education, conf.level = 0.90))
+```
+:::
+
+# 相関行列の可視化
+相関関係を可視化するには散布図（scatter plot）を用いることが最も一般的である。変数が2つだけの場合と2つ以上との場合とで用いる関数が異なるため、以下、いくつかの具体例を示す。
+
+## 2変数の場合
+2変数の場合は`plot()`で簡単に散布図を作成できる。`plot()`は引数として`x`と`y`を持っており、それぞれ散布図のx軸とy軸にプロットするベクトルを指定する。
+
+```{r}
+plot(x = swiss$Education, y = swiss$Fertility)
+```
+
+
+## 3変数以上の場合
+### `pairs()`
+3変数以上の相関関係を可視化する場合、ひとつひとつの変数のペアについて`plot()`で散布図を作成するのは手間がかかる。そこで、別の関数を用いて相関行列そのものを可視化することが一般的である。例えば、`pairs()`は`R`の`base`に組み込まれている関数のひとつである。引数として、相関行列を構成する変数が含まれた行列やデータフレームをそのまま引き渡せばよい。
+
+```{r}
+pairs(swiss)
+```
+
+### `pairs.panels()`
+`psych`パッケージに含まれる`pairs.panels()`を使って相関行列を可視化することも可能である。
+
+- 上三角行列：相関係数
+- 下三角行列：散布図
+- 対角セル　：ヒストグラム
+
+
+```{r}
+library(psych)
+pairs.panels(swiss,
+             hist.col = "white",
+             rug = FALSE,
+             ellipses = FALSE,
+             lm = TRUE)
+```

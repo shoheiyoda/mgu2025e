@@ -1,0 +1,60 @@
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP&display=swap');
+
+$font-family-sans-serif: "BIZ UDPGothic", Helvetica, sans-serif !default;;
+
+$h1-font-size: 1.6em !default;
+$h2-font-size: 1.3em !default;
+$h3-font-size: 1.15em !default;
+$h4-font-size: 1em !default;
+
+/*-- scss:rules --*/
+.reveal {
+  font-family: $font-family-sans-serif;
+  
+  .title {
+    font-size: 55px;
+  }
+  
+  .slides {
+    
+    section h1 {
+      font-size: 55px;
+    }
+    
+    section h3 {
+      margin-top: 20px;
+    }
+    
+    ul ul {
+      list-style-type: circle;
+      font-size: 0.9em;
+      padding-bottom: 20px;
+    }
+  }
+
+  .slide aside {
+    font-size: 0.4em;
+  }
+
+  .panel-tabset .panel-tabset-tabby {
+    font-size: 20px;
+  }
+  
+  .quarto-title-authors {
+    margin-top: 100px;
+  }
+  
+  .date {
+    margin-top: 100px;
+    font-size: 80% !important;
+  }
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70%;
+  /* white-space: nowrap; */
+}

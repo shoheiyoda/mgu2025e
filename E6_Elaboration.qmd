@@ -1,0 +1,148 @@
+---
+title: "エラボレイション"
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(RcmdrMisc)
+```
+
+# 使用データ
+`R`のサンプルデータ`Titanic`を用いる。データの解説には
+
+> Survival of Passengers on the Titanic
+
+とある。まずはオブジェクトの中身を見てみよう。
+
+```{r}
+Titanic
+```
+
+と、データフレームではないことがわかる。データの型を確認すると、`table`であることがわかる。
+
+```{r}
+class(Titanic)
+```
+
+集計済みの`table`を扱う場合、各次元の変数名、各変数が取りうる値（カテゴリ）、そしてテーブルの大きさ（集計客体数）を確認しておくとよい。
+
+```{r}
+# 変数名と値カテゴリを表示させたい場合
+dimnames(Titanic)
+
+# テーブルの次元数だけ確認する場合
+dim(Titanic)
+
+# 集計客体数
+sum(Titanic)
+```
+
+このように、`Titanic`は`r sum(Titanic)`件のデータを含み、以下の4変数からなる多元クロス表である。
+
+- `Class`:客室の階級
+- `Sex`:性別
+- `Age`:年齢
+- `Survived`:生死
+
+# エラボレーションの例
+以下では`Titanic`に含まれる4変数のうち、客室の階級、性別、生死の3変数を用いてエラボレーションを行っていく。具体的には、以下の問いに答えてみよう。
+
+> タイタニック号の成人乗員の生存割合が客室の階級によって異なっていたことは（よく？）知られている。この2変数間（客室の階級・乗員の生死）の関係は乗員の性別によって異なるか？
+
+まず、データを成人に限定する。
+
+```{r}
+TBL <- Titanic[,,"Adult",]
+dimnames(TBL)
+```
+# 乗員の性別と生存割合の関係
+乗員の性別によって生存者の割合がどれほど異なっていたかを見てみよう。そのためには、客室の階級（`Class`）を無視した、性別×生死の2元クロス表を作成する必要がある。最も愚直な方法は`Class`ごとに分割した性別×生死の2元クロス表を合併するというものである。
+
+```{r}
+TabSex_temp <- TBL["1st",,] + TBL["2nd",,] + TBL["3rd",,] + TBL["Crew",,]
+TabSex_temp
+```
+
+ただし、上記のような2元クロス表の作成方法は、特に変数のカテゴリ数が多い場合にはあまりスマートではない。`apply`関数を用いると同じ処理をより簡単に施すことができる。
+
+```{r}
+# TBLの第2次元（Sex）と第3次元（Survived）の組み合わせごとにセル度数を合計（sum）する
+TabSex <- apply(TBL, c(2,3), sum)
+TabSex
+```
+
+行パーセントを表示させるには`RcmdrMisc`パッケージの`rowPercents`が便利である。
+
+```{r}
+rowPercents(TabSex)
+```
+
+男性よりも女性の乗員の方が生存割合が高いことがわかる。
+
+# 客室の階級と生存割合の関係
+つぎに、客室の階級によって生存者の割合がどれほど異なっていたかを見てみよう。今度は性別（`Sex`）を無視した、客室の階級×生死の2元クロス表を作成する必要がある。
+
+```{r}
+TabClass <- apply(TBL, c(1,3), sum)
+TabClass
+```
+
+先ほどと同様に、行パーセントを算出してみよう。
+
+```{r}
+rowPercents(TabClass)
+```
+
+乗客の間では客室の階級が高いほど生存割合が高く、クルーの生存割合は客室が"3rd"の乗客とほぼ同じであることがわかる。
+
+# 性別・客室の階級・生存割合の関係
+最後に、客室の階級と生存割合との関係が性別によって異なるかを見てみる。そのためには、客室の階級ごとの生存割合を乗員の性別で分割して算出すればよい。そのためのコードの一例は以下の通りである。
+
+
+```{r}
+rowPercents(TBL[,"Male",])
+rowPercents(TBL[,"Female",])
+```
+ここでも  `apply`関数を用いるとよりシンプルにコードを書くことができる。
+
+```{r}
+RstCS <- apply(TBL, 2, rowPercents, simplify = FALSE)
+RstCS
+```
+集計結果を見やすくするために、上記の出力結果から必要な部分だけを別のオブジェクトに収納してみよう。
+
+```{r}
+PropSurv <- cbind(RstCS$Male  [, "Yes"],
+                  RstCS$Female[, "Yes"])
+
+colnames(PropSurv) <- c("Male", "Female")
+PropSurv
+```
+
+客室の階級が"1st"の乗客の生存割合が最も高いことは男女で共通しているが、男性ではなぜか客室が"2nd"よりも"3rd"の乗客の方が生存割合が高い。また、性別を考慮しなかった場合にはクルーの生存割合は客室が"3rd'の乗客のそれとほぼ同程度であったが、性別を考慮した後ではクルーの方が生存割合が高いことがわかる。
+
+
+# データの可視化（Data Visualization）
+```{r}
+matplot(PropSurv, 
+        type = "o", 
+        lty  = 1,
+        pch  = c(15, 17),
+        ylim = c(0,100),
+        cex = 1.5,
+        axes = FALSE,
+        ann = FALSE)
+axis(1, at = seq(1,4), labels = rownames(PropSurv))
+axis(2, at = seq(0, 100, 25), las = 1)
+mtext("Class", side = 1, line = 2.5)
+mtext("Survival Rate (%)",   side = 2, line = 2.5)
+legend("bottomleft",
+       colnames(PropSurv),
+       lty = 1,
+       pch = c(15, 17),
+       col = c("black", "red"),
+       bty = "n",
+       cex = 1.2)
+```
+

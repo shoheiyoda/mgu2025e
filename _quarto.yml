@@ -1,0 +1,54 @@
+project:
+  type: book
+  execute-dir: project
+  output-dir: docs
+  
+book:
+  title: "2025年度　数量データ分析"
+  subtitle: "明治学院大学社会学部"
+  search: true
+  sidebar: 
+    style: docked
+    pinned: true
+  page-navigation: true
+
+  chapters:
+    - index.qmd
+    - part: "Rの基礎"
+      chapters:
+        - E1_R_Basics.qmd
+        - E2_ReadCSV.qmd
+        - E2_AddNewVariables.qmd
+        - E2_ConditionalBranch.qmd
+        - E2_MissingValue.qmd
+    - E3_DescriptiveStats.qmd
+    - E4_TTest.qmd
+    - E5_CrossTabulation.qmd
+    - E6_Elaboration.qmd
+    - part: "分散分析"
+      chapters:
+        - E7_Anova.qmd
+        - E8_Two-wayAnova.qmd
+    - E9_Correlation.qmd
+    - part: "回帰分析"
+      chapters:
+        - E10_Regression.qmd
+        - E11_MultipleRegression.qmd
+        - E12_Regression_DummyVariable.qmd
+        - E13_MultipleRegression.qmd
+
+format: 
+  html:
+    toc: true
+    # df-print: kable
+    theme: cosmo
+    html-math-method: mathjax
+    number-sections: true
+    fig-width: 10
+    fig-height: 6
+    grid:
+      body-width: 1200px
+      sidebar-width: 375px
+
+date: today
+date-format: iso

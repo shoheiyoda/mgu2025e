@@ -1,0 +1,352 @@
+---
+title: "クロス集計表"
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(RcmdrMisc)
+library(vcd)
+library(gplots)
+library(infer)
+```
+
+# データ・変数
+## データ
+[東大社研・若年パネル調査の非制限公開疑似データ](https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/)を用いる。
+
+```{r}
+library(tidyverse)
+FN_Data2Load <- "data/u001.csv"
+DF_org <- read_csv(FN_Data2Load)
+```
+
+以下ではクロス集計表の分析を通じて次の問いに答えることを目的とする。
+
+> Q: 性別によって最終学歴に違いはあるのか？
+
+## 変数
+### 回答者の性別: `sex`
+
+### 回答者の学歴: `ZQ23A`
+![](Image/u001_ZQ23A.png)
+
+```{r}
+# 使用変数のみ取り出す
+DF_raw <-
+  DF_org |> 
+  select(sex, ZQ23A)
+```
+
+まずはこれらの変数の度数分布表を確認しておこう。
+
+```{r}
+DF_raw |> 
+  count(sex)
+
+DF_raw |> 
+  count(ZQ23A)
+```  
+`ZQ23A`の欠損値コード（`9`）に注意しつつ、変数をリネーム・リコードしておこう。ここでは回答者の学歴を以下の4カテゴリに再分類する。
+
+> 中学・高校  
+> 専修学校（専門学校）  
+> 短大  
+> 大学・大学院
+
+```{r}
+# 変数のrename + recode
+DF_temp <- 
+  DF_raw |> 
+  mutate(Sex     = if_else(sex == 1, "Men", "Women"),
+         Edu4Grp = case_match(ZQ23A,
+                              c(1,2) ~ "JHS/HS",
+                              3      ~ "VS",
+                              4      ~ "JC",
+                              c(5,6) ~ "Univ",
+                              TRUE   ~ NA_character_) |> 
+                   fct_relevel("JHS/HS", "VS", "JC", "Univ")
+  )
+```
+
+```{r}
+DF_temp |> 
+  count(sex, Sex)
+
+DF_temp |> 
+  count(ZQ23A, Edu4Grp)
+```
+```{r}
+# 集計対象の確定
+DF <- 
+  DF_temp |> 
+  select(Sex, Edu4Grp) |> 
+  drop_na()
+```
+
+# 分析
+## {base}
+### クロス表の作成
+{base}でクロス表を作成する方法はいくつかあるが、代表的なものに`xtabs()`と`table()`がある。
+
+```{r}
+DF |> 
+  with(xtabs(~ Sex + Edu4Grp, exclude = NULL))
+       
+DF |> 
+  with(table(Sex, Edu4Grp, exclude = NULL))
+```
+`xtabs()`と`table()`の出力結果はいずれも`table`というクラスになる。
+
+```{r}
+SexEdu_xtabs <- 
+  DF |> 
+  with(xtabs(~ Sex + Edu4Grp, exclude = NULL))
+
+SexEdu_table <- 
+  DF |> 
+  with(table(Sex, Edu4Grp, exclude = NULL))
+
+class(SexEdu_xtabs)
+class(SexEdu_table)
+```
+
+### 行パーセントと列パーセント
+#### `proportions()`
+行パーセントや列パーセントを算出するためには`proportions()`を用いる。この関数は`margin`という引数を持ち、1が行パーセント、2が列パーセントを示す。
+
+```{r}
+proportions(SexEdu_xtabs, margin = 1) # 行パーセント
+proportions(SexEdu_xtabs, margin = 2) # 列パーセント
+```
+
+tableの次元に名前がついている場合、marginには次元名を指定することもできる
+
+```{r}
+proportions(SexEdu_xtabs, margin = "Sex")
+proportions(SexEdu_xtabs, margin = "Edu4Grp")
+```
+
+なお、`xtabs()`や`table()`の出力結果には行／列の周辺度数がついていない。クロス表に周辺度数を追加するためには`addmargins()`を用いる。
+
+```{r}
+# 行周辺度数
+addmargins(SexEdu_xtabs, margin = 1)
+
+# 列周辺度数
+addmargins(SexEdu_xtabs, margin = 2)
+
+# 行／列周辺度数
+addmargins(SexEdu_xtabs, margin = c(1,2))
+```
+
+周辺度数をつけてから`proportions()`に引き渡せば行全体あるいは列全体の変数の分布を算出できる。
+
+```{r}
+# 列周辺度数を追加
+SexEdu_xtabs |> 
+  addmargins(margin = 1) |> 
+  proportions(margin = 1)
+
+# 行周辺度数を追加
+SexEdu_xtabs |> 
+  addmargins(margin = 2) |> 
+  proportions(margin = 2)
+```
+
+
+#### `rowPercents()`・`colPercents()`
+`RcmdrMisc`パッケージの`rowPercents()`や`colPercents()`を使っても行パーセントや列パーセントを算出できる。これらの関数の便利な点として、デフォルトで周辺度数を出力結果に返してくれる。
+
+```{r}
+library(RcmdrMisc)
+
+rowPercents(SexEdu_xtabs, 1)
+colPercents(SexEdu_xtabs, 2)
+```
+### カイ二乗検定
+カイ二乗検定は`chi.test()`によって行う。この関数にはクロス表の`table`を引き渡すことができる。出力結果をオブジェクトに格納しておけば、期待値・残差・標準化残差などの出力値を後から取り出すことができる。
+
+```{r}
+Result <- chisq.test(SexEdu_xtabs)
+print(Result)
+```
+
+カイ二乗検定の結果を見ると、性別と最終学歴とは統計的に独立とは言えないようである。どのセルにおいて期待度数と観測度数との乖離（残差）が大きいのかを見てみよう。
+
+```{r}
+# 期待値
+Result$expected
+
+# 残差
+Result$residuals
+
+# 標準化残差
+Result$stdres
+```
+
+残差分析の結果、統計的独立の状態に比して、女性は専門学校や短大が多く、一方で男性は大学・大学院が多いようである。
+すなわち、結論としては**性別によって最終学歴に違いが存在する**（より正確に言えば、「性別によって最終学歴の分布が同じとは言えない」）ということになる。
+
+## {tidyverse}
+はじめに、少なくともクロス表の分析に限って言えば、{tidyverse}での処理にこだわる必要はあまりない。{tidyverse}の中ではクロス集計表もテーブル形式ではなく、あくまでロング形式の`tibble`として表現されることが一般的であるからである[^1]。そのため、出力結果のわかりやすさの点で言えば`xtabs()`や`table()`の方が優れている（ように個人的には思う）。ただし、{tidyverse}で集計した場合はその結果を{ggplot}に引き渡してグラフを描画できるため、データの可視化の面では便利ではある。
+
+[^1]: `pivot_wider()`を用いて`tibble`の出力結果をクロス表のそれに近づけることはできるものの、`xtabs()`や`table()`のようにクラスがテーブルになるわけではないので、結局はそのままの形では先に紹介した他の関数に引き渡すことはできない。
+
+### クロス表の作成
+```{r}
+tbl_SexEdu <-
+  DF |> 
+  count(Sex, Edu4Grp)
+
+print(tbl_SexEdu)
+```
+
+### 行パーセントと列パーセント
+```{r}
+# 行パーセント（性別に見た学歴の分布）
+Prop_bySex <-
+  tbl_SexEdu |> 
+  group_by(Sex) |> 
+  mutate(Prop = n / sum(n))
+
+print(Prop_bySex)
+
+# 列パーセント（学歴別に見た性別の分布）
+Prop_byEdu <-
+  tbl_SexEdu |> 
+  group_by(Edu4Grp) |> 
+  mutate(Prop = n / sum(n))
+
+Prop_byEdu |> 
+  arrange(Edu4Grp, Sex) |> # 学歴 -> 性別の順でソート
+  print()
+```
+
+### カイ二乗検定
+先に見た`chisq.test()`はデータフレームや`tibble`に対しても適用できる。
+
+```{r}
+ChiTest <-
+  DF |> 
+  with(chisq.test(Sex, Edu4Grp))
+
+print(ChiTest)
+
+# 期待値
+ChiTest$expected
+
+# 残差
+ChiTest$residuals
+
+# 標準化残差
+ChiTest$stdres
+```
+
+また、{infer}というパッケージを用いることもできる。以下はこのパッケージ内の`chisq_test()`という関数を用いてカイ二乗検定を行う例である。ただし、筆者が調べた限りでは、各セルの期待値・残差・標準化残差などを{infer}の中で簡単に出力する方法はなさそうなので、`chisq.test()`の方が便利かもしれない。
+
+```{r}
+library(infer)
+
+DF |> 
+  chisq_test(Edu4Grp ~ Sex)
+```
+
+# クロス表の可視化
+## 比率の可視化
+クロス集計表を可視化する最も基礎的な方法のひとつは、行パーセントあるいは列パーセントを帯グラフにすることである。{tidyverse}で比率を算出し、`tibble`にその結果を格納しておくと、簡単に可視化ができる。
+
+```{r}
+#| code-fold: true
+
+Prop_bySex |> 
+  ggplot(aes(x = Sex,
+             y = Prop,
+             fill = Edu4Grp)
+         ) +
+  geom_bar(stat = "identity",
+           color = "black") +
+  geom_text(aes(label = sprintf("%.2f", Prop)),
+            position = position_fill(vjust = 0.5),
+            size = 5) +
+  labs(y = "Proportion",
+       fill = "Education") +
+  theme_minimal() +
+  theme(legend.title = element_text(size = rel(1.5)),
+        legend.text  = element_text(size = rel(1.5)),
+        axis.text    = element_text(size = rel(1.5)),
+        axis.title   = element_text(size = rel(1.5)))
+```
+
+
+## モザイクプロット
+行パーセントや列パーセントなどの比率を帯グラフにした場合、行あるいは列の周辺度数の大きさの違いは見えなくなってしまう。そこで、各セル度数の大きさを加味した可視化を可能にする方法としてモザイクプロットが挙げられる。モザイクプロットは以下の特徴を持つ
+
+- タイルの各辺の長さが行／列の変数の周辺分布を表す
+- タイルの面積がセル度数の大きさを示す
+
+ライブラリの呼び起こしをせずにモザイクプロットを描画するための関数として`mosaicplot()`がある。
+
+```{r}
+mosaicplot(SexEdu_xtabs)
+```
+
+{geom_mosaic}というパッケージをインストールすると、`geom_mosaic()`を用いて{ggplot}の中でモザイクプロットを描くことができる。
+
+```{r}
+#| code-fold: true
+
+library(ggmosaic)
+
+DF |> 
+  ggplot() +
+  geom_mosaic(aes(x = product(Sex, Edu4Grp), fill = Edu4Grp)) +
+  labs(
+    title = "Mosaic Plot of Gender and Education",
+    x = "Education",
+    fill = "Education"
+  ) +
+  theme_minimal() +
+  theme(plot.title   = element_text(size = rel(1.5), hjust = 0.5),
+        legend.title = element_text(size = rel(1.5)),
+        legend.text  = element_text(size = rel(1.5)),
+        axis.text    = element_text(size = rel(1.5)),
+        axis.title   = element_text(size = rel(1.5)))
+```
+
+## バルーンプロット
+セル度数の大きさを可視化する別の方法としてバルーンプロットも挙げられる。これは、セル度数に比例したマーカーをクロス表のセル上にプロットするものである。
+
+`balloonplot()`は{gplots}の中に含まれており、ライブラリから呼び出してから使う必要がある。
+
+```{r}
+library(gplots)
+
+balloonplot(SexEdu_xtabs, 
+            main = "",
+            xlab = "Sex",
+            ylab = "Education")
+```
+
+{ggplot}でバルーンプロットを描く方法はいくつかあるが、以下はその一例である。
+
+```{r}
+#| code-fold: true
+
+DF |> 
+  count(Sex, Edu4Grp) |> 
+  ggplot(aes(x = Sex, y = Edu4Grp)) +
+  geom_point(aes(size = n), color = "lightblue", alpha = 0.7) +  # 円の大きさを度数に比例
+  geom_text(aes(label = n), vjust = 0.5, color = "black") +      # 度数ラベルを円の中央に表示
+  scale_size_area(max_size = 20) +                               # 最大サイズの設定
+  labs(title = "Balloon Plot of Gender and Education",
+       x = "Sex",
+       y = "Education") +
+  guides(size = "none") +
+  theme_minimal() +
+  theme(plot.title   = element_text(size = rel(1.5), hjust = 0.5),
+        legend.title = element_text(size = rel(1.5)),
+        legend.text  = element_text(size = rel(1.5)),
+        axis.text    = element_text(size = rel(1.5)),
+        axis.title   = element_text(size = rel(1.5)))
+```

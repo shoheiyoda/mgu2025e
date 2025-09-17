@@ -1,0 +1,189 @@
+---
+title: "条件分岐"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+# 条件分岐の重要性
+統計データ分析、あるいはより一般的にプログラミングにおいて、条件分岐を用いると複雑な処理が可能になる。以下では
+
+- `if`
+- `ifelse`
+
+の条件分岐の2つの方法について説明する。これらは{base}に組み込まれている関数群である。
+
+その後、{tidyverse}環境における条件分岐について説明する。
+
+# `if`による条件分岐
+`if`文は、「ある条件が真である場合にのみ何らかの処理を施すため」に用いる。例えば、変数`x`が1であるときに「xは1である」という文字列を表示させるためには以下のように記入する。
+
+```{r}
+x <- 1
+if(x == 1) print("xは1である")
+```
+それでは`x`が1ではない場合には何が起こるだろうか。
+
+```{r}
+x <- 2
+if(x == 1) print("xは1である")
+```
+
+この場合は、`x == 1`の部分は真でない（`FALSE`）なので、`if`文の中の処理は読み込まれない。処理が複数行に渡るときはカーリーブラケット{}を用いる。
+
+```{r}
+x <- 1
+if(x == 1) {
+  a <- 1  # aに1を代入
+  b <- 2  # bに2を代入
+  c <- a + b  # cにa+b(=3)を代入
+  print(c)
+}
+```
+
+上記の例の場合は条件文が真でなければ何の処理も行われなかった。一方で、「もしXならばAという処理をし、そうでなければBという処理をする」という条件分岐を行いたい場合は`if`と`else`を併用する。
+
+
+```{r}
+x <- 2
+if(x == 1) {
+  print("xは1である")
+} else{
+  print("xは1ではない")
+}
+```
+
+条件式が複数にまたがる場合は`if`-`else if`-`else`を用いる。
+
+```{r}
+x <- 100
+if(x == 1) {
+  print("xは1である")
+} else if(x == 2) {
+  print("xは2である")
+} else{
+  print("xは1でも2でもない")
+}
+```
+
+# `ifelse`による条件分岐
+`ifelse`はベクトルに対して適用できる条件分岐であり、以下の構造を持つ。  
+
+`ifelse(condition, true, false)`  
+
+- `condition`：条件文 
+- `true`：条件文が真の時の処理
+- `false`：条件文が偽の時の処理  
+
+例えば、曜日ごとに飲んだビール消費量のベクトル
+
+```{r}
+BeerConsume <-  c(350, 350, 350, 350, 1000, 1000, 500)
+```
+に対して、350mlより多く飲んだ場合は1、そうでない場合は0を与えるベクトルを作ることを考える。`ifelse`を用いると
+
+```{r}
+ifelse(BeerConsume > 350, 1, 0)
+```
+
+と書くことができる。`BeerConsume`の最後の3つの要素（1000, 1000, 500）に対して1が与えられていることが分かる。  
+同様の処理を行うために、`ifelse`を使うのではなく、自分で論理ベクトルを作ってもよい。
+
+```{r}
+DrinkTooMuch <- BeerConsume > 350
+DrinkTooMuch
+as.integer(DrinkTooMuch)  # 論理ベクトルは0-1の数値ベクトルにも変換できる
+
+# 条件文に合致するか否かの論理ベクトルは元のベクトルの要素指定に利用できる
+BeerConsume2 <- BeerConsume
+BeerConsume2[ DrinkTooMuch] <- "飲みすぎた"
+BeerConsume2[!DrinkTooMuch] <- "適量"  ## !は否定を示す演算子なので論理ベクトルの頭につけるとTRUEとFALSEが反転する
+BeerConsume2
+
+# ifelseを使うと
+ifelse(BeerConsume > 350, "飲みすぎた", "適量")
+```
+
+# `ifelse`を用いた新規変数の作成
+ここまでの説明では、条件分岐が何のために使われるのか、いまひとつ的を得ないかもしれない。統計データ分析、とりわけ個票データの分析において、条件分岐は新規変数を追加するうえで欠かせない。
+
+```{r}
+Youbi       <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+BeerConsume <- c(350, 350, 350, 350, 1000, 1000, 500)
+
+DF <- data.frame(Youbi, BeerConsume)
+DF
+```
+
+このデータフレームに対して、350mlより多く飲んだ場合は1、そうでない場合は0を取る新規変数`DrinkTooMuch`を追加してみよう。これは`ifelse`を用いて簡単に実行できる。
+
+```{r}
+DF$DrinkTooMuch <- ifelse(DF$BeerConsume > 350, 1, 0)
+DF
+```
+
+# {tidyverse}における条件分岐
+{tidyverse}環境でも条件分岐を表現する関数が用意されている。以下では代表的なものとして`if_else`と`case_when`を紹介する。
+
+```{r}
+Youbi       <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+BeerConsume <- c(350, 350, 350, 350, 1000, 1000, 500)
+
+DF <- tibble(Youbi, BeerConsume)
+DF
+```
+## `if_else`
+`if_else`の使用方法は`base`の`ifelse`とほぼ同じである。ただし、いくつか重要な違いもあるため、以下見ていこう。
+
+```{r}
+DF |> mutate(DrinkTooMuch = if_else(BeerConsume > 350, 1, 0))
+```
+
+~~まず、`ifelse`よりも`if_else`のほうが変数の型により厳密である。特に、欠損値の指定を行うときには変数の型に合わせた欠損値を指定しなくてはならない。~~
+
+```{r, error = TRUE}
+DF |> mutate(DrinkTooMuch = if_else(BeerConsume > 350, 1, NA))
+```
+
+~~`BeerConsume`が`double`型なので、`false`の場合も`logical`ではなく`double`でなくてはならないとエラーメッセージが出ている~~（現在のバージョンの{tidyverse}では`NA`を割り当てても変数の型に合わせて欠損値を指定してくれるようになっている）。そのため、欠損値の指定には`NA`ではなく`NA_real_`を用いる。
+
+```{r}
+DF |> mutate(DrinkTooMuch = if_else(BeerConsume > 350, 1, NA_real_))
+```
+
+このように{tidyverse}では変数の型に合わせた欠損値が用意されている。
+
+```{r}
+#| eval: false
+NA            # logical
+NA_character_ # character
+NA_integer_   # integer
+NA_real_      # double
+```
+
+## `case_when`
+{tidyverse}環境で`if_else`と並んで条件分岐によく使われるのが`case_when`である。これは複数の条件で場合分けする際に用いる。
+
+```{r}
+DF |> 
+  mutate(How2Work = case_when(Youbi %in% c("Mon", "Tue", "Wed") ~ "Work_from_home",
+                              Youbi %in% c("Thu", "Fri")        ~ "Work_in_office",
+                              Youbi %in% c("Sat", "Sun")        ~ "Childcare"))
+```
+
+いずれの論理式にも該当しない要素はすべて欠損値になる。
+
+```{r}
+DF |> 
+  mutate(TypeYoubi = case_when(Youbi %in% c("Mon", "Tue", "Wed") ~ "MonTueWed",
+                               Youbi %in% c("Thu", "Fri")        ~ "ThuFri"))
+```
+単一あるいは複数の論理式を指定したのちに、「それ以外の条件」を表す引数に`TRUE`がある。
+
+```{r}
+DF |> 
+  mutate(TypeYoubi = case_when(Youbi %in% c("Mon", "Tue", "Wed") ~ "MonTueWed",
+                               Youbi %in% c("Thu", "Fri")        ~ "ThuFri",
+                               TRUE                              ~ as.character(Youbi)))
+```
