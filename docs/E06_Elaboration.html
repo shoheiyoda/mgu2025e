@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-18">
+<meta name="dcterms.date" content="2025-10-03">
 
-<title>2&nbsp; データの出入力 – 2025年度　数量データ分析</title>
+<title>9&nbsp; エラボレイション – 2025年度　数量データ分析</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./E2_AddNewVariables.html" rel="next">
-<link href="./E1_R_Basics.html" rel="prev">
+<link href="./E07_Anova.html" rel="next">
+<link href="./E05_CrossTabulation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./E1_R_Basics.html">Rの基礎</a></li><li class="breadcrumb-item"><a href="./E2_ReadCSV.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの出入力</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./E06_Elaboration.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">エラボレイション</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,31 +159,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E1_R_Basics.html" class="sidebar-item-text sidebar-link">
+  <a href="./E01_R_Basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">データハンドリングの基礎</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E2_ReadCSV.html" class="sidebar-item-text sidebar-link active">
+  <a href="./E02_ReadCSV.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの出入力</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E2_AddNewVariables.html" class="sidebar-item-text sidebar-link">
+  <a href="./E02_AddNewVariables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">変数の作成</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E2_ConditionalBranch.html" class="sidebar-item-text sidebar-link">
+  <a href="./E02_ConditionalBranch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">条件分岐</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E2_MissingValue.html" class="sidebar-item-text sidebar-link">
+  <a href="./E02_MissingValue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">欠損値</span></span></a>
   </div>
 </li>
@@ -191,25 +191,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E3_DescriptiveStats.html" class="sidebar-item-text sidebar-link">
+  <a href="./E03_DescriptiveStats.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">記述統計量</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E4_TTest.html" class="sidebar-item-text sidebar-link">
+  <a href="./E04_TTest.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">母平均の差の検定</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E5_CrossTabulation.html" class="sidebar-item-text sidebar-link">
+  <a href="./E05_CrossTabulation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">クロス集計表</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E6_Elaboration.html" class="sidebar-item-text sidebar-link">
+  <a href="./E06_Elaboration.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">エラボレイション</span></span></a>
   </div>
 </li>
@@ -224,13 +224,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E7_Anova.html" class="sidebar-item-text sidebar-link">
+  <a href="./E07_Anova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">分散分析</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E8_Two-wayAnova.html" class="sidebar-item-text sidebar-link">
+  <a href="./E08_Two-wayAnova.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">多元配置分散分析</span></span></a>
   </div>
 </li>
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./E9_Correlation.html" class="sidebar-item-text sidebar-link">
+  <a href="./E09_Correlation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">相関と偏相関</span></span></a>
   </div>
 </li>
@@ -287,31 +287,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#データの読み込み" id="toc-データの読み込み" class="nav-link active" data-scroll-target="#データの読み込み"><span class="header-section-number">3</span> データの読み込み</a>
-  <ul class="collapse">
-  <li><a href="#csvファイルの読み込み" id="toc-csvファイルの読み込み" class="nav-link" data-scroll-target="#csvファイルの読み込み"><span class="header-section-number">3.1</span> CSVファイルの読み込み</a>
-  <ul class="collapse">
-  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="header-section-number">3.1.1</span> <code>read.csv()</code></a></li>
-  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="header-section-number">3.1.2</span> <code>read_csv()</code></a></li>
-  </ul></li>
-  <li><a href="#excelファイルの読み込み" id="toc-excelファイルの読み込み" class="nav-link" data-scroll-target="#excelファイルの読み込み"><span class="header-section-number">3.2</span> Excelファイルの読み込み</a></li>
-  <li><a href="#他の統計解析パッケージのデータファイルの読み込み" id="toc-他の統計解析パッケージのデータファイルの読み込み" class="nav-link" data-scroll-target="#他の統計解析パッケージのデータファイルの読み込み"><span class="header-section-number">3.3</span> 他の統計解析パッケージのデータファイルの読み込み</a></li>
-  </ul></li>
-  <li><a href="#データの書き出し" id="toc-データの書き出し" class="nav-link" data-scroll-target="#データの書き出し"><span class="header-section-number">4</span> データの書き出し</a>
-  <ul class="collapse">
-  <li><a href="#csvファイル" id="toc-csvファイル" class="nav-link" data-scroll-target="#csvファイル"><span class="header-section-number">4.1</span> CSVファイル</a></li>
-  <li><a href="#rdataファイル" id="toc-rdataファイル" class="nav-link" data-scroll-target="#rdataファイル"><span class="header-section-number">4.2</span> Rdataファイル</a></li>
-  <li><a href="#rdsファイル" id="toc-rdsファイル" class="nav-link" data-scroll-target="#rdsファイル"><span class="header-section-number">4.3</span> rdsファイル</a></li>
-  </ul></li>
+  <li><a href="#使用データ" id="toc-使用データ" class="nav-link active" data-scroll-target="#使用データ"><span class="header-section-number">10</span> 使用データ</a></li>
+  <li><a href="#エラボレーションの例" id="toc-エラボレーションの例" class="nav-link" data-scroll-target="#エラボレーションの例"><span class="header-section-number">11</span> エラボレーションの例</a></li>
+  <li><a href="#乗員の性別と生存割合の関係" id="toc-乗員の性別と生存割合の関係" class="nav-link" data-scroll-target="#乗員の性別と生存割合の関係"><span class="header-section-number">12</span> 乗員の性別と生存割合の関係</a></li>
+  <li><a href="#客室の階級と生存割合の関係" id="toc-客室の階級と生存割合の関係" class="nav-link" data-scroll-target="#客室の階級と生存割合の関係"><span class="header-section-number">13</span> 客室の階級と生存割合の関係</a></li>
+  <li><a href="#性別客室の階級生存割合の関係" id="toc-性別客室の階級生存割合の関係" class="nav-link" data-scroll-target="#性別客室の階級生存割合の関係"><span class="header-section-number">14</span> 性別・客室の階級・生存割合の関係</a></li>
+  <li><a href="#データの可視化data-visualization" id="toc-データの可視化data-visualization" class="nav-link" data-scroll-target="#データの可視化data-visualization"><span class="header-section-number">15</span> データの可視化（Data Visualization）</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./E1_R_Basics.html">Rの基礎</a></li><li class="breadcrumb-item"><a href="./E2_ReadCSV.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの出入力</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの出入力</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">エラボレイション</span></h1>
 </div>
 
 
@@ -322,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-09-18</p>
+      <p class="date">2025-10-03</p>
     </div>
   </div>
   
@@ -334,180 +324,278 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="データの読み込み" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> データの読み込み</h1>
-<section id="csvファイルの読み込み" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="csvファイルの読み込み"><span class="header-section-number">3.1</span> CSVファイルの読み込み</h2>
-<p>データ解析の第一歩は、分析対象となるデータファイルを<code>R</code>に読み込むことである。<code>R</code>に読み込むデータのフォーマットはいくつかあるが、最も代表的なものはCSV（comma separated values）ファイルである。後述するように、<code>R</code>では他の統計解析パッケージ（SPSS, Stata, SASなど）のデータフォーマットも出入力することができるが、CSVは最も標準的なフォーマットであるがゆえに、まずは<code>R</code>におけるCSVの処理について習得することを勧める。</p>
-<p>以下では<a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/">東大社研・若年パネル調査の非制限公開疑似データ</a>を例に、データファイルの読み込みを行ってみよう。</p>
-<section id="read.csv" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">3.1.1</span> <code>read.csv()</code></h3>
-<p><code>read.csv()</code>は<code>base</code>に組み込まれている関数であり、CSVファイルの読み込みに使うことができる。</p>
+<section id="使用データ" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> 使用データ</h1>
+<p><code>R</code>のサンプルデータ<code>Titanic</code>を用いる。データの解説には</p>
+<blockquote class="blockquote">
+<p>Survival of Passengers on the Titanic</p>
+</blockquote>
+<p>とある。まずはオブジェクトの中身を見てみよう。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>FN_OrgCSV <span class="ot">&lt;-</span> <span class="st">"data/u001.csv"</span>        <span class="co"># 読み込むCSVファイル名。パスの指定に注意。</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>DF_org <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(FN_OrgCSV)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(DF_org[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])       <span class="co"># 最初の5ケースについて1番目から10番目までの変数を表示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Titanic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  caseid sex ybirth mbirth ZQ03 JC_1 JC_41 ZQ08A ZQ08B ZQ08C
-1  10001   1   1976     10    1    2    12     4     1     3
-2  10002   1   1972      1    1    2     9     6     2     2
-3  10003   1   1975      4    1    2     9     6     6     6
-4  10004   2   1974     11    1    2     7     6     1     1
-5  10005   1   1978      1    2   10    88     6     2     2</code></pre>
-</div>
-</div>
-<p><code>read.csv()</code>で読み込まれたデータはデータフレームとしてオブジェクトに保存される。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(DF_org)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "data.frame"</code></pre>
-</div>
-</div>
-</section>
-<section id="read_csv" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">3.1.2</span> <code>read_csv()</code></h3>
-<p>CSVファイルの読み込みには<code>read.csv()</code>でも事足りるのであるが、特に{tidyverse}環境で作業を進める場合は<code>read_csv()</code>の方が相性が良い。これは{tidyverse}エコシステムの一部である{readr}の中の関数である。<code>read.csv()</code>と比較すると<code>read_csv()</code>の方がデータの読み込み速度が早く、大規模データを取り扱う際にも向いている関数である。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")  # 初回のみでよい</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.4     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>FN_RawCSV <span class="ot">&lt;-</span> <span class="st">"data/u001.csv"</span>        <span class="co"># 読み込むCSVファイル名。パスの指定に注意。</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>DF_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(FN_RawCSV)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 1000 Columns: 72
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
+<pre><code>, , Age = Child, Survived = No
 
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+      Sex
+Class  Male Female
+  1st     0      0
+  2nd     0      0
+  3rd    35     17
+  Crew    0      0
+
+, , Age = Adult, Survived = No
+
+      Sex
+Class  Male Female
+  1st   118      4
+  2nd   154     13
+  3rd   387     89
+  Crew  670      3
+
+, , Age = Child, Survived = Yes
+
+      Sex
+Class  Male Female
+  1st     5      1
+  2nd    11     13
+  3rd    13     14
+  Crew    0      0
+
+, , Age = Adult, Survived = Yes
+
+      Sex
+Class  Male Female
+  1st    57    140
+  2nd    14     80
+  3rd    75     76
+  Crew  192     20</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(DF_raw[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])       <span class="co"># 最初の5ケースについて1番目から10番目までの変数を表示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 10
-  caseid   sex ybirth mbirth  ZQ03  JC_1 JC_41 ZQ08A ZQ08B ZQ08C
-   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  10001     1   1976     10     1     2    12     4     1     3
-2  10002     1   1972      1     1     2     9     6     2     2
-3  10003     1   1975      4     1     2     9     6     6     6
-4  10004     2   1974     11     1     2     7     6     1     1
-5  10005     1   1978      1     2    10    88     6     2     2</code></pre>
 </div>
-</div>
-<p><code>read_csv()</code>で読み込まれたデータは<code>tibble</code>という属性を持つ。<code>tibble</code>はデータフレームに非常に近いが、現時点では「<code>tidyverse</code>環境に最適化されたデータフレーム」として理解しておけば十分である。</p>
+<p>と、データフレームではないことがわかる。データの型を確認すると、<code>table</code>であることがわかる。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(DF_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Titanic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
+<pre><code>[1] "table"</code></pre>
+</div>
+</div>
+<p>集計済みの<code>table</code>を扱う場合、各次元の変数名、各変数が取りうる値（カテゴリ）、そしてテーブルの大きさ（集計客体数）を確認しておくとよい。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 変数名と値カテゴリを表示させたい場合</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(Titanic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Class
+[1] "1st"  "2nd"  "3rd"  "Crew"
+
+$Sex
+[1] "Male"   "Female"
+
+$Age
+[1] "Child" "Adult"
+
+$Survived
+[1] "No"  "Yes"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># テーブルの次元数だけ確認する場合</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Titanic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 2 2 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 集計客体数</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Titanic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2201</code></pre>
+</div>
+</div>
+<p>このように、<code>Titanic</code>は2201件のデータを含み、以下の4変数からなる多元クロス表である。</p>
+<ul>
+<li><code>Class</code>:客室の階級</li>
+<li><code>Sex</code>:性別</li>
+<li><code>Age</code>:年齢</li>
+<li><code>Survived</code>:生死</li>
+</ul>
+</section>
+<section id="エラボレーションの例" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> エラボレーションの例</h1>
+<p>以下では<code>Titanic</code>に含まれる4変数のうち、客室の階級、性別、生死の3変数を用いてエラボレーションを行っていく。具体的には、以下の問いに答えてみよう。</p>
+<blockquote class="blockquote">
+<p>タイタニック号の成人乗員の生存割合が客室の階級によって異なっていたことは（よく？）知られている。この2変数間（客室の階級・乗員の生死）の関係は乗員の性別によって異なるか？</p>
+</blockquote>
+<p>まず、データを成人に限定する。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>TBL <span class="ot">&lt;-</span> Titanic[,,<span class="st">"Adult"</span>,]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(TBL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Class
+[1] "1st"  "2nd"  "3rd"  "Crew"
+
+$Sex
+[1] "Male"   "Female"
+
+$Survived
+[1] "No"  "Yes"</code></pre>
 </div>
 </div>
 </section>
-</section>
-<section id="excelファイルの読み込み" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="excelファイルの読み込み"><span class="header-section-number">3.2</span> Excelファイルの読み込み</h2>
-</section>
-<section id="他の統計解析パッケージのデータファイルの読み込み" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="他の統計解析パッケージのデータファイルの読み込み"><span class="header-section-number">3.3</span> 他の統計解析パッケージのデータファイルの読み込み</h2>
-</section>
-</section>
-<section id="データの書き出し" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> データの書き出し</h1>
-<p>データ前処理やデータ分析がある程度進んだ段階、あるいは分析が完了した段階でデータを保存する必要が生じてくる。保存したいデータはデータフレーム（や<code>tibble</code>）、グラフ、多変量解析の分析結果などさまざまな形を取りうるが、ここではデータフレームの保存方法のみを取り上げる。その他の出力結果の保存方法については適宜説明する。</p>
-<section id="csvファイル" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="csvファイル"><span class="header-section-number">4.1</span> CSVファイル</h2>
-<p>データをCSVファイルとして保存しておけば、<code>R</code>以外の統計解析パッケージやプログラミング言語を用いる人たちともデータのやり取りができる。そのため、最も汎用性が高いデータ保存フォーマットとしてCSVファイルを選択すべきであろう。データをCSVファイルとして出力するためには<code>write.csv()</code>あるいは<code>readr::write_csv()</code>を使う。いずれの関数も、1つ目の引数に保存するオブジェクト名を、2つ目の引数（<code>file</code>）に出力するファイル名を指定する。以下の例では<code>Output</code>というフォルダ内にCSVファイルを保存している。</p>
+<section id="乗員の性別と生存割合の関係" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> 乗員の性別と生存割合の関係</h1>
+<p>乗員の性別によって生存者の割合がどれほど異なっていたかを見てみよう。そのためには、客室の階級（<code>Class</code>）を無視した、性別×生死の2元クロス表を作成する必要がある。最も愚直な方法は<code>Class</code>ごとに分割した性別×生死の2元クロス表を合併するというものである。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>DF_Men <span class="ot">&lt;-</span>   <span class="co"># データセットから男性のみを抽出</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  DF_raw <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(DF_Men, <span class="at">file =</span> <span class="st">"DF_Men.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>Output</code>フォルダを見てみると<code>DF_Men.csv</code>という名前のファイルが生成されているはずである。</p>
-</section>
-<section id="rdataファイル" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="rdataファイル"><span class="header-section-number">4.2</span> Rdataファイル</h2>
-<p><code>R</code>を用いた分析で再利用したり、他の<code>R</code>ユーザーとデータを共有することが目的であれば<code>Rdata</code>ファイルでデータを保存しても良い。<code>Rdata</code>ファイルのメリットは<strong>複数のオブジェクトを保存できる</strong>ことである。例えば、データセットを性別で分割してそれぞれ<code>DF_Men</code>, <code>DF_Women</code>というオブジェクトに格納しておき、これら2つのデータセットを<code>Rdata</code>ファイルとして保存してみよう。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>DF_Women <span class="ot">&lt;-</span>  <span class="co"># データセットから女性のみを抽出</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  DF_raw <span class="sc">|&gt;</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">2</span>)  </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(DF_Men, DF_Women,  <span class="co"># DF_Menは前のセクションで定義している </span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">file =</span> <span class="st">"DF_bySex.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>Output</code>フォルダに移ると、<code>DF_bySex.Rdata</code>という名前のファイルが保存されているはずである。</p>
-<p><code>Rdata</code>ファイルの読み込みには<code>load()</code>を用いる。<code>DF_bySex.Rdata</code>の中に<code>DF_Men</code>と<code>DF_Women</code>が問題なく保存されているかを確認してみよう。まずは、ここまでの作業で作ったオブジェクトを削除（リセット）するために<code>rm()</code>関数を用いる。この関数は引数に<code>list</code>を持っており、ここに削除したいオブジェクト名を引き渡す。全てのオブジェクトを削除したい場合は<code>list=ls()</code>とすれば良い。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>ls()</code>は作業ディレクトリ内のオブジェクト一覧を返す関数である。先に<code>rm(list = ls())</code>によってオブジェクトが全てリセットされているので、この段階で<code>ls()</code>を実行すると</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>TabSex_temp <span class="ot">&lt;-</span> TBL[<span class="st">"1st"</span>,,] <span class="sc">+</span> TBL[<span class="st">"2nd"</span>,,] <span class="sc">+</span> TBL[<span class="st">"3rd"</span>,,] <span class="sc">+</span> TBL[<span class="st">"Crew"</span>,,]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>TabSex_temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>character(0)</code></pre>
+<pre><code>        Survived
+Sex        No  Yes
+  Male   1329  338
+  Female  109  316</code></pre>
 </div>
 </div>
-<p>のように何も返ってこない。それでは、<code>DF_bySex.Rdata</code>を現在の作業ディレクトリに読み込んでみよう。</p>
+<p>ただし、上記のような2元クロス表の作成方法は、特に変数のカテゴリ数が多い場合にはあまりスマートではない。<code>apply</code>関数を用いると同じ処理をより簡単に施すことができる。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"DF_bySex.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>RStudio</code>のEnviromentパネルをみると、<code>DF_Men</code>と<code>DF_Women</code>が表示されているはずである。<code>ls()</code>を実行してみても、</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TBLの第2次元（Sex）と第3次元（Survived）の組み合わせごとにセル度数を合計（sum）する</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>TabSex <span class="ot">&lt;-</span> <span class="fu">apply</span>(TBL, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>), sum)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>TabSex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "DF_Men"   "DF_Women"</code></pre>
+<pre><code>        Survived
+Sex        No Yes
+  Male   1329 338
+  Female  109 316</code></pre>
 </div>
 </div>
-<p>のように、保存されたオブジェクト名が返ってくる。</p>
+<p>行パーセントを表示させるには<code>RcmdrMisc</code>パッケージの<code>rowPercents</code>が便利である。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowPercents</span>(TabSex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Survived
+Sex        No  Yes Total Count
+  Male   79.7 20.3   100  1667
+  Female 25.6 74.4   100   425</code></pre>
+</div>
+</div>
+<p>男性よりも女性の乗員の方が生存割合が高いことがわかる。</p>
 </section>
-<section id="rdsファイル" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="rdsファイル"><span class="header-section-number">4.3</span> rdsファイル</h2>
-<p>上述のように、複数のオブジェクトを保存できることが<code>Rdata</code>ファイルのメリットである。しかしながら、これは特定のオブジェクトだけをワークスペース内にロードできないことを意味するため、同時にデメリットでもある。そこで、単一のオブジェクトを保存したり、ワークスペース内に読み込みたい場合は<code>rds</code>ファイルを利用するとよい。データを<code>rds</code>ファイルとして保存するためには<code>saveRDS()</code>を用いる。</p>
+<section id="客室の階級と生存割合の関係" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> 客室の階級と生存割合の関係</h1>
+<p>つぎに、客室の階級によって生存者の割合がどれほど異なっていたかを見てみよう。今度は性別（<code>Sex</code>）を無視した、客室の階級×生死の2元クロス表を作成する必要がある。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(DF_Men, <span class="at">file =</span> <span class="st">"DF_Men.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>TabClass <span class="ot">&lt;-</span> <span class="fu">apply</span>(TBL, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), sum)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>TabClass</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Survived
+Class   No Yes
+  1st  122 197
+  2nd  167  94
+  3rd  476 151
+  Crew 673 212</code></pre>
 </div>
-<p><code>rds</code>ファイルの読み込みには<code>readRDS()</code>を用いる。先と同様に、作業ディレクトリ内の<code>DF_Men</code>を一度削除してから<code>rds</code>ファイルを読み込んでみよう。</p>
+</div>
+<p>先ほどと同様に、行パーセントを算出してみよう。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="st">"DF_Men"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()  <span class="co"># DF_Womenしか作業環境に残されていないことを確認</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowPercents</span>(TabClass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "DF_Women"</code></pre>
+<pre><code>      Survived
+Class    No  Yes Total Count
+  1st  38.2 61.8   100   319
+  2nd  64.0 36.0   100   261
+  3rd  75.9 24.1   100   627
+  Crew 76.0 24.0   100   885</code></pre>
 </div>
 </div>
+<p>乗客の間では客室の階級が高いほど生存割合が高く、クルーの生存割合は客室が”3rd”の乗客とほぼ同じであることがわかる。</p>
+</section>
+<section id="性別客室の階級生存割合の関係" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> 性別・客室の階級・生存割合の関係</h1>
+<p>最後に、客室の階級と生存割合との関係が性別によって異なるかを見てみる。そのためには、客室の階級ごとの生存割合を乗員の性別で分割して算出すればよい。そのためのコードの一例は以下の通りである。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>DF_Men <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"DF_Men.rds"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()  <span class="co"># DF_Menが読み込まれている</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowPercents</span>(TBL[,<span class="st">"Male"</span>,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "DF_Men"   "DF_Women"</code></pre>
+<pre><code>      Survived
+Class    No  Yes Total Count
+  1st  67.4 32.6   100   175
+  2nd  91.7  8.3   100   168
+  3rd  83.8 16.2   100   462
+  Crew 77.7 22.3   100   862</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowPercents</span>(TBL[,<span class="st">"Female"</span>,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Survived
+Class    No  Yes Total Count
+  1st   2.8 97.2   100   144
+  2nd  14.0 86.0   100    93
+  3rd  53.9 46.1   100   165
+  Crew 13.0 87.0   100    23</code></pre>
 </div>
 </div>
-<p>なお、<code>rds</code>ファイルを読み込み際にはオブジェクトを定義してそこに格納する必要がある。そのため、`rds``ファイルとは異なる名前のオブジェクト名にデータを格納しても問題ない。例えば、</p>
+<p>ここでも <code>apply</code>関数を用いるとよりシンプルにコードを書くことができる。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data_Men <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"DF_Men.rds"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()  <span class="co"># オブジェクトdata_Menが追加されている</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>RstCS <span class="ot">&lt;-</span> <span class="fu">apply</span>(TBL, <span class="dv">2</span>, rowPercents, <span class="at">simplify =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>RstCS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "data_Men" "DF_Men"   "DF_Women"</code></pre>
+<pre><code>$Male
+      Survived
+Class    No  Yes Total Count
+  1st  67.4 32.6   100   175
+  2nd  91.7  8.3   100   168
+  3rd  83.8 16.2   100   462
+  Crew 77.7 22.3   100   862
+
+$Female
+      Survived
+Class    No  Yes Total Count
+  1st   2.8 97.2   100   144
+  2nd  14.0 86.0   100    93
+  3rd  53.9 46.1   100   165
+  Crew 13.0 87.0   100    23</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(DF_Men, data_Men) <span class="co"># DF_Menとdata_Menの中身は全く同じ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>集計結果を見やすくするために、上記の出力結果から必要な部分だけを別のオブジェクトに収納してみよう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>PropSurv <span class="ot">&lt;-</span> <span class="fu">cbind</span>(RstCS<span class="sc">$</span>Male  [, <span class="st">"Yes"</span>],</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                  RstCS<span class="sc">$</span>Female[, <span class="st">"Yes"</span>])</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(PropSurv) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>PropSurv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<pre><code>     Male Female
+1st  32.6   97.2
+2nd   8.3   86.0
+3rd  16.2   46.1
+Crew 22.3   87.0</code></pre>
+</div>
+</div>
+<p>客室の階級が”1st”の乗客の生存割合が最も高いことは男女で共通しているが、男性ではなぜか客室が”2nd”よりも”3rd”の乗客の方が生存割合が高い。また、性別を考慮しなかった場合にはクルーの生存割合は客室が”3rd’の乗客のそれとほぼ同程度であったが、性別を考慮した後ではクルーの方が生存割合が高いことがわかる。</p>
+</section>
+<section id="データの可視化data-visualization" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> データの可視化（Data Visualization）</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(PropSurv, </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"o"</span>, </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">lty  =</span> <span class="dv">1</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">pch  =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">17</span>),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex =</span> <span class="fl">1.5</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">ann =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">labels =</span> <span class="fu">rownames</span>(PropSurv))</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">25</span>), <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Class"</span>, <span class="at">side =</span> <span class="dv">1</span>, <span class="at">line =</span> <span class="fl">2.5</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Survival Rate (%)"</span>,   <span class="at">side =</span> <span class="dv">2</span>, <span class="at">line =</span> <span class="fl">2.5</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomleft"</span>,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>       <span class="fu">colnames</span>(PropSurv),</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">1</span>,</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">17</span>),</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>),</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty =</span> <span class="st">"n"</span>,</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex =</span> <span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="E06_Elaboration_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -912,13 +1000,13 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./E1_R_Basics.html" class="pagination-link" aria-label="データハンドリングの基礎">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">データハンドリングの基礎</span></span>
+      <a href="./E05_CrossTabulation.html" class="pagination-link" aria-label="クロス集計表">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">クロス集計表</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./E2_AddNewVariables.html" class="pagination-link" aria-label="変数の作成">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">変数の作成</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./E07_Anova.html" class="pagination-link" aria-label="分散分析">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">分散分析</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
