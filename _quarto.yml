@@ -16,20 +16,20 @@ book:
     - index.qmd
     - part: "Rの基礎"
       chapters:
-        - E1_R_Basics.qmd
-        - E2_ReadCSV.qmd
-        - E2_AddNewVariables.qmd
-        - E2_ConditionalBranch.qmd
-        - E2_MissingValue.qmd
-    - E3_DescriptiveStats.qmd
-    - E4_TTest.qmd
-    - E5_CrossTabulation.qmd
-    - E6_Elaboration.qmd
+        - E01_R_Basics.qmd
+        - E02_ReadCSV.qmd
+        - E02_AddNewVariables.qmd
+        - E02_ConditionalBranch.qmd
+        - E02_MissingValue.qmd
+    - E03_DescriptiveStats.qmd
+    - E04_TTest.qmd
+    - E05_CrossTabulation.qmd
+    - E06_Elaboration.qmd
     - part: "分散分析"
       chapters:
-        - E7_Anova.qmd
-        - E8_Two-wayAnova.qmd
-    - E9_Correlation.qmd
+        - E07_Anova.qmd
+        - E08_Two-wayAnova.qmd
+    - E09_Correlation.qmd
     - part: "回帰分析"
       chapters:
         - E10_Regression.qmd
