@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-03">
+<meta name="dcterms.date" content="2025-10-16">
 
 <title>7&nbsp; 母平均の差の検定 – 2025年度　数量データ分析</title>
 <style>
@@ -287,33 +287,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">8</span> データ・変数</a>
+  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">7.1</span> データ・変数</a>
   <ul class="collapse">
-  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">8.1</span> データ</a></li>
-  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">8.2</span> 変数</a>
+  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">7.1.1</span> データ</a></li>
+  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">7.1.2</span> 変数</a></li>
+  </ul></li>
+  <li><a href="#分析" id="toc-分析" class="nav-link" data-scroll-target="#分析"><span class="header-section-number">7.2</span> 分析</a>
   <ul class="collapse">
-  <li><a href="#回答者の性別-sex" id="toc-回答者の性別-sex" class="nav-link" data-scroll-target="#回答者の性別-sex"><span class="header-section-number">8.2.1</span> 回答者の性別: <code>sex</code></a></li>
-  <li><a href="#日あたり労働時間-jc_41" id="toc-日あたり労働時間-jc_41" class="nav-link" data-scroll-target="#日あたり労働時間-jc_41"><span class="header-section-number">8.2.2</span> 1日あたり労働時間: <code>JC_41</code></a></li>
+  <li><a href="#グループ別の記述統計量の算出" id="toc-グループ別の記述統計量の算出" class="nav-link" data-scroll-target="#グループ別の記述統計量の算出"><span class="header-section-number">7.2.1</span> グループ別の記述統計量の算出</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#分析" id="toc-分析" class="nav-link" data-scroll-target="#分析"><span class="header-section-number">9</span> 分析</a>
+  <li><a href="#変数の分布をグループ別に可視化する" id="toc-変数の分布をグループ別に可視化する" class="nav-link" data-scroll-target="#変数の分布をグループ別に可視化する"><span class="header-section-number">7.3</span> 変数の分布をグループ別に可視化する</a>
   <ul class="collapse">
-  <li><a href="#グループ別の記述統計量の算出" id="toc-グループ別の記述統計量の算出" class="nav-link" data-scroll-target="#グループ別の記述統計量の算出"><span class="header-section-number">9.1</span> グループ別の記述統計量の算出</a>
-  <ul class="collapse">
-  <li><a href="#base" id="toc-base" class="nav-link" data-scroll-target="#base"><span class="header-section-number">9.1.1</span> {base}</a></li>
-  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">9.1.2</span> {tidyverse}</a></li>
+  <li><a href="#ヒストグラム" id="toc-ヒストグラム" class="nav-link" data-scroll-target="#ヒストグラム"><span class="header-section-number">7.3.1</span> ヒストグラム</a></li>
+  <li><a href="#箱ひげ図" id="toc-箱ひげ図" class="nav-link" data-scroll-target="#箱ひげ図"><span class="header-section-number">7.3.2</span> 箱ひげ図</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#変数の分布をグループ別に可視化する" id="toc-変数の分布をグループ別に可視化する" class="nav-link" data-scroll-target="#変数の分布をグループ別に可視化する"><span class="header-section-number">10</span> 変数の分布をグループ別に可視化する</a>
-  <ul class="collapse">
-  <li><a href="#ヒストグラム" id="toc-ヒストグラム" class="nav-link" data-scroll-target="#ヒストグラム"><span class="header-section-number">10.1</span> ヒストグラム</a>
-  <ul class="collapse">
-  <li><a href="#グループごとに別のパネルにグラフを描画する" id="toc-グループごとに別のパネルにグラフを描画する" class="nav-link" data-scroll-target="#グループごとに別のパネルにグラフを描画する"><span class="header-section-number">10.1.1</span> グループごとに別のパネルにグラフを描画する</a></li>
-  <li><a href="#同じパネルにグループ別のグラフを重ね合わせる" id="toc-同じパネルにグループ別のグラフを重ね合わせる" class="nav-link" data-scroll-target="#同じパネルにグループ別のグラフを重ね合わせる"><span class="header-section-number">10.1.2</span> 同じパネルにグループ別のグラフを重ね合わせる</a></li>
-  </ul></li>
-  <li><a href="#箱ひげ図" id="toc-箱ひげ図" class="nav-link" data-scroll-target="#箱ひげ図"><span class="header-section-number">10.2</span> 箱ひげ図</a></li>
-  </ul></li>
-  <li><a href="#t検定" id="toc-t検定" class="nav-link" data-scroll-target="#t検定"><span class="header-section-number">11</span> t検定</a></li>
+  <li><a href="#t検定" id="toc-t検定" class="nav-link" data-scroll-target="#t検定"><span class="header-section-number">7.4</span> t検定</a></li>
   </ul>
 </nav>
     </div>
@@ -333,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-03</p>
+      <p class="date">2025-10-16</p>
     </div>
   </div>
   
@@ -345,10 +333,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="データ変数" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> データ・変数</h1>
-<section id="データ" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">8.1</span> データ</h2>
+<section id="データ変数" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="データ変数"><span class="header-section-number">7.1</span> データ・変数</h2>
+<section id="データ" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">7.1.1</span> データ</h3>
 <p><a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/">東大社研・若年パネル調査の非制限公開疑似データ</a>を用いる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -369,14 +357,14 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <p>Q: 就業者の労働時間に男女差はあるのか？</p>
 </blockquote>
 </section>
-<section id="変数" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">8.2</span> 変数</h2>
-<section id="回答者の性別-sex" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="回答者の性別-sex"><span class="header-section-number">8.2.1</span> 回答者の性別: <code>sex</code></h3>
+<section id="変数" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">7.1.2</span> 変数</h3>
+<section id="回答者の性別-sex" class="level4" data-number="7.1.2.1">
+<h4 data-number="7.1.2.1" class="anchored" data-anchor-id="回答者の性別-sex"><span class="header-section-number">7.1.2.1</span> 回答者の性別: <code>sex</code></h4>
 <p><img src="image/E4/u001_sex.png" class="img-fluid" style="width:70.0%"></p>
 </section>
-<section id="日あたり労働時間-jc_41" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="日あたり労働時間-jc_41"><span class="header-section-number">8.2.2</span> 1日あたり労働時間: <code>JC_41</code></h3>
+<section id="日あたり労働時間-jc_41" class="level4" data-number="7.1.2.2">
+<h4 data-number="7.1.2.2" class="anchored" data-anchor-id="日あたり労働時間-jc_41"><span class="header-section-number">7.1.2.2</span> 1日あたり労働時間: <code>JC_41</code></h4>
 <p><img src="image/E4/u001_JC_41.png" class="img-fluid"></p>
 <p>まずはこれらの変数の度数分布表を確認しておこう。</p>
 <div class="cell">
@@ -492,13 +480,13 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </section>
 </section>
 </section>
-<section id="分析" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> 分析</h1>
-<section id="グループ別の記述統計量の算出" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="グループ別の記述統計量の算出"><span class="header-section-number">9.1</span> グループ別の記述統計量の算出</h2>
+<section id="分析" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="分析"><span class="header-section-number">7.2</span> 分析</h2>
+<section id="グループ別の記述統計量の算出" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="グループ別の記述統計量の算出"><span class="header-section-number">7.2.1</span> グループ別の記述統計量の算出</h3>
 <p>使用変数の準備が完了したら、労働時間の記述統計量を男女別に出力してみよう。ここでは{base}と{tidyverse}のそれぞれを用いた方法を紹介する。</p>
-<section id="base" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="base"><span class="header-section-number">9.1.1</span> {base}</h3>
+<section id="base" class="level4" data-number="7.2.1.1">
+<h4 data-number="7.2.1.1" class="anchored" data-anchor-id="base"><span class="header-section-number">7.2.1.1</span> {base}</h4>
 <p><code>tapply()</code>は{base}に実装されている関数で、</p>
 <blockquote class="blockquote">
 <p><code>tapply(X, INDEX, FUN)</code></p>
@@ -524,8 +512,8 @@ $Women
 </div>
 </div>
 </section>
-<section id="tidyverse" class="level3" data-number="9.1.2">
-<h3 data-number="9.1.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">9.1.2</span> {tidyverse}</h3>
+<section id="tidyverse" class="level4" data-number="7.2.1.2">
+<h4 data-number="7.2.1.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">7.2.1.2</span> {tidyverse}</h4>
 <blockquote class="blockquote">
 <ol type="1">
 <li>グルーピングに用いる変数を<code>group_by()</code>に引き渡す。これで以下の処理がそのグループ変数ごとに行われる。<br>
@@ -550,10 +538,10 @@ $Women
 </section>
 </section>
 </section>
-<section id="変数の分布をグループ別に可視化する" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> 変数の分布をグループ別に可視化する</h1>
-<section id="ヒストグラム" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="ヒストグラム"><span class="header-section-number">10.1</span> ヒストグラム</h2>
+<section id="変数の分布をグループ別に可視化する" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="変数の分布をグループ別に可視化する"><span class="header-section-number">7.3</span> 変数の分布をグループ別に可視化する</h2>
+<section id="ヒストグラム" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="ヒストグラム"><span class="header-section-number">7.3.1</span> ヒストグラム</h3>
 <p>グループ別にデータを可視化する場合、大きく2つの方法がある。</p>
 <blockquote class="blockquote">
 <ol type="1">
@@ -562,8 +550,8 @@ $Women
 </ol>
 </blockquote>
 <p>以下ではヒストグラムを例に、男女別に労働時間を可視化してみよう。</p>
-<section id="グループごとに別のパネルにグラフを描画する" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="グループごとに別のパネルにグラフを描画する"><span class="header-section-number">10.1.1</span> グループごとに別のパネルにグラフを描画する</h3>
+<section id="グループごとに別のパネルにグラフを描画する" class="level4" data-number="7.3.1.1">
+<h4 data-number="7.3.1.1" class="anchored" data-anchor-id="グループごとに別のパネルにグラフを描画する"><span class="header-section-number">7.3.1.1</span> グループごとに別のパネルにグラフを描画する</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">{base} code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">{base} output</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">{ggplot} code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">{ggplot} output</a></li></ul>
 <div class="tab-content">
@@ -625,8 +613,8 @@ $Women
 </div>
 </div>
 </section>
-<section id="同じパネルにグループ別のグラフを重ね合わせる" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="同じパネルにグループ別のグラフを重ね合わせる"><span class="header-section-number">10.1.2</span> 同じパネルにグループ別のグラフを重ね合わせる</h3>
+<section id="同じパネルにグループ別のグラフを重ね合わせる" class="level4" data-number="7.3.1.2">
+<h4 data-number="7.3.1.2" class="anchored" data-anchor-id="同じパネルにグループ別のグラフを重ね合わせる"><span class="header-section-number">7.3.1.2</span> 同じパネルにグループ別のグラフを重ね合わせる</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">{base} code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">{base} output</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">{ggplot} code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">{ggplot} output</a></li></ul>
 <div class="tab-content">
@@ -688,8 +676,8 @@ $Women
 </div>
 </section>
 </section>
-<section id="箱ひげ図" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="箱ひげ図"><span class="header-section-number">10.2</span> 箱ひげ図</h2>
+<section id="箱ひげ図" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="箱ひげ図"><span class="header-section-number">7.3.2</span> 箱ひげ図</h3>
 <p>ヒストグラムと並んで、箱ひげ図もグループ別の変数の分布を視覚化するのに適している。以下にそのコード例を示した。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">{base} code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">{base} output</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">{ggplot} code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">{ggplot} output</a></li></ul>
@@ -740,8 +728,8 @@ $Women
 </div>
 </section>
 </section>
-<section id="t検定" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> t検定</h1>
+<section id="t検定" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="t検定"><span class="header-section-number">7.4</span> t検定</h2>
 <p>t検定には<code>t.test()</code>を用いる。従属変数とグループ変数は以下の形で指定する。</p>
 <blockquote class="blockquote">
 <p>従属変数 ~ グループ変数</p>

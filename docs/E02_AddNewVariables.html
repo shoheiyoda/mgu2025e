@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-03">
+<meta name="dcterms.date" content="2025-10-16">
 
 <title>3&nbsp; 変数の作成 – 2025年度　数量データ分析</title>
 <style>
@@ -287,9 +287,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#変数の作成" id="toc-変数の作成" class="nav-link active" data-scroll-target="#変数の作成"><span class="header-section-number">4</span> 変数の作成</a></li>
-  <li><a href="#baseによる方法" id="toc-baseによる方法" class="nav-link" data-scroll-target="#baseによる方法"><span class="header-section-number">5</span> {base}による方法</a></li>
-  <li><a href="#tidyverseによる方法" id="toc-tidyverseによる方法" class="nav-link" data-scroll-target="#tidyverseによる方法"><span class="header-section-number">6</span> {tidyverse}による方法</a></li>
+  <li><a href="#変数の作成" id="toc-変数の作成" class="nav-link active" data-scroll-target="#変数の作成"><span class="header-section-number">3.1</span> 変数の作成</a></li>
+  <li><a href="#baseによる方法" id="toc-baseによる方法" class="nav-link" data-scroll-target="#baseによる方法"><span class="header-section-number">3.2</span> {base}による方法</a></li>
+  <li><a href="#tidyverseによる方法" id="toc-tidyverseによる方法" class="nav-link" data-scroll-target="#tidyverseによる方法"><span class="header-section-number">3.3</span> {tidyverse}による方法</a></li>
   </ul>
 </nav>
     </div>
@@ -309,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-03</p>
+      <p class="date">2025-10-16</p>
     </div>
   </div>
   
@@ -321,8 +321,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="変数の作成" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> 変数の作成</h1>
+<section id="変数の作成" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="変数の作成"><span class="header-section-number">3.1</span> 変数の作成</h2>
 <p>データ分析の過程においては、新しい変数を追加する必要があることが多い。 例えば、「身長」と「体重」という2つの変数が与えられていて、それらをもとに「BMI」という新しい変数をデータフレームに追加することを考えてみる。 以下では、<code>R</code>にデフォルトでインストールされているサンプルデータ<code>women</code>を用いる。このサンプルデータの説明には</p>
 <blockquote class="blockquote">
 <p>Average Heights and Weights for American Women</p>
@@ -358,8 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>BMI(体重kg / [(身長m)^2])を算出する</li>
 </ol>
 </section>
-<section id="baseによる方法" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> {base}による方法</h1>
+<section id="baseによる方法" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="baseによる方法"><span class="header-section-number">3.2</span> {base}による方法</h2>
 <p>はじめに、<code>R</code>の{base}にもとづいた、新規変数の作成方法について見ていこう。<br>
 データフレーム内の変数（ベクトル）にアクセスする場合は<code>$</code>演算子を使うことはすでに学んだ通りである。新規変数を作成する場合もこの<code>$</code>演算子の後に新しい変数名を入力し、<code>&lt;-</code>で変数の中身を代入すれば良い。</p>
 <div class="cell">
@@ -410,8 +410,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>データフレームの最後の列に<code>BMI</code>が追加された。以上が{base}による新規変数の作成方法である。その方法自体はそこまで複雑ではないものの、問題はコードの中でデータフレームの名前（この例では<code>DF_sample</code>）を何度も指定しなければならない点である。これがコードの可読性を低めてしまっている原因のひとつであるが、{tidyverse}を使えばこの問題が解消される。</p>
 </section>
-<section id="tidyverseによる方法" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> {tidyverse}による方法</h1>
+<section id="tidyverseによる方法" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="tidyverseによる方法"><span class="header-section-number">3.3</span> {tidyverse}による方法</h2>
 <p>はじめに、{tidyverse}は使用する前にライブラリの呼び出しを行う必要がある。さらに、初回のみパッケージのインストールも行う必要がある。パッケージのインストールは<code>install.packages()</code>を用いる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")  # 初回のみでよい</span></span>

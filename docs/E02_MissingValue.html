@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-03">
+<meta name="dcterms.date" content="2025-10-16">
 
 <title>5&nbsp; 欠損値 – 2025年度　数量データ分析</title>
 <style>
@@ -287,16 +287,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#欠損値とは" id="toc-欠損値とは" class="nav-link active" data-scroll-target="#欠損値とは"><span class="header-section-number">6</span> 欠損値とは？</a></li>
-  <li><a href="#rにおける欠損値" id="toc-rにおける欠損値" class="nav-link" data-scroll-target="#rにおける欠損値"><span class="header-section-number">7</span> <code>R</code>における欠損値</a></li>
-  <li><a href="#欠損値の判定" id="toc-欠損値の判定" class="nav-link" data-scroll-target="#欠損値の判定"><span class="header-section-number">8</span> 欠損値の判定</a></li>
-  <li><a href="#欠損値の置換" id="toc-欠損値の置換" class="nav-link" data-scroll-target="#欠損値の置換"><span class="header-section-number">9</span> 欠損値の置換</a>
+  <li><a href="#欠損値とは" id="toc-欠損値とは" class="nav-link active" data-scroll-target="#欠損値とは"><span class="header-section-number">5.1</span> 欠損値とは？</a></li>
+  <li><a href="#rにおける欠損値" id="toc-rにおける欠損値" class="nav-link" data-scroll-target="#rにおける欠損値"><span class="header-section-number">5.2</span> <code>R</code>における欠損値</a></li>
+  <li><a href="#欠損値の判定" id="toc-欠損値の判定" class="nav-link" data-scroll-target="#欠損値の判定"><span class="header-section-number">5.3</span> 欠損値の判定</a></li>
+  <li><a href="#欠損値の置換" id="toc-欠損値の置換" class="nav-link" data-scroll-target="#欠損値の置換"><span class="header-section-number">5.4</span> 欠損値の置換</a>
   <ul class="collapse">
-  <li><a href="#ifelseを使う場合" id="toc-ifelseを使う場合" class="nav-link" data-scroll-target="#ifelseを使う場合"><span class="header-section-number">9.1</span> <code>ifelse</code>を使う場合</a></li>
-  <li><a href="#is.naでベクトル内の欠損値の位置を指定して置換する場合" id="toc-is.naでベクトル内の欠損値の位置を指定して置換する場合" class="nav-link" data-scroll-target="#is.naでベクトル内の欠損値の位置を指定して置換する場合"><span class="header-section-number">9.2</span> <code>is.na()</code>でベクトル内の欠損値の位置を指定して置換する場合</a></li>
+  <li><a href="#ifelseを使う場合" id="toc-ifelseを使う場合" class="nav-link" data-scroll-target="#ifelseを使う場合"><span class="header-section-number">5.4.1</span> <code>ifelse</code>を使う場合</a></li>
+  <li><a href="#is.naでベクトル内の欠損値の位置を指定して置換する場合" id="toc-is.naでベクトル内の欠損値の位置を指定して置換する場合" class="nav-link" data-scroll-target="#is.naでベクトル内の欠損値の位置を指定して置換する場合"><span class="header-section-number">5.4.2</span> <code>is.na()</code>でベクトル内の欠損値の位置を指定して置換する場合</a></li>
   </ul></li>
-  <li><a href="#欠損値の除去" id="toc-欠損値の除去" class="nav-link" data-scroll-target="#欠損値の除去"><span class="header-section-number">10</span> 欠損値の除去</a></li>
-  <li><a href="#データフレームにおける欠損値の処理" id="toc-データフレームにおける欠損値の処理" class="nav-link" data-scroll-target="#データフレームにおける欠損値の処理"><span class="header-section-number">11</span> データフレームにおける欠損値の処理</a></li>
+  <li><a href="#欠損値の除去" id="toc-欠損値の除去" class="nav-link" data-scroll-target="#欠損値の除去"><span class="header-section-number">5.5</span> 欠損値の除去</a></li>
+  <li><a href="#データフレームにおける欠損値の処理" id="toc-データフレームにおける欠損値の処理" class="nav-link" data-scroll-target="#データフレームにおける欠損値の処理"><span class="header-section-number">5.6</span> データフレームにおける欠損値の処理</a></li>
   </ul>
 </nav>
     </div>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-03</p>
+      <p class="date">2025-10-16</p>
     </div>
   </div>
   
@@ -328,13 +328,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="欠損値とは" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> 欠損値とは？</h1>
+<section id="欠損値とは" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="欠損値とは"><span class="header-section-number">5.1</span> 欠損値とは？</h2>
 <p>欠損値（missing value）とは、何らかの理由によって変数の値が観察されなかった状態のことを指す。</p>
 <p>例えば、「年齢」という変数が「30歳」という値を取る調査対象者を想定してみよう。この対象者が年齢を答えたくない、あるいは年齢に関する質問項目を見落としていた、などの理由から年齢を回答しなかった場合、本来得られるはずであった「30歳」という値は観測されずに「欠測」してしまう。</p>
 </section>
-<section id="rにおける欠損値" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> <code>R</code>における欠損値</h1>
+<section id="rにおける欠損値" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="rにおける欠損値"><span class="header-section-number">5.2</span> <code>R</code>における欠損値</h2>
 <p><code>R</code>では通常、欠損値は<code>NA</code>で表示される。このほかにも非数値<code>NaN</code>、無限大<code>Inf</code>という属性があるが現時点ではひとまず覚えなくて良い。</p>
 <p>例えば、以下のように入力するとベクトルの2番目の要素が欠損値になる。</p>
 <div class="cell">
@@ -345,8 +345,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="欠損値の判定" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> 欠損値の判定</h1>
+<section id="欠損値の判定" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="欠損値の判定"><span class="header-section-number">5.3</span> 欠損値の判定</h2>
 <p>ベクトルの要素が欠損値か否かを判定するのための関数が<code>is.na()</code>である。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(Hako)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -364,11 +364,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="欠損値の置換" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> 欠損値の置換</h1>
+<section id="欠損値の置換" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="欠損値の置換"><span class="header-section-number">5.4</span> 欠損値の置換</h2>
 <p>欠損値を任意の値に置き換えたい場合、いくつかの方法がある</p>
-<section id="ifelseを使う場合" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="ifelseを使う場合"><span class="header-section-number">9.1</span> <code>ifelse</code>を使う場合</h2>
+<section id="ifelseを使う場合" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="ifelseを使う場合"><span class="header-section-number">5.4.1</span> <code>ifelse</code>を使う場合</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">is.na</span>(Hako), <span class="dv">0</span>, Hako)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -390,8 +390,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="is.naでベクトル内の欠損値の位置を指定して置換する場合" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="is.naでベクトル内の欠損値の位置を指定して置換する場合"><span class="header-section-number">9.2</span> <code>is.na()</code>でベクトル内の欠損値の位置を指定して置換する場合</h2>
+<section id="is.naでベクトル内の欠損値の位置を指定して置換する場合" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="is.naでベクトル内の欠損値の位置を指定して置換する場合"><span class="header-section-number">5.4.2</span> <code>is.na()</code>でベクトル内の欠損値の位置を指定して置換する場合</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Hako2 <span class="ot">&lt;-</span> Hako</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>Hako2[<span class="fu">is.na</span>(Hako2)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
@@ -402,8 +402,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="欠損値の除去" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> 欠損値の除去</h1>
+<section id="欠損値の除去" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="欠損値の除去"><span class="header-section-number">5.5</span> 欠損値の除去</h2>
 <p>ベクトルに欠損値が含まれる場合、そのままでは関数が適用できないことがある。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Hako)  <span class="co"># 1 + NA + 2 = NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -439,8 +439,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="データフレームにおける欠損値の処理" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> データフレームにおける欠損値の処理</h1>
+<section id="データフレームにおける欠損値の処理" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="データフレームにおける欠損値の処理"><span class="header-section-number">5.6</span> データフレームにおける欠損値の処理</h2>
 <p>データフレームにおける欠損値を処理するための関数として<code>na.omit()</code>がある。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 曜日ごとのビール消費量のデータフレームを作成</span></span>

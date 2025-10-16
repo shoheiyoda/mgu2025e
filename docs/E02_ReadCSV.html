@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-03">
+<meta name="dcterms.date" content="2025-10-16">
 
 <title>2&nbsp; データの出入力 – 2025年度　数量データ分析</title>
 <style>
@@ -287,21 +287,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#データの読み込み" id="toc-データの読み込み" class="nav-link active" data-scroll-target="#データの読み込み"><span class="header-section-number">3</span> データの読み込み</a>
+  <li><a href="#データの読み込み" id="toc-データの読み込み" class="nav-link active" data-scroll-target="#データの読み込み"><span class="header-section-number">2.1</span> データの読み込み</a>
   <ul class="collapse">
-  <li><a href="#csvファイルの読み込み" id="toc-csvファイルの読み込み" class="nav-link" data-scroll-target="#csvファイルの読み込み"><span class="header-section-number">3.1</span> CSVファイルの読み込み</a>
-  <ul class="collapse">
-  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="header-section-number">3.1.1</span> <code>read.csv()</code></a></li>
-  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="header-section-number">3.1.2</span> <code>read_csv()</code></a></li>
+  <li><a href="#csvファイルの読み込み" id="toc-csvファイルの読み込み" class="nav-link" data-scroll-target="#csvファイルの読み込み"><span class="header-section-number">2.1.1</span> CSVファイルの読み込み</a></li>
+  <li><a href="#excelファイルの読み込み" id="toc-excelファイルの読み込み" class="nav-link" data-scroll-target="#excelファイルの読み込み"><span class="header-section-number">2.1.2</span> Excelファイルの読み込み</a></li>
+  <li><a href="#他の統計解析パッケージのデータファイルの読み込み" id="toc-他の統計解析パッケージのデータファイルの読み込み" class="nav-link" data-scroll-target="#他の統計解析パッケージのデータファイルの読み込み"><span class="header-section-number">2.1.3</span> 他の統計解析パッケージのデータファイルの読み込み</a></li>
   </ul></li>
-  <li><a href="#excelファイルの読み込み" id="toc-excelファイルの読み込み" class="nav-link" data-scroll-target="#excelファイルの読み込み"><span class="header-section-number">3.2</span> Excelファイルの読み込み</a></li>
-  <li><a href="#他の統計解析パッケージのデータファイルの読み込み" id="toc-他の統計解析パッケージのデータファイルの読み込み" class="nav-link" data-scroll-target="#他の統計解析パッケージのデータファイルの読み込み"><span class="header-section-number">3.3</span> 他の統計解析パッケージのデータファイルの読み込み</a></li>
-  </ul></li>
-  <li><a href="#データの書き出し" id="toc-データの書き出し" class="nav-link" data-scroll-target="#データの書き出し"><span class="header-section-number">4</span> データの書き出し</a>
+  <li><a href="#データの書き出し" id="toc-データの書き出し" class="nav-link" data-scroll-target="#データの書き出し"><span class="header-section-number">2.2</span> データの書き出し</a>
   <ul class="collapse">
-  <li><a href="#csvファイル" id="toc-csvファイル" class="nav-link" data-scroll-target="#csvファイル"><span class="header-section-number">4.1</span> CSVファイル</a></li>
-  <li><a href="#rdataファイル" id="toc-rdataファイル" class="nav-link" data-scroll-target="#rdataファイル"><span class="header-section-number">4.2</span> Rdataファイル</a></li>
-  <li><a href="#rdsファイル" id="toc-rdsファイル" class="nav-link" data-scroll-target="#rdsファイル"><span class="header-section-number">4.3</span> rdsファイル</a></li>
+  <li><a href="#csvファイル" id="toc-csvファイル" class="nav-link" data-scroll-target="#csvファイル"><span class="header-section-number">2.2.1</span> CSVファイル</a></li>
+  <li><a href="#rdataファイル" id="toc-rdataファイル" class="nav-link" data-scroll-target="#rdataファイル"><span class="header-section-number">2.2.2</span> Rdataファイル</a></li>
+  <li><a href="#rdsファイル" id="toc-rdsファイル" class="nav-link" data-scroll-target="#rdsファイル"><span class="header-section-number">2.2.3</span> rdsファイル</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -322,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-03</p>
+      <p class="date">2025-10-16</p>
     </div>
   </div>
   
@@ -334,14 +330,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="データの読み込み" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> データの読み込み</h1>
-<section id="csvファイルの読み込み" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="csvファイルの読み込み"><span class="header-section-number">3.1</span> CSVファイルの読み込み</h2>
+<section id="データの読み込み" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="データの読み込み"><span class="header-section-number">2.1</span> データの読み込み</h2>
+<section id="csvファイルの読み込み" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="csvファイルの読み込み"><span class="header-section-number">2.1.1</span> CSVファイルの読み込み</h3>
 <p>データ解析の第一歩は、分析対象となるデータファイルを<code>R</code>に読み込むことである。<code>R</code>に読み込むデータのフォーマットはいくつかあるが、最も代表的なものはCSV（comma separated values）ファイルである。後述するように、<code>R</code>では他の統計解析パッケージ（SPSS, Stata, SASなど）のデータフォーマットも出入力することができるが、CSVは最も標準的なフォーマットであるがゆえに、まずは<code>R</code>におけるCSVの処理について習得することを勧める。</p>
 <p>以下では<a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/">東大社研・若年パネル調査の非制限公開疑似データ</a>を例に、データファイルの読み込みを行ってみよう。</p>
-<section id="read.csv" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">3.1.1</span> <code>read.csv()</code></h3>
+<section id="read.csv" class="level4" data-number="2.1.1.1">
+<h4 data-number="2.1.1.1" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">2.1.1.1</span> <code>read.csv()</code></h4>
 <p><code>read.csv()</code>は<code>base</code>に組み込まれている関数であり、CSVファイルの読み込みに使うことができる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>FN_OrgCSV <span class="ot">&lt;-</span> <span class="st">"data/u001.csv"</span>        <span class="co"># 読み込むCSVファイル名。パスの指定に注意。</span></span>
@@ -364,8 +360,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="read_csv" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">3.1.2</span> <code>read_csv()</code></h3>
+<section id="read_csv" class="level4" data-number="2.1.1.2">
+<h4 data-number="2.1.1.2" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">2.1.1.2</span> <code>read_csv()</code></h4>
 <p>CSVファイルの読み込みには<code>read.csv()</code>でも事足りるのであるが、特に{tidyverse}環境で作業を進める場合は<code>read_csv()</code>の方が相性が良い。これは{tidyverse}エコシステムの一部である{readr}の中の関数である。<code>read.csv()</code>と比較すると<code>read_csv()</code>の方がデータの読み込み速度が早く、大規模データを取り扱う際にも向いている関数である。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")  # 初回のみでよい</span></span>
@@ -414,18 +410,18 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </section>
 </section>
-<section id="excelファイルの読み込み" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="excelファイルの読み込み"><span class="header-section-number">3.2</span> Excelファイルの読み込み</h2>
+<section id="excelファイルの読み込み" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="excelファイルの読み込み"><span class="header-section-number">2.1.2</span> Excelファイルの読み込み</h3>
 </section>
-<section id="他の統計解析パッケージのデータファイルの読み込み" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="他の統計解析パッケージのデータファイルの読み込み"><span class="header-section-number">3.3</span> 他の統計解析パッケージのデータファイルの読み込み</h2>
+<section id="他の統計解析パッケージのデータファイルの読み込み" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="他の統計解析パッケージのデータファイルの読み込み"><span class="header-section-number">2.1.3</span> 他の統計解析パッケージのデータファイルの読み込み</h3>
 </section>
 </section>
-<section id="データの書き出し" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> データの書き出し</h1>
+<section id="データの書き出し" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="データの書き出し"><span class="header-section-number">2.2</span> データの書き出し</h2>
 <p>データ前処理やデータ分析がある程度進んだ段階、あるいは分析が完了した段階でデータを保存する必要が生じてくる。保存したいデータはデータフレーム（や<code>tibble</code>）、グラフ、多変量解析の分析結果などさまざまな形を取りうるが、ここではデータフレームの保存方法のみを取り上げる。その他の出力結果の保存方法については適宜説明する。</p>
-<section id="csvファイル" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="csvファイル"><span class="header-section-number">4.1</span> CSVファイル</h2>
+<section id="csvファイル" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="csvファイル"><span class="header-section-number">2.2.1</span> CSVファイル</h3>
 <p>データをCSVファイルとして保存しておけば、<code>R</code>以外の統計解析パッケージやプログラミング言語を用いる人たちともデータのやり取りができる。そのため、最も汎用性が高いデータ保存フォーマットとしてCSVファイルを選択すべきであろう。データをCSVファイルとして出力するためには<code>write.csv()</code>あるいは<code>readr::write_csv()</code>を使う。いずれの関数も、1つ目の引数に保存するオブジェクト名を、2つ目の引数（<code>file</code>）に出力するファイル名を指定する。以下の例では<code>Output</code>というフォルダ内にCSVファイルを保存している。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>DF_Men <span class="ot">&lt;-</span>   <span class="co"># データセットから男性のみを抽出</span></span>
@@ -436,8 +432,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 <p><code>Output</code>フォルダを見てみると<code>DF_Men.csv</code>という名前のファイルが生成されているはずである。</p>
 </section>
-<section id="rdataファイル" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="rdataファイル"><span class="header-section-number">4.2</span> Rdataファイル</h2>
+<section id="rdataファイル" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="rdataファイル"><span class="header-section-number">2.2.2</span> Rdataファイル</h3>
 <p><code>R</code>を用いた分析で再利用したり、他の<code>R</code>ユーザーとデータを共有することが目的であれば<code>Rdata</code>ファイルでデータを保存しても良い。<code>Rdata</code>ファイルのメリットは<strong>複数のオブジェクトを保存できる</strong>ことである。例えば、データセットを性別で分割してそれぞれ<code>DF_Men</code>, <code>DF_Women</code>というオブジェクトに格納しておき、これら2つのデータセットを<code>Rdata</code>ファイルとして保存してみよう。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>DF_Women <span class="ot">&lt;-</span>  <span class="co"># データセットから女性のみを抽出</span></span>
@@ -472,8 +468,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 <p>のように、保存されたオブジェクト名が返ってくる。</p>
 </section>
-<section id="rdsファイル" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="rdsファイル"><span class="header-section-number">4.3</span> rdsファイル</h2>
+<section id="rdsファイル" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="rdsファイル"><span class="header-section-number">2.2.3</span> rdsファイル</h3>
 <p>上述のように、複数のオブジェクトを保存できることが<code>Rdata</code>ファイルのメリットである。しかしながら、これは特定のオブジェクトだけをワークスペース内にロードできないことを意味するため、同時にデメリットでもある。そこで、単一のオブジェクトを保存したり、ワークスペース内に読み込みたい場合は<code>rds</code>ファイルを利用するとよい。データを<code>rds</code>ファイルとして保存するためには<code>saveRDS()</code>を用いる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(DF_Men, <span class="at">file =</span> <span class="st">"DF_Men.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

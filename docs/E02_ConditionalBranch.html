@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-03">
+<meta name="dcterms.date" content="2025-10-16">
 
 <title>4&nbsp; 条件分岐 – 2025年度　数量データ分析</title>
 <style>
@@ -287,14 +287,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#条件分岐の重要性" id="toc-条件分岐の重要性" class="nav-link active" data-scroll-target="#条件分岐の重要性"><span class="header-section-number">5</span> 条件分岐の重要性</a></li>
-  <li><a href="#ifによる条件分岐" id="toc-ifによる条件分岐" class="nav-link" data-scroll-target="#ifによる条件分岐"><span class="header-section-number">6</span> <code>if</code>による条件分岐</a></li>
-  <li><a href="#ifelseによる条件分岐" id="toc-ifelseによる条件分岐" class="nav-link" data-scroll-target="#ifelseによる条件分岐"><span class="header-section-number">7</span> <code>ifelse</code>による条件分岐</a></li>
-  <li><a href="#ifelseを用いた新規変数の作成" id="toc-ifelseを用いた新規変数の作成" class="nav-link" data-scroll-target="#ifelseを用いた新規変数の作成"><span class="header-section-number">8</span> <code>ifelse</code>を用いた新規変数の作成</a></li>
-  <li><a href="#tidyverseにおける条件分岐" id="toc-tidyverseにおける条件分岐" class="nav-link" data-scroll-target="#tidyverseにおける条件分岐"><span class="header-section-number">9</span> {tidyverse}における条件分岐</a>
+  <li><a href="#条件分岐の重要性" id="toc-条件分岐の重要性" class="nav-link active" data-scroll-target="#条件分岐の重要性"><span class="header-section-number">4.1</span> 条件分岐の重要性</a></li>
+  <li><a href="#ifによる条件分岐" id="toc-ifによる条件分岐" class="nav-link" data-scroll-target="#ifによる条件分岐"><span class="header-section-number">4.2</span> <code>if</code>による条件分岐</a></li>
+  <li><a href="#ifelseによる条件分岐" id="toc-ifelseによる条件分岐" class="nav-link" data-scroll-target="#ifelseによる条件分岐"><span class="header-section-number">4.3</span> <code>ifelse</code>による条件分岐</a></li>
+  <li><a href="#ifelseを用いた新規変数の作成" id="toc-ifelseを用いた新規変数の作成" class="nav-link" data-scroll-target="#ifelseを用いた新規変数の作成"><span class="header-section-number">4.4</span> <code>ifelse</code>を用いた新規変数の作成</a></li>
+  <li><a href="#tidyverseにおける条件分岐" id="toc-tidyverseにおける条件分岐" class="nav-link" data-scroll-target="#tidyverseにおける条件分岐"><span class="header-section-number">4.5</span> {tidyverse}における条件分岐</a>
   <ul class="collapse">
-  <li><a href="#if_else" id="toc-if_else" class="nav-link" data-scroll-target="#if_else"><span class="header-section-number">9.1</span> <code>if_else</code></a></li>
-  <li><a href="#case_when" id="toc-case_when" class="nav-link" data-scroll-target="#case_when"><span class="header-section-number">9.2</span> <code>case_when</code></a></li>
+  <li><a href="#if_else" id="toc-if_else" class="nav-link" data-scroll-target="#if_else"><span class="header-section-number">4.5.1</span> <code>if_else</code></a></li>
+  <li><a href="#case_when" id="toc-case_when" class="nav-link" data-scroll-target="#case_when"><span class="header-section-number">4.5.2</span> <code>case_when</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -315,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-03</p>
+      <p class="date">2025-10-16</p>
     </div>
   </div>
   
@@ -327,8 +327,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="条件分岐の重要性" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> 条件分岐の重要性</h1>
+<section id="条件分岐の重要性" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="条件分岐の重要性"><span class="header-section-number">4.1</span> 条件分岐の重要性</h2>
 <p>統計データ分析、あるいはより一般的にプログラミングにおいて、条件分岐を用いると複雑な処理が可能になる。以下では</p>
 <ul>
 <li><code>if</code></li>
@@ -337,8 +337,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>の条件分岐の2つの方法について説明する。これらは{base}に組み込まれている関数群である。</p>
 <p>その後、{tidyverse}環境における条件分岐について説明する。</p>
 </section>
-<section id="ifによる条件分岐" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> <code>if</code>による条件分岐</h1>
+<section id="ifによる条件分岐" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="ifによる条件分岐"><span class="header-section-number">4.2</span> <code>if</code>による条件分岐</h2>
 <p><code>if</code>文は、「ある条件が真である場合にのみ何らかの処理を施すため」に用いる。例えば、変数<code>x</code>が1であるときに「xは1である」という文字列を表示させるためには以下のように記入する。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -392,8 +392,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="ifelseによる条件分岐" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> <code>ifelse</code>による条件分岐</h1>
+<section id="ifelseによる条件分岐" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="ifelseによる条件分岐"><span class="header-section-number">4.3</span> <code>ifelse</code>による条件分岐</h2>
 <p><code>ifelse</code>はベクトルに対して適用できる条件分岐であり、以下の構造を持つ。</p>
 <p><code>ifelse(condition, true, false)</code></p>
 <ul>
@@ -441,8 +441,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="ifelseを用いた新規変数の作成" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> <code>ifelse</code>を用いた新規変数の作成</h1>
+<section id="ifelseを用いた新規変数の作成" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="ifelseを用いた新規変数の作成"><span class="header-section-number">4.4</span> <code>ifelse</code>を用いた新規変数の作成</h2>
 <p>ここまでの説明では、条件分岐が何のために使われるのか、いまひとつ的を得ないかもしれない。統計データ分析、とりわけ個票データの分析において、条件分岐は新規変数を追加するうえで欠かせない。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Youbi       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>)</span>
@@ -477,8 +477,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="tidyverseにおける条件分岐" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> {tidyverse}における条件分岐</h1>
+<section id="tidyverseにおける条件分岐" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="tidyverseにおける条件分岐"><span class="header-section-number">4.5</span> {tidyverse}における条件分岐</h2>
 <p>{tidyverse}環境でも条件分岐を表現する関数が用意されている。以下では代表的なものとして<code>if_else</code>と<code>case_when</code>を紹介する。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Youbi       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>)</span>
@@ -499,8 +499,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 7 Sun           500</code></pre>
 </div>
 </div>
-<section id="if_else" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="if_else"><span class="header-section-number">9.1</span> <code>if_else</code></h2>
+<section id="if_else" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="if_else"><span class="header-section-number">4.5.1</span> <code>if_else</code></h3>
 <p><code>if_else</code>の使用方法は<code>base</code>の<code>ifelse</code>とほぼ同じである。ただし、いくつか重要な違いもあるため、以下見ていこう。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>DF <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">DrinkTooMuch =</span> <span class="fu">if_else</span>(BeerConsume <span class="sc">&gt;</span> <span class="dv">350</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -557,8 +557,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="cn">NA_real_</span>      <span class="co"># double</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="case_when" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="case_when"><span class="header-section-number">9.2</span> <code>case_when</code></h2>
+<section id="case_when" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="case_when"><span class="header-section-number">4.5.2</span> <code>case_when</code></h3>
 <p>{tidyverse}環境で<code>if_else</code>と並んで条件分岐によく使われるのが<code>case_when</code>である。これは複数の条件で場合分けする際に用いる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>DF <span class="sc">|&gt;</span> </span>
