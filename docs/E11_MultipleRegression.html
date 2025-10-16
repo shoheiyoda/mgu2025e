@@ -611,8 +611,8 @@ Attaching package: 'modelsummary'</code></pre>
 
     <script>
 
-      function styleCell_zl6tnjuwfdd8z0za3e5g(i, j, css_id) {
-          var table = document.getElementById("tinytable_zl6tnjuwfdd8z0za3e5g");
+      function styleCell_z8n7yzdcmi8uaojh0450(i, j, css_id) {
+          var table = document.getElementById("tinytable_z8n7yzdcmi8uaojh0450");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -622,7 +622,7 @@ Attaching package: 'modelsummary'</code></pre>
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_zl6tnjuwfdd8z0za3e5g');
+        var table = document.getElementById('tinytable_z8n7yzdcmi8uaojh0450');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -630,8 +630,8 @@ Attaching package: 'modelsummary'</code></pre>
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_zl6tnjuwfdd8z0za3e5g(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_zl6tnjuwfdd8z0za3e5g");
+      function spanCell_z8n7yzdcmi8uaojh0450(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_z8n7yzdcmi8uaojh0450");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -661,20 +661,20 @@ Attaching package: 'modelsummary'</code></pre>
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 14, j: 1 },  ], css_id: 'tinytable_css_4oel9eh8ywal0071btun',}, 
-          { positions: [ { i: 6, j: 1 },  ], css_id: 'tinytable_css_ydpl2zm5dnf803j1tc95',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 10, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 },  ], css_id: 'tinytable_css_16vdjlff57twpzklew44',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_t8km496kwylxaqad8914',}, 
-          { positions: [ { i: 14, j: 0 },  ], css_id: 'tinytable_css_6ipm53tau8zj8157a5qu',}, 
-          { positions: [ { i: 6, j: 0 },  ], css_id: 'tinytable_css_nlwy5ixy3ju0eb3d1iv5',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 10, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 },  ], css_id: 'tinytable_css_h56b93k3dmjqs0dfz5mw',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_daxt27fu9i2ee7eljkm2',}, 
+          { positions: [ { i: 14, j: 1 },  ], css_id: 'tinytable_css_gbs9hz93aje2c4djcel8',}, 
+          { positions: [ { i: 6, j: 1 },  ], css_id: 'tinytable_css_ch99gy7e2x762vv1eo8x',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 10, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 },  ], css_id: 'tinytable_css_w1jwtl18ud27hbojad15',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_d546jglhoiydxn911ood',}, 
+          { positions: [ { i: 14, j: 0 },  ], css_id: 'tinytable_css_zx31y3kqh9y0bky5yn5r',}, 
+          { positions: [ { i: 6, j: 0 },  ], css_id: 'tinytable_css_grkvuai35beguse7oaik',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 10, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 },  ], css_id: 'tinytable_css_l0dkqts7qr3ifq4xvo0p',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_r36g0hosyoyokrlpm26r',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_zl6tnjuwfdd8z0za3e5g(cell.i, cell.j, group.css_id);
+                  styleCell_z8n7yzdcmi8uaojh0450(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -682,17 +682,17 @@ Attaching package: 'modelsummary'</code></pre>
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_4oel9eh8ywal0071btun, .table th.tinytable_css_4oel9eh8ywal0071btun { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_ydpl2zm5dnf803j1tc95, .table th.tinytable_css_ydpl2zm5dnf803j1tc95 { text-align: center; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_16vdjlff57twpzklew44, .table th.tinytable_css_16vdjlff57twpzklew44 { text-align: center; }
-      .table td.tinytable_css_t8km496kwylxaqad8914, .table th.tinytable_css_t8km496kwylxaqad8914 { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_6ipm53tau8zj8157a5qu, .table th.tinytable_css_6ipm53tau8zj8157a5qu { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_nlwy5ixy3ju0eb3d1iv5, .table th.tinytable_css_nlwy5ixy3ju0eb3d1iv5 { text-align: left; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_h56b93k3dmjqs0dfz5mw, .table th.tinytable_css_h56b93k3dmjqs0dfz5mw { text-align: left; }
-      .table td.tinytable_css_daxt27fu9i2ee7eljkm2, .table th.tinytable_css_daxt27fu9i2ee7eljkm2 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_gbs9hz93aje2c4djcel8, .table th.tinytable_css_gbs9hz93aje2c4djcel8 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_ch99gy7e2x762vv1eo8x, .table th.tinytable_css_ch99gy7e2x762vv1eo8x { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_w1jwtl18ud27hbojad15, .table th.tinytable_css_w1jwtl18ud27hbojad15 { text-align: center; }
+      .table td.tinytable_css_d546jglhoiydxn911ood, .table th.tinytable_css_d546jglhoiydxn911ood { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_zx31y3kqh9y0bky5yn5r, .table th.tinytable_css_zx31y3kqh9y0bky5yn5r { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_grkvuai35beguse7oaik, .table th.tinytable_css_grkvuai35beguse7oaik { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_l0dkqts7qr3ifq4xvo0p, .table th.tinytable_css_l0dkqts7qr3ifq4xvo0p { text-align: left; }
+      .table td.tinytable_css_r36g0hosyoyokrlpm26r, .table th.tinytable_css_r36g0hosyoyokrlpm26r { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_zl6tnjuwfdd8z0za3e5g" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_z8n7yzdcmi8uaojh0450" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -835,23 +835,23 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   print.css memisc</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="znywvznchu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#znywvznchu table {
+<div id="sypfzthnac" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sypfzthnac table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#znywvznchu thead, #znywvznchu tbody, #znywvznchu tfoot, #znywvznchu tr, #znywvznchu td, #znywvznchu th {
+#sypfzthnac thead, #sypfzthnac tbody, #sypfzthnac tfoot, #sypfzthnac tr, #sypfzthnac td, #sypfzthnac th {
   border-style: none;
 }
 
-#znywvznchu p {
+#sypfzthnac p {
   margin: 0;
   padding: 0;
 }
 
-#znywvznchu .gt_table {
+#sypfzthnac .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -877,12 +877,12 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-left-color: #D3D3D3;
 }
 
-#znywvznchu .gt_caption {
+#sypfzthnac .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#znywvznchu .gt_title {
+#sypfzthnac .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -894,7 +894,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-bottom-width: 0;
 }
 
-#znywvznchu .gt_subtitle {
+#sypfzthnac .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -906,7 +906,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-top-width: 0;
 }
 
-#znywvznchu .gt_heading {
+#sypfzthnac .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -918,13 +918,13 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-right-color: #D3D3D3;
 }
 
-#znywvznchu .gt_bottom_border {
+#sypfzthnac .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#znywvznchu .gt_col_headings {
+#sypfzthnac .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -939,7 +939,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-right-color: #D3D3D3;
 }
 
-#znywvznchu .gt_col_heading {
+#sypfzthnac .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -959,7 +959,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   overflow-x: hidden;
 }
 
-#znywvznchu .gt_column_spanner_outer {
+#sypfzthnac .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -971,15 +971,15 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   padding-right: 4px;
 }
 
-#znywvznchu .gt_column_spanner_outer:first-child {
+#sypfzthnac .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#znywvznchu .gt_column_spanner_outer:last-child {
+#sypfzthnac .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#znywvznchu .gt_column_spanner {
+#sypfzthnac .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -991,11 +991,11 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   width: 100%;
 }
 
-#znywvznchu .gt_spanner_row {
+#sypfzthnac .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#znywvznchu .gt_group_heading {
+#sypfzthnac .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1021,7 +1021,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   text-align: left;
 }
 
-#znywvznchu .gt_empty_group_heading {
+#sypfzthnac .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1036,15 +1036,15 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   vertical-align: middle;
 }
 
-#znywvznchu .gt_from_md > :first-child {
+#sypfzthnac .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#znywvznchu .gt_from_md > :last-child {
+#sypfzthnac .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#znywvznchu .gt_row {
+#sypfzthnac .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1063,7 +1063,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   overflow-x: hidden;
 }
 
-#znywvznchu .gt_stub {
+#sypfzthnac .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1076,7 +1076,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   padding-right: 5px;
 }
 
-#znywvznchu .gt_stub_row_group {
+#sypfzthnac .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1090,15 +1090,15 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   vertical-align: top;
 }
 
-#znywvznchu .gt_row_group_first td {
+#sypfzthnac .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#znywvznchu .gt_row_group_first th {
+#sypfzthnac .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#znywvznchu .gt_summary_row {
+#sypfzthnac .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1108,16 +1108,16 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   padding-right: 5px;
 }
 
-#znywvznchu .gt_first_summary_row {
+#sypfzthnac .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#znywvznchu .gt_first_summary_row.thick {
+#sypfzthnac .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#znywvznchu .gt_last_summary_row {
+#sypfzthnac .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1127,7 +1127,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-bottom-color: #D3D3D3;
 }
 
-#znywvznchu .gt_grand_summary_row {
+#sypfzthnac .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1137,7 +1137,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   padding-right: 5px;
 }
 
-#znywvznchu .gt_first_grand_summary_row {
+#sypfzthnac .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1147,7 +1147,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-top-color: #D3D3D3;
 }
 
-#znywvznchu .gt_last_grand_summary_row_top {
+#sypfzthnac .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1157,11 +1157,11 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-bottom-color: #D3D3D3;
 }
 
-#znywvznchu .gt_striped {
+#sypfzthnac .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#znywvznchu .gt_table_body {
+#sypfzthnac .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1170,7 +1170,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-bottom-color: #D3D3D3;
 }
 
-#znywvznchu .gt_footnotes {
+#sypfzthnac .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1184,7 +1184,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-right-color: #D3D3D3;
 }
 
-#znywvznchu .gt_footnote {
+#sypfzthnac .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1193,7 +1193,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   padding-right: 5px;
 }
 
-#znywvznchu .gt_sourcenotes {
+#sypfzthnac .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1207,7 +1207,7 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   border-right-color: #D3D3D3;
 }
 
-#znywvznchu .gt_sourcenote {
+#sypfzthnac .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1215,72 +1215,72 @@ Women: lm(formula = StatIden ~ Income + IncomeSpo, data = subset(DF,
   padding-right: 5px;
 }
 
-#znywvznchu .gt_left {
+#sypfzthnac .gt_left {
   text-align: left;
 }
 
-#znywvznchu .gt_center {
+#sypfzthnac .gt_center {
   text-align: center;
 }
 
-#znywvznchu .gt_right {
+#sypfzthnac .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#znywvznchu .gt_font_normal {
+#sypfzthnac .gt_font_normal {
   font-weight: normal;
 }
 
-#znywvznchu .gt_font_bold {
+#sypfzthnac .gt_font_bold {
   font-weight: bold;
 }
 
-#znywvznchu .gt_font_italic {
+#sypfzthnac .gt_font_italic {
   font-style: italic;
 }
 
-#znywvznchu .gt_super {
+#sypfzthnac .gt_super {
   font-size: 65%;
 }
 
-#znywvznchu .gt_footnote_marks {
+#sypfzthnac .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#znywvznchu .gt_asterisk {
+#sypfzthnac .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#znywvznchu .gt_indent_1 {
+#sypfzthnac .gt_indent_1 {
   text-indent: 5px;
 }
 
-#znywvznchu .gt_indent_2 {
+#sypfzthnac .gt_indent_2 {
   text-indent: 10px;
 }
 
-#znywvznchu .gt_indent_3 {
+#sypfzthnac .gt_indent_3 {
   text-indent: 15px;
 }
 
-#znywvznchu .gt_indent_4 {
+#sypfzthnac .gt_indent_4 {
   text-indent: 20px;
 }
 
-#znywvznchu .gt_indent_5 {
+#sypfzthnac .gt_indent_5 {
   text-indent: 25px;
 }
 
-#znywvznchu .katex-display {
+#sypfzthnac .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#znywvznchu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#sypfzthnac div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

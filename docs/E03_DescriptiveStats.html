@@ -298,17 +298,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#base-1" id="toc-base-1" class="nav-link" data-scroll-target="#base-1"><span class="header-section-number">6.3.1</span> {base}</a></li>
   <li><a href="#tidyverse-1" id="toc-tidyverse-1" class="nav-link" data-scroll-target="#tidyverse-1"><span class="header-section-number">6.3.2</span> {tidyverse}</a></li>
   </ul></li>
-  <li><a href="#変数に欠測値が含まれる場合" id="toc-変数に欠測値が含まれる場合" class="nav-link" data-scroll-target="#変数に欠測値が含まれる場合"><span class="header-section-number">7</span> 変数に欠測値が含まれる場合</a>
+  <li><a href="#変数に欠測値が含まれる場合" id="toc-変数に欠測値が含まれる場合" class="nav-link" data-scroll-target="#変数に欠測値が含まれる場合"><span class="header-section-number">6.4</span> 変数に欠測値が含まれる場合</a>
   <ul class="collapse">
-  <li><a href="#度数分布表-1" id="toc-度数分布表-1" class="nav-link" data-scroll-target="#度数分布表-1"><span class="header-section-number">7.1</span> 度数分布表</a>
-  <ul class="collapse">
-  <li><a href="#代表値散布度-1" id="toc-代表値散布度-1" class="nav-link" data-scroll-target="#代表値散布度-1"><span class="header-section-number">7.1.1</span> 代表値・散布度</a></li>
+  <li><a href="#度数分布表-1" id="toc-度数分布表-1" class="nav-link" data-scroll-target="#度数分布表-1"><span class="header-section-number">6.4.1</span> 度数分布表</a></li>
+  <li><a href="#代表値散布度-1" id="toc-代表値散布度-1" class="nav-link" data-scroll-target="#代表値散布度-1"><span class="header-section-number">6.4.2</span> 代表値・散布度</a></li>
   </ul></li>
-  <li><a href="#単変数の可視化" id="toc-単変数の可視化" class="nav-link" data-scroll-target="#単変数の可視化"><span class="header-section-number">7.2</span> 単変数の可視化</a>
+  <li><a href="#単変数の可視化" id="toc-単変数の可視化" class="nav-link" data-scroll-target="#単変数の可視化"><span class="header-section-number">6.5</span> 単変数の可視化</a>
   <ul class="collapse">
-  <li><a href="#ヒストグラム" id="toc-ヒストグラム" class="nav-link" data-scroll-target="#ヒストグラム"><span class="header-section-number">7.2.1</span> ヒストグラム</a></li>
-  <li><a href="#箱ひげ図" id="toc-箱ひげ図" class="nav-link" data-scroll-target="#箱ひげ図"><span class="header-section-number">7.2.2</span> 箱ひげ図</a></li>
-  </ul></li>
+  <li><a href="#ヒストグラム" id="toc-ヒストグラム" class="nav-link" data-scroll-target="#ヒストグラム"><span class="header-section-number">6.5.1</span> ヒストグラム</a></li>
+  <li><a href="#箱ひげ図" id="toc-箱ひげ図" class="nav-link" data-scroll-target="#箱ひげ図"><span class="header-section-number">6.5.2</span> 箱ひげ図</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -624,8 +622,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </section>
 </section>
-<section id="変数に欠測値が含まれる場合" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> 変数に欠測値が含まれる場合</h1>
+<section id="変数に欠測値が含まれる場合" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="変数に欠測値が含まれる場合"><span class="header-section-number">6.4</span> 変数に欠測値が含まれる場合</h2>
 <p>ここまでの例では、変数<code>ybirth</code>に欠測値が含まれていなかったが、もし欠測値がひとつでも含まれていたらどのように処理すれば良いだろうか。それを確認するために、まずは意図的に要素のひとつを欠測値に置き換えてみよう。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ybirthの10番目の要素を欠測値にしてみる</span></span>
@@ -637,8 +635,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 <p>最初の10ケースのみについて<code>ybirth</code>を出力してみると、最後の要素のみが<code>NA</code>になっていることが確認できた。</p>
-<section id="度数分布表-1" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="度数分布表-1"><span class="header-section-number">7.1</span> 度数分布表</h2>
+<section id="度数分布表-1" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="度数分布表-1"><span class="header-section-number">6.4.1</span> 度数分布表</h3>
 <p>この状態で度数分布表を出力すると、</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>DF_wNA <span class="sc">|&gt;</span> </span>
@@ -685,8 +683,9 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 16     NA     1</code></pre>
 </div>
 </div>
-<section id="代表値散布度-1" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="代表値散布度-1"><span class="header-section-number">7.1.1</span> 代表値・散布度</h3>
+</section>
+<section id="代表値散布度-1" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="代表値散布度-1"><span class="header-section-number">6.4.2</span> 代表値・散布度</h3>
 <p>つづいて、欠測値がデータ（ベクトル）に含まれている場合に代表値はどのように算出すれば良いだろうか。例えば<code>mean()</code>ではデフォルトの設定では<code>NA</code>が返ってきてしまう。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>DF_wNA <span class="sc">|&gt;</span> </span>
@@ -696,8 +695,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 <p>こうした場合、以下の2通りのいずれかで対応すればよい。</p>
-<section id="欠測値を除いてから関数に引き渡す" class="level4" data-number="7.1.1.1">
-<h4 data-number="7.1.1.1" class="anchored" data-anchor-id="欠測値を除いてから関数に引き渡す"><span class="header-section-number">7.1.1.1</span> 欠測値を除いてから関数に引き渡す</h4>
+<section id="欠測値を除いてから関数に引き渡す" class="level4" data-number="6.4.2.1">
+<h4 data-number="6.4.2.1" class="anchored" data-anchor-id="欠測値を除いてから関数に引き渡す"><span class="header-section-number">6.4.2.1</span> 欠測値を除いてから関数に引き渡す</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>DF_wNA <span class="sc">|&gt;</span> </span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(ybirth) <span class="sc">|&gt;</span> </span>
@@ -707,8 +706,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
-<section id="na.rmオプションを用いる" class="level4" data-number="7.1.1.2">
-<h4 data-number="7.1.1.2" class="anchored" data-anchor-id="na.rmオプションを用いる"><span class="header-section-number">7.1.1.2</span> <code>na.rm</code>オプションを用いる</h4>
+<section id="na.rmオプションを用いる" class="level4" data-number="6.4.2.2">
+<h4 data-number="6.4.2.2" class="anchored" data-anchor-id="na.rmオプションを用いる"><span class="header-section-number">6.4.2.2</span> <code>na.rm</code>オプションを用いる</h4>
 <p><code>R</code>の多くの関数には引数として<code>na.rm</code>というものが実装されている。これは、引き渡されたデータから欠測値を除去してからその関数内で定義された処理を施すためのものである。先に紹介した<code>mean()</code>, <code>median()</code>, <code>sd()</code>はいずれもこの引数を備えている。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(DF_wNA<span class="sc">$</span>ybirth, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -727,10 +726,10 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </section>
 </section>
 </section>
-<section id="単変数の可視化" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="単変数の可視化"><span class="header-section-number">7.2</span> 単変数の可視化</h2>
-<section id="ヒストグラム" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="ヒストグラム"><span class="header-section-number">7.2.1</span> ヒストグラム</h3>
+<section id="単変数の可視化" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="単変数の可視化"><span class="header-section-number">6.5</span> 単変数の可視化</h2>
+<section id="ヒストグラム" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="ヒストグラム"><span class="header-section-number">6.5.1</span> ヒストグラム</h3>
 <p>単変量の可視化の代表的な方法に<strong>ヒストグラム（histogram）</strong>がある。ヒストグラムは以下の特徴がある。</p>
 <ul>
 <li>連続変数の可視化に用いる
@@ -792,8 +791,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
-<section id="箱ひげ図" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="箱ひげ図"><span class="header-section-number">7.2.2</span> 箱ひげ図</h3>
+<section id="箱ひげ図" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="箱ひげ図"><span class="header-section-number">6.5.2</span> 箱ひげ図</h3>
 <p>ヒストグラムと同様に単変量の連続変数の可視化によく用いられるのが<strong>箱ひげ図</strong>である。箱ひげ図の特徴は以下の通りである。</p>
 <ul>
 <li>第1四分位数（25パーセンタイル）と第3四分位数（75パーセンタイル）を囲う形で「箱」が描かれる</li>
@@ -850,7 +849,6 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 
