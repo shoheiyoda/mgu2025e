@@ -2,7 +2,7 @@
 title: "記述統計量"
 ---
 
-# 使用データ
+## 使用データ
 [東大社研・若年パネル調査の非制限公開疑似データ](https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/)を用いる。まだデータをダウンロードしていない場合は左のサイトからデータを取得しておくこと。CSV, Stata, SPSSでデータが提供されているが、ここではCSVファイルを使う。
 
 まずはデータの読み込みである。
@@ -33,10 +33,10 @@ colnames(DF)
 
 各変数がどのような調査項目に該当するのかについては調査票を確認すること。以下では、回答者の生年（`ybirth`）を例に記述統計量を算出してみよう。
 
-# 度数分布表
+## 度数分布表
 平均値や標準偏差などの変数の要約統計量（変数の分布の何らかの特徴をひとつの数値で表したもの）を算出する前に、必ずやっておくべきことは度数分布表を出力することである。これを怠ると、データの中に外れ値（異常値）が含まれていたり、欠測値の処理を忘れている（例えば欠測値に`9999`が割り当てられているが`NA`として処理していない）ことを見落とす可能性がある。
 
-## {base}
+### {base}
 度数分布表を出力するための代表的な関数として`table()`が挙げられる。
 
 ```{r}
@@ -81,7 +81,7 @@ DF |>
 
 これは直前の処理結果がパイプ演算子によって次の関数に引き渡されていくためである。このように、処理が複雑になるほどパイプ演算子を使うことのメリットが生まれてくる。
 
-## {tidyverse}
+### {tidyverse}
 {tidyverse}で度数分布表を出力するためには`count()`を用いる。
 
 ```{r}
@@ -97,7 +97,7 @@ DF |>
   mutate(Prop = n / sum(n))
 ```
 
-# 代表値・散布度
+## 代表値・散布度
 度数分布表を出力して異常値や欠損値の有無を確認できたら、つづいて代表値や散布度を算出してみよう。これらの記述統計量を算出する際によく使うものを以下にいくつか列挙した。
 
 |            |          | 
@@ -108,7 +108,7 @@ DF |>
 | `min()`    | 最小値   | 
 | `sd()`     | 標準偏差 | 
 
-## {base}
+### {base}
 {base}環境特有の記述統計量の算出方法というものが特段あるわけではないが（後述するように、これらの関数はすべて{tidyverse}でも使えるため）、上記の関数に変数ベクトルを引き渡せば各統計量が返ってくる。
 
 ```{r}
@@ -117,7 +117,7 @@ median(DF$ybirth)  # 中央値
 sd(DF$ybirth)      # 標準偏差
 ```
 
-## {tidyverse}
+### {tidyverse}
 {tidyverse}環境で記述統計量を算出するためには`reframe()`を用いる。{base}の時との違いは、返り値がスカラーではなく`tibble`のため、記述統計量を格納する新変数名を指定する必要がある。
 
 ```{r}
@@ -186,7 +186,7 @@ DF_wNA |>
   count(ybirth)
 ```
 
-## 代表値・散布度
+### 代表値・散布度
 つづいて、欠測値がデータ（ベクトル）に含まれている場合に代表値はどのように算出すれば良いだろうか。例えば`mean()`ではデフォルトの設定では`NA`が返ってきてしまう。
 
 ```{r}
@@ -196,14 +196,14 @@ DF_wNA |>
 
 こうした場合、以下の2通りのいずれかで対応すればよい。
 
-### 欠測値を除いてから関数に引き渡す
+#### 欠測値を除いてから関数に引き渡す
 ```{r}
 DF_wNA |> 
   drop_na(ybirth) |> 
   with(mean(ybirth))
 ```
 
-### `na.rm`オプションを用いる
+#### `na.rm`オプションを用いる
 `R`の多くの関数には引数として`na.rm`というものが実装されている。これは、引き渡されたデータから欠測値を除去してからその関数内で定義された処理を施すためのものである。先に紹介した`mean()`, `median()`, `sd()`はいずれもこの引数を備えている。
 
 ```{r}
@@ -212,8 +212,8 @@ median(DF_wNA$ybirth, na.rm = TRUE)
 sd(DF_wNA$ybirth, na.rm = TRUE)
 ```
 
-# 単変数の可視化
-## ヒストグラム
+## 単変数の可視化
+### ヒストグラム
 単変量の可視化の代表的な方法に**ヒストグラム（histogram）**がある。ヒストグラムは以下の特徴がある。
 
 - 連続変数の可視化に用いる
@@ -227,7 +227,7 @@ sd(DF_wNA$ybirth, na.rm = TRUE)
 - {tidyverse}: `geom_histogram()`
 
 ::: {.panel-tabset}
-## {base} code
+#### {base} code
 ```{r}
 #| echo: true
 #| eval: false
@@ -235,7 +235,7 @@ sd(DF_wNA$ybirth, na.rm = TRUE)
 hist(DF$ybirth)
 ```
 
-## {base} output
+#### {base} output
 ```{r}
 #| echo: false
 #| eval: true
@@ -243,7 +243,7 @@ hist(DF$ybirth)
 hist(DF$ybirth)
 ```
 
-## {ggplot} code
+#### {ggplot} code
 ```{r}
 #| echo: true
 #| eval: false
@@ -258,7 +258,7 @@ DF |>
        y = "Frequency")
 ```
 
-## {ggplot} output
+#### {ggplot} output
 ```{r}
 #| echo: false
 #| eval: true
@@ -276,7 +276,7 @@ DF |>
 
 
 
-## 箱ひげ図
+### 箱ひげ図
 ヒストグラムと同様に単変量の連続変数の可視化によく用いられるのが**箱ひげ図**である。箱ひげ図の特徴は以下の通りである。
 
 - 第1四分位数（25パーセンタイル）と第3四分位数（75パーセンタイル）を囲う形で「箱」が描かれる
@@ -290,7 +290,7 @@ DF |>
 - {tidyverse}: `geom_boxplot()`
 
 ::: {.panel-tabset}
-## {base} code
+#### {base} code
 ```{r}
 #| echo: true
 #| eval: false
@@ -298,7 +298,7 @@ DF |>
 boxplot(DF$ybirth)
 ```
 
-## {base} output
+#### {base} output
 ```{r}
 #| echo: false
 #| eval: true
@@ -306,7 +306,7 @@ boxplot(DF$ybirth)
 boxplot(DF$ybirth)
 ```
 
-## {ggplot} code
+#### {ggplot} code
 ```{r}
 #| echo: true
 #| eval: false
@@ -319,7 +319,7 @@ DF |>
        y = "Frequency")
 ```
 
-## {ggplot} output
+#### {ggplot} output
 ```{r}
 #| echo: false
 #| eval: true
