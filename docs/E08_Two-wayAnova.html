@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-16">
+<meta name="dcterms.date" content="2025-10-31">
 
 <title>11&nbsp; 多元配置分散分析 – 2025年度　数量データ分析</title>
 <style>
@@ -287,20 +287,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">12</span> データ・変数</a>
+  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">11.1</span> データ・変数</a>
   <ul class="collapse">
-  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">12.1</span> データ</a></li>
-  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">12.2</span> 変数</a></li>
+  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">11.1.1</span> データ</a></li>
+  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">11.1.2</span> 変数</a></li>
   </ul></li>
-  <li><a href="#グループ別平均値の算出" id="toc-グループ別平均値の算出" class="nav-link" data-scroll-target="#グループ別平均値の算出"><span class="header-section-number">13</span> グループ別平均値の算出</a>
+  <li><a href="#グループ別平均値の算出" id="toc-グループ別平均値の算出" class="nav-link" data-scroll-target="#グループ別平均値の算出"><span class="header-section-number">11.2</span> グループ別平均値の算出</a>
   <ul class="collapse">
-  <li><a href="#base" id="toc-base" class="nav-link" data-scroll-target="#base"><span class="header-section-number">13.1</span> {base}</a></li>
-  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">13.2</span> {tidyverse}</a></li>
+  <li><a href="#base" id="toc-base" class="nav-link" data-scroll-target="#base"><span class="header-section-number">11.2.1</span> {base}</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">11.2.2</span> {tidyverse}</a></li>
   </ul></li>
-  <li><a href="#データの可視化" id="toc-データの可視化" class="nav-link" data-scroll-target="#データの可視化"><span class="header-section-number">14</span> データの可視化</a></li>
-  <li><a href="#多元配置分散分析" id="toc-多元配置分散分析" class="nav-link" data-scroll-target="#多元配置分散分析"><span class="header-section-number">15</span> 多元配置分散分析</a></li>
-  <li><a href="#交互作用項" id="toc-交互作用項" class="nav-link" data-scroll-target="#交互作用項"><span class="header-section-number">16</span> 交互作用項</a></li>
-  <li><a href="#補足p-hacking" id="toc-補足p-hacking" class="nav-link" data-scroll-target="#補足p-hacking"><span class="header-section-number">17</span> 補足：P-hacking</a></li>
+  <li><a href="#データの可視化" id="toc-データの可視化" class="nav-link" data-scroll-target="#データの可視化"><span class="header-section-number">11.3</span> データの可視化</a></li>
+  <li><a href="#多元配置分散分析" id="toc-多元配置分散分析" class="nav-link" data-scroll-target="#多元配置分散分析"><span class="header-section-number">11.4</span> 多元配置分散分析</a></li>
+  <li><a href="#交互作用項" id="toc-交互作用項" class="nav-link" data-scroll-target="#交互作用項"><span class="header-section-number">11.5</span> 交互作用項</a></li>
+  <li><a href="#補足p-hacking" id="toc-補足p-hacking" class="nav-link" data-scroll-target="#補足p-hacking"><span class="header-section-number">11.6</span> 補足：P-hacking</a></li>
   </ul>
 </nav>
     </div>
@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-16</p>
+      <p class="date">2025-10-31</p>
     </div>
   </div>
   
@@ -332,10 +332,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="データ変数" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> データ・変数</h1>
-<section id="データ" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">12.1</span> データ</h2>
+<section id="データ変数" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="データ変数"><span class="header-section-number">11.1</span> データ・変数</h2>
+<section id="データ" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">11.1.1</span> データ</h3>
 <p><a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/">東大社研・若年パネル調査の非制限公開疑似データ</a>を用いる。</p>
 <p>以下では次の問いに答えることを目的とする。</p>
 <blockquote class="blockquote">
@@ -343,8 +343,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>なお、今回は分析対象を<strong>25-34歳の男女</strong>に限定する。</p>
 </section>
-<section id="変数" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">12.2</span> 変数</h2>
+<section id="変数" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">11.1.2</span> 変数</h3>
 <p>「第7回 分散分析」の最後のセクションで保存した<code>Anova_SexEduIncome.rds</code>を用いる。以下の変数が格納された<code>tibble</code>になっているはずである。</p>
 <ul>
 <li>回答者の性別: <code>sex</code></li>
@@ -377,11 +377,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="グループ別平均値の算出" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> グループ別平均値の算出</h1>
+<section id="グループ別平均値の算出" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="グループ別平均値の算出"><span class="header-section-number">11.2</span> グループ別平均値の算出</h2>
 <p>つづいて、グループ別に個人収入の平均値を算出する。今回の例では、性別と学歴の2つの説明変数が存在するため、これら2変数の組み合わせからなるグループ別に平均値を算出してみよう。</p>
-<section id="base" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="base"><span class="header-section-number">13.1</span> {base}</h2>
+<section id="base" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="base"><span class="header-section-number">11.2.1</span> {base}</h3>
 <p>{base}環境でグループ別に統計量を算出するためには<code>tapply()</code>が便利である。これは<code>apply()</code>関数族の一種であり、<code>apply()</code>は行列や配列に適用するのに対して<code>tapply()</code>はベクトルに適用される。<code>tapply()</code>は主に3つの引数からなり、</p>
 <ul>
 <li><code>X</code>: 関数を適用する対象となるベクトル</li>
@@ -411,8 +411,8 @@ Women     86   153   77</code></pre>
 </div>
 <p>このように、<code>tapply()</code>の返り値は行列（や配列）のため、グループ別の集計結果も視覚的にわかりやすい。</p>
 </section>
-<section id="tidyverse" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">13.2</span> {tidyverse}</h2>
+<section id="tidyverse" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">11.2.2</span> {tidyverse}</h3>
 <p>「第7回 分散分析」でも確認したように、グループ別の集計は{tidyverse}でも簡単に行うことができる。グルーピングに用いる変数が2つ以上の場合は、<code>group_by()</code>にそれらの変数を指定する。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>DF <span class="sc">|&gt;</span>  </span>
@@ -434,8 +434,8 @@ Women     86   153   77</code></pre>
 </div>
 </section>
 </section>
-<section id="データの可視化" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> データの可視化</h1>
+<section id="データの可視化" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="データの可視化"><span class="header-section-number">11.3</span> データの可視化</h2>
 <p>多元配置分散分析では説明変数が増えていくにつれてグループ数も増えていく。そのため、算出されたグループ別平均を眺めているだけではどのような傾向が見られるのかわかりにくいことも少なくない。そこで、まずはグループ別平均を可視化しておくとよい。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># グラフ化するデータの準備</span></span>
@@ -520,8 +520,8 @@ Women     86   153   77</code></pre>
 </div>
 </div>
 </section>
-<section id="多元配置分散分析" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> 多元配置分散分析</h1>
+<section id="多元配置分散分析" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="多元配置分散分析"><span class="header-section-number">11.4</span> 多元配置分散分析</h2>
 <p>一元配置分散分析の際には<code>anova()</code>を用いた。多元配置分散分析にも同じ関数を用いることができるが、後に見るように多くの計量社会学的分析においては別の関数を使うことが一般的である。まずは<code>anova()</code>関数を用いて多元配置分散分析を行ってみよう。一元配置分散分析の時と同様に、<code>lm</code>の後に「従属変数 ~ 独立変数」の形式でモデル式を指定すればよい。独立変数が複数ある場合は<code>+</code>でつなぐ。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>DF <span class="sc">|&gt;</span> <span class="fu">with</span>(<span class="fu">anova</span>(<span class="fu">lm</span>(Income <span class="sc">~</span> Sex <span class="sc">+</span> Edu3Grp)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -588,8 +588,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>モデル式の中で説明変数の順番を入れ替えても分散分析の結果が変わらないことがわかる。上記の結果からは、性別・学歴によって個人収入に違いがある（正確には、「性別・学歴によらず個人収入が同じとは言えない」）ことがわかる。</p>
 </section>
-<section id="交互作用項" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> 交互作用項</h1>
+<section id="交互作用項" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="交互作用項"><span class="header-section-number">11.5</span> 交互作用項</h2>
 <p>最後に、性別と学歴の交互作用効果を検討してみよう。この交互作用効果を有無を分析にすることによって、</p>
 <ul>
 <li>個人収入の男女差は学歴階層によって異なるのか？</li>
@@ -652,8 +652,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ul>
 <p>となる。</p>
 </section>
-<section id="補足p-hacking" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> 補足：P-hacking</h1>
+<section id="補足p-hacking" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="補足p-hacking"><span class="header-section-number">11.6</span> 補足：P-hacking</h2>
 <p>なお、統計的検定に用いる有意水準は事前に定めるべきものであり、分析結果を見てから有意水準を変更することは避けるべきである。今回の例で言えば、<code>Sex:Edu3Grp</code>のp値は.05を僅かに上回るだけであり、変数の操作化や分析対象の限定を少し修正するだけで.05を下回るp値を得られるかもしれない。しかしながら、このように統計的に有意な結果を得るためにデータや分析方法を操作することは「pハッキング（P-hacking）」と呼ばれ、研究の再現性を歪めるものとして避けるべきと考えられている。pハッキングは「疑わしい研究（不正）行為（Questionable Research Practices）」のひとつとしてよく挙げられる。</p>
 <p>また、p値が10%は下回っているが5%は上回っている場合に時折、</p>
 <blockquote class="blockquote">

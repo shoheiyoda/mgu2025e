@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-16">
+<meta name="dcterms.date" content="2025-10-31">
 
 <title>10&nbsp; 分散分析 – 2025年度　数量データ分析</title>
 <style>
@@ -287,23 +287,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">11</span> データ・変数</a>
+  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">10.1</span> データ・変数</a>
   <ul class="collapse">
-  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">11.1</span> データ</a></li>
-  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">11.2</span> 変数</a>
+  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">10.1.1</span> データ</a></li>
+  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">10.1.2</span> 変数</a></li>
+  </ul></li>
+  <li><a href="#分析" id="toc-分析" class="nav-link" data-scroll-target="#分析"><span class="header-section-number">10.2</span> 分析</a>
   <ul class="collapse">
-  <li><a href="#調査時年齢の作成" id="toc-調査時年齢の作成" class="nav-link" data-scroll-target="#調査時年齢の作成"><span class="header-section-number">11.2.1</span> 「調査時年齢」の作成</a></li>
-  <li><a href="#学歴と個人収入の準備" id="toc-学歴と個人収入の準備" class="nav-link" data-scroll-target="#学歴と個人収入の準備"><span class="header-section-number">11.2.2</span> 「学歴」と「個人収入」の準備</a></li>
-  <li><a href="#集計対象の限定と使用変数の指定" id="toc-集計対象の限定と使用変数の指定" class="nav-link" data-scroll-target="#集計対象の限定と使用変数の指定"><span class="header-section-number">11.2.3</span> 集計対象の限定と使用変数の指定</a></li>
+  <li><a href="#グループ別に記述統計量を算出" id="toc-グループ別に記述統計量を算出" class="nav-link" data-scroll-target="#グループ別に記述統計量を算出"><span class="header-section-number">10.2.1</span> グループ別に記述統計量を算出</a></li>
+  <li><a href="#分散分析" id="toc-分散分析" class="nav-link" data-scroll-target="#分散分析"><span class="header-section-number">10.2.2</span> 分散分析</a></li>
+  <li><a href="#多重比較" id="toc-多重比較" class="nav-link" data-scroll-target="#多重比較"><span class="header-section-number">10.2.3</span> 多重比較</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#分析" id="toc-分析" class="nav-link" data-scroll-target="#分析"><span class="header-section-number">12</span> 分析</a>
-  <ul class="collapse">
-  <li><a href="#グループ別に記述統計量を算出" id="toc-グループ別に記述統計量を算出" class="nav-link" data-scroll-target="#グループ別に記述統計量を算出"><span class="header-section-number">12.1</span> グループ別に記述統計量を算出</a></li>
-  <li><a href="#分散分析" id="toc-分散分析" class="nav-link" data-scroll-target="#分散分析"><span class="header-section-number">12.2</span> 分散分析</a></li>
-  <li><a href="#多重比較" id="toc-多重比較" class="nav-link" data-scroll-target="#多重比較"><span class="header-section-number">12.3</span> 多重比較</a></li>
-  </ul></li>
-  <li><a href="#多元配置分散分析へ" id="toc-多元配置分散分析へ" class="nav-link" data-scroll-target="#多元配置分散分析へ"><span class="header-section-number">13</span> 多元配置分散分析へ</a></li>
+  <li><a href="#多元配置分散分析へ" id="toc-多元配置分散分析へ" class="nav-link" data-scroll-target="#多元配置分散分析へ"><span class="header-section-number">10.3</span> 多元配置分散分析へ</a></li>
   </ul>
 </nav>
     </div>
@@ -323,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-16</p>
+      <p class="date">2025-10-31</p>
     </div>
   </div>
   
@@ -335,10 +330,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="データ変数" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> データ・変数</h1>
-<section id="データ" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">11.1</span> データ</h2>
+<section id="データ変数" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="データ変数"><span class="header-section-number">10.1</span> データ・変数</h2>
+<section id="データ" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">10.1.1</span> データ</h3>
 <p><a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/">東大社研・若年パネル調査の非制限公開疑似データ</a>を用いる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -360,8 +355,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </blockquote>
 <p>なお、今回は分析対象を<strong>25-34歳の男性</strong>に限定する。</p>
 </section>
-<section id="変数" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">11.2</span> 変数</h2>
+<section id="変数" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">10.1.2</span> 変数</h3>
 <ul>
 <li>回答者の性別: <code>sex</code></li>
 <li>回答者の生年月: <code>ybirth</code>, <code>mbirth</code></li>
@@ -380,8 +375,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <li>例：「100万円くらい（75〜150万円未満）」 -&gt; 100万円</li>
 </ul></li>
 </ul>
-<section id="調査時年齢の作成" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="調査時年齢の作成"><span class="header-section-number">11.2.1</span> 「調査時年齢」の作成</h3>
+<section id="調査時年齢の作成" class="level4" data-number="10.1.2.1">
+<h4 data-number="10.1.2.1" class="anchored" data-anchor-id="調査時年齢の作成"><span class="header-section-number">10.1.2.1</span> 「調査時年齢」の作成</h4>
 <p>まず、分析対象を25-34歳の男性に限定するために、「調査時点の満年齢」を新規変数として作成する必要がある。調査票で測定されているのは回答者の生年月（<code>ybirth</code>, <code>mbirth</code>）であるからである。同じ生年（<code>ybirth</code>）でも誕生月（<code>mbirth</code>）が調査月よりも前か後かで調査時点の満年齢が異なることに注意されたい。例えば以下のようなコードの書き方が挙げられる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>SurveyYear  <span class="ot">&lt;-</span> <span class="dv">2007</span></span>
@@ -436,8 +431,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </details>
 </div>
 </section>
-<section id="学歴と個人収入の準備" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="学歴と個人収入の準備"><span class="header-section-number">11.2.2</span> 「学歴」と「個人収入」の準備</h3>
+<section id="学歴と個人収入の準備" class="level4" data-number="10.1.2.2">
+<h4 data-number="10.1.2.2" class="anchored" data-anchor-id="学歴と個人収入の準備"><span class="header-section-number">10.1.2.2</span> 「学歴」と「個人収入」の準備</h4>
 <p>つづいて、分散分析において独立変数と従属変数となる、「学歴」と「個人収入」を準備しよう。学歴変数のリコードについては「第4回　母平均の差の検定」の際にも同様の作業を行ったのでそちらを参照のこと。個人収入の元変数<code>ZQ47A</code>の度数分布表を確認しておくと、</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>DF_temp_1 <span class="sc">|&gt;</span> </span>
@@ -514,8 +509,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
-<section id="集計対象の限定と使用変数の指定" class="level3" data-number="11.2.3">
-<h3 data-number="11.2.3" class="anchored" data-anchor-id="集計対象の限定と使用変数の指定"><span class="header-section-number">11.2.3</span> 集計対象の限定と使用変数の指定</h3>
+<section id="集計対象の限定と使用変数の指定" class="level4" data-number="10.1.2.3">
+<h4 data-number="10.1.2.3" class="anchored" data-anchor-id="集計対象の限定と使用変数の指定"><span class="header-section-number">10.1.2.3</span> 集計対象の限定と使用変数の指定</h4>
 <p>データ前処理の最後の段階として、集計対象の限定（25-34歳の男性回答者）をした上で、分散分析に使用する変数（学歴と個人収入）だけをデータフレームの中に残す。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span></span>
@@ -527,10 +522,10 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </section>
 </section>
 </section>
-<section id="分析" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> 分析</h1>
-<section id="グループ別に記述統計量を算出" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="グループ別に記述統計量を算出"><span class="header-section-number">12.1</span> グループ別に記述統計量を算出</h2>
+<section id="分析" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="分析"><span class="header-section-number">10.2</span> 分析</h2>
+<section id="グループ別に記述統計量を算出" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="グループ別に記述統計量を算出"><span class="header-section-number">10.2.1</span> グループ別に記述統計量を算出</h3>
 <p>まずは学歴グループ別に個人収入の記述統計量を算出しておく。ここでは</p>
 <ul>
 <li>平均値</li>
@@ -577,8 +572,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
-<section id="分散分析" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="分散分析"><span class="header-section-number">12.2</span> 分散分析</h2>
+<section id="分散分析" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="分散分析"><span class="header-section-number">10.2.2</span> 分散分析</h3>
 <p>分散分析を実行するには<code>anova()</code>コマンドを用いる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>DF <span class="sc">|&gt;</span> </span>
@@ -596,8 +591,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p><code>lm</code>の後にはモデル式を「従属変数 ~ 独立変数」の形式で指定する。<code>anova()</code>コマンドは分散分析表を返し、上記の例では「全ての学歴の平均収入が等しい」という帰無仮説は棄却されていることがわかる。</p>
 </section>
-<section id="多重比較" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="多重比較"><span class="header-section-number">12.3</span> 多重比較</h2>
+<section id="多重比較" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="多重比較"><span class="header-section-number">10.2.3</span> 多重比較</h3>
 <p><code>anova()</code>によって帰無仮説（「全ての平均値が等しい」）が棄却された場合、どのカテゴリ間で平均値に差があるのかを確認するために多重比較を行う（ただし、別の考え方として、初めから多重比較のみを行うべきという立場も存在する）。多重比較の方法は数多く存在するが、以下では代表的なものとして、Tukey法、Holm法、bonferroni法を紹介する。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Tukey法</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Holm法</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">bonferroni法</a></li></ul>
@@ -662,8 +657,8 @@ P value adjustment method: bonferroni </code></pre>
 <p>今回の例の場合、有意水準を5%に設定すると、個人収入の平均値に統計的な有意差が確認されるのは「大学卒」と「専門・短大卒」との間であることがわかる。</p>
 </section>
 </section>
-<section id="多元配置分散分析へ" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> 多元配置分散分析へ</h1>
+<section id="多元配置分散分析へ" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="多元配置分散分析へ"><span class="header-section-number">10.3</span> 多元配置分散分析へ</h2>
 <p>ここまで、独立変数が1つの場合（今回の例では学歴）の分散分析について解説した。次回は独立変数に性別を加えて、独立変数が2つ以上の場合の分散分析、すなわち多元配置分散分析について解説する。以下ではそのために用いるデータを保存しておこう。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  DF_temp_2 <span class="sc">|&gt;</span> </span>

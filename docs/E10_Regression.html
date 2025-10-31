@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-16">
+<meta name="dcterms.date" content="2025-10-31">
 
 <title>13&nbsp; 単回帰分析 – 2025年度　数量データ分析</title>
 <style>
@@ -287,17 +287,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">14</span> データ・変数</a>
+  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">13.1</span> データ・変数</a>
   <ul class="collapse">
-  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">14.1</span> データ</a></li>
-  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">14.2</span> 変数</a></li>
+  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">13.1.1</span> データ</a></li>
+  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">13.1.2</span> 変数</a></li>
   </ul></li>
-  <li><a href="#分析" id="toc-分析" class="nav-link" data-scroll-target="#分析"><span class="header-section-number">15</span> 分析</a>
+  <li><a href="#分析" id="toc-分析" class="nav-link" data-scroll-target="#分析"><span class="header-section-number">13.2</span> 分析</a>
   <ul class="collapse">
-  <li><a href="#散布図の作成" id="toc-散布図の作成" class="nav-link" data-scroll-target="#散布図の作成"><span class="header-section-number">15.1</span> 散布図の作成</a></li>
-  <li><a href="#単回帰分析" id="toc-単回帰分析" class="nav-link" data-scroll-target="#単回帰分析"><span class="header-section-number">15.2</span> 単回帰分析</a></li>
+  <li><a href="#散布図の作成" id="toc-散布図の作成" class="nav-link" data-scroll-target="#散布図の作成"><span class="header-section-number">13.2.1</span> 散布図の作成</a></li>
+  <li><a href="#単回帰分析" id="toc-単回帰分析" class="nav-link" data-scroll-target="#単回帰分析"><span class="header-section-number">13.2.2</span> 単回帰分析</a></li>
   </ul></li>
-  <li><a href="#散布図に回帰直線を追加する" id="toc-散布図に回帰直線を追加する" class="nav-link" data-scroll-target="#散布図に回帰直線を追加する"><span class="header-section-number">16</span> 散布図に回帰直線を追加する</a></li>
+  <li><a href="#散布図に回帰直線を追加する" id="toc-散布図に回帰直線を追加する" class="nav-link" data-scroll-target="#散布図に回帰直線を追加する"><span class="header-section-number">13.3</span> 散布図に回帰直線を追加する</a></li>
   </ul>
 </nav>
     </div>
@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-16</p>
+      <p class="date">2025-10-31</p>
     </div>
   </div>
   
@@ -329,10 +329,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="データ変数" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> データ・変数</h1>
-<section id="データ" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">14.1</span> データ</h2>
+<section id="データ変数" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="データ変数"><span class="header-section-number">13.1</span> データ・変数</h2>
+<section id="データ" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">13.1.1</span> データ</h3>
 <p><a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/">東大社研・若年パネル調査の非制限公開疑似データ</a>を用いる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -354,8 +354,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </blockquote>
 <p>なお、今回は分析対象を<strong>調査時点で就業している回答者</strong>に限定する。</p>
 </section>
-<section id="変数" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">14.2</span> 変数</h2>
+<section id="変数" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">13.1.2</span> 変数</h3>
 <ul>
 <li>回答者の個人収入: <code>ZQ47A</code>
 <ul>
@@ -425,10 +425,10 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </section>
 </section>
-<section id="分析" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> 分析</h1>
-<section id="散布図の作成" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="散布図の作成"><span class="header-section-number">15.1</span> 散布図の作成</h2>
+<section id="分析" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="分析"><span class="header-section-number">13.2</span> 分析</h2>
+<section id="散布図の作成" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="散布図の作成"><span class="header-section-number">13.2.1</span> 散布図の作成</h3>
 <p>はじめに、個人収入と階層帰属意識の散布図を書いてみよう。ここで注意すべきことは、「個人収入」も「階層帰属意識」も連続変数として便宜上取り扱うが、実際の測定においては離散的にしか観測されないことである。</p>
 <p>例えば、「東大社研・若年パネル調査」では、回答者は自身の個人収入についてその金額を記入するのではなく、あらかじめプリコードされたカテゴリの中からひとつを選択する形式をとっている。そうして得られた回答に対して、回答選択肢の中間値を割り当てることで連続変数としてみなしているに過ぎない。</p>
 <p>階層帰属意識も同様である。回答者は自身の社会的地位を表す数値として、1から10までの整数値の中からひとつを選択する。</p>
@@ -466,7 +466,7 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>)) <span class="sc">+</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 103 rows containing missing values or values outside the scale range
+<pre><code>Warning: Removed 105 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
@@ -481,8 +481,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
-<section id="単回帰分析" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="単回帰分析"><span class="header-section-number">15.2</span> 単回帰分析</h2>
+<section id="単回帰分析" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="単回帰分析"><span class="header-section-number">13.2.2</span> 単回帰分析</h3>
 <p><code>R</code>において線形回帰分析を行うには<code>lm()</code>を用いる。引数として左辺に従属変数、右辺に説明変数を置き、両者をチルダ（<code>~</code>）でつなぐ。さらに、使用するデータフレームのオブジェクト名を<code>data</code>に引き渡す。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>DF <span class="sc">|&gt;</span> </span>
@@ -575,7 +575,7 @@ F-statistic: 42.29 on 1 and 752 DF,  p-value: 1.437e-10</code></pre>
   .. ..- attr(*, "order")= int 1
   .. ..- attr(*, "intercept")= int 1
   .. ..- attr(*, "response")= int 1
-  .. ..- attr(*, ".Environment")=&lt;environment: 0x12b63a2d0&gt; 
+  .. ..- attr(*, ".Environment")=&lt;environment: 0x10de47d30&gt; 
   .. ..- attr(*, "predvars")= language list(StatIden, Income)
   .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. ..- attr(*, "names")= chr [1:2] "StatIden" "Income"
@@ -592,7 +592,7 @@ F-statistic: 42.29 on 1 and 752 DF,  p-value: 1.437e-10</code></pre>
   .. .. ..- attr(*, "order")= int 1
   .. .. ..- attr(*, "intercept")= int 1
   .. .. ..- attr(*, "response")= int 1
-  .. .. ..- attr(*, ".Environment")=&lt;environment: 0x12b63a2d0&gt; 
+  .. .. ..- attr(*, ".Environment")=&lt;environment: 0x10de47d30&gt; 
   .. .. ..- attr(*, "predvars")= language list(StatIden, Income)
   .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
   .. .. .. ..- attr(*, "names")= chr [1:2] "StatIden" "Income"
@@ -604,8 +604,8 @@ F-statistic: 42.29 on 1 and 752 DF,  p-value: 1.437e-10</code></pre>
 <p>あるいは、<code>lm()</code>のヘルプページの<strong>Value</strong>のセクションに返り値の一覧があるのでそちらも参考にすると良い。</p>
 </section>
 </section>
-<section id="散布図に回帰直線を追加する" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> 散布図に回帰直線を追加する</h1>
+<section id="散布図に回帰直線を追加する" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="散布図に回帰直線を追加する"><span class="header-section-number">13.3</span> 散布図に回帰直線を追加する</h2>
 <p>散布図に回帰直線を引く方法はいくつかあるが、ひとつの方法は以下の通りである。</p>
 <ol type="1">
 <li>回帰モデルを推定する</li>

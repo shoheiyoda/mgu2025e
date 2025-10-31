@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-16">
+<meta name="dcterms.date" content="2025-10-31">
 
 <title>12&nbsp; 相関と偏相関 – 2025年度　数量データ分析</title>
 <style>
@@ -287,20 +287,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#使用データ" id="toc-使用データ" class="nav-link active" data-scroll-target="#使用データ"><span class="header-section-number">13</span> 使用データ</a></li>
-  <li><a href="#相関係数" id="toc-相関係数" class="nav-link" data-scroll-target="#相関係数"><span class="header-section-number">14</span> 相関係数</a>
+  <li><a href="#使用データ" id="toc-使用データ" class="nav-link active" data-scroll-target="#使用データ"><span class="header-section-number">12.1</span> 使用データ</a></li>
+  <li><a href="#相関係数" id="toc-相関係数" class="nav-link" data-scroll-target="#相関係数"><span class="header-section-number">12.2</span> 相関係数</a>
   <ul class="collapse">
-  <li><a href="#相関係数の算出" id="toc-相関係数の算出" class="nav-link" data-scroll-target="#相関係数の算出"><span class="header-section-number">14.1</span> 相関係数の算出</a></li>
-  <li><a href="#相関係数の有意性検定" id="toc-相関係数の有意性検定" class="nav-link" data-scroll-target="#相関係数の有意性検定"><span class="header-section-number">14.2</span> 相関係数の有意性検定</a></li>
+  <li><a href="#相関係数の算出" id="toc-相関係数の算出" class="nav-link" data-scroll-target="#相関係数の算出"><span class="header-section-number">12.2.1</span> 相関係数の算出</a></li>
+  <li><a href="#相関係数の有意性検定" id="toc-相関係数の有意性検定" class="nav-link" data-scroll-target="#相関係数の有意性検定"><span class="header-section-number">12.2.2</span> 相関係数の有意性検定</a></li>
   </ul></li>
-  <li><a href="#相関行列の可視化" id="toc-相関行列の可視化" class="nav-link" data-scroll-target="#相関行列の可視化"><span class="header-section-number">15</span> 相関行列の可視化</a>
+  <li><a href="#相関行列の可視化" id="toc-相関行列の可視化" class="nav-link" data-scroll-target="#相関行列の可視化"><span class="header-section-number">12.3</span> 相関行列の可視化</a>
   <ul class="collapse">
-  <li><a href="#変数の場合" id="toc-変数の場合" class="nav-link" data-scroll-target="#変数の場合"><span class="header-section-number">15.1</span> 2変数の場合</a></li>
-  <li><a href="#変数以上の場合" id="toc-変数以上の場合" class="nav-link" data-scroll-target="#変数以上の場合"><span class="header-section-number">15.2</span> 3変数以上の場合</a>
-  <ul class="collapse">
-  <li><a href="#pairs" id="toc-pairs" class="nav-link" data-scroll-target="#pairs"><span class="header-section-number">15.2.1</span> <code>pairs()</code></a></li>
-  <li><a href="#pairs.panels" id="toc-pairs.panels" class="nav-link" data-scroll-target="#pairs.panels"><span class="header-section-number">15.2.2</span> <code>pairs.panels()</code></a></li>
-  </ul></li>
+  <li><a href="#変数の場合" id="toc-変数の場合" class="nav-link" data-scroll-target="#変数の場合"><span class="header-section-number">12.3.1</span> 2変数の場合</a></li>
+  <li><a href="#変数以上の場合" id="toc-変数以上の場合" class="nav-link" data-scroll-target="#変数以上の場合"><span class="header-section-number">12.3.2</span> 3変数以上の場合</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -321,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-16</p>
+      <p class="date">2025-10-31</p>
     </div>
   </div>
   
@@ -333,8 +329,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="使用データ" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> 使用データ</h1>
+<section id="使用データ" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="使用データ"><span class="header-section-number">12.1</span> 使用データ</h2>
 <p><code>R</code>にデフォルトで実装されているサンプルデータ<code>swiss</code>を用いる。<code>?swiss</code>と入力すると、このサンプルデータに関する説明を見ることができる。以下、Descriptionの項目を抜粋すると、</p>
 <blockquote class="blockquote">
 <p>Standardized fertility measure and socioeconomic indicators for each of 47 French-speaking provinces of Switzerland at about 1888.</p>
@@ -369,10 +365,10 @@ Porrentruy               26.6</code></pre>
 <li><code>Infant.Mortality</code>: 乳児死亡率（生後1年未満の乳児の死亡率）。</li>
 </ul>
 </section>
-<section id="相関係数" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> 相関係数</h1>
-<section id="相関係数の算出" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="相関係数の算出"><span class="header-section-number">14.1</span> 相関係数の算出</h2>
+<section id="相関係数" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="相関係数"><span class="header-section-number">12.2</span> 相関係数</h2>
+<section id="相関係数の算出" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="相関係数の算出"><span class="header-section-number">12.2.1</span> 相関係数の算出</h3>
 <p>相関係数を算出したい2つのベクトル（変数）がある場合、それらを<code>cor()</code>に引き渡せば相関係数が算出される。例えば、出生率<code>Fertility</code>と教育水準<code>Education</code>との相関係数を算出するには以下のようにすれば良い。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>swiss <span class="sc">|&gt;</span> </span>
@@ -402,8 +398,8 @@ Infant.Mortality       1.00000000</code></pre>
 </div>
 </div>
 </section>
-<section id="相関係数の有意性検定" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="相関係数の有意性検定"><span class="header-section-number">14.2</span> 相関係数の有意性検定</h2>
+<section id="相関係数の有意性検定" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="相関係数の有意性検定"><span class="header-section-number">12.2.2</span> 相関係数の有意性検定</h3>
 <p>相関係数の有意性検定を行うには<code>cor.test()</code>を使う。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">デフォルト</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">片側検定：“less” or “greater”</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">有意水準の設定</a></li></ul>
@@ -466,11 +462,11 @@ sample estimates:
 </div>
 </section>
 </section>
-<section id="相関行列の可視化" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> 相関行列の可視化</h1>
+<section id="相関行列の可視化" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="相関行列の可視化"><span class="header-section-number">12.3</span> 相関行列の可視化</h2>
 <p>相関関係を可視化するには散布図（scatter plot）を用いることが最も一般的である。変数が2つだけの場合と2つ以上との場合とで用いる関数が異なるため、以下、いくつかの具体例を示す。</p>
-<section id="変数の場合" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="変数の場合"><span class="header-section-number">15.1</span> 2変数の場合</h2>
+<section id="変数の場合" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="変数の場合"><span class="header-section-number">12.3.1</span> 2変数の場合</h3>
 <p>2変数の場合は<code>plot()</code>で簡単に散布図を作成できる。<code>plot()</code>は引数として<code>x</code>と<code>y</code>を持っており、それぞれ散布図のx軸とy軸にプロットするベクトルを指定する。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> swiss<span class="sc">$</span>Education, <span class="at">y =</span> swiss<span class="sc">$</span>Fertility)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -483,10 +479,10 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="変数以上の場合" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="変数以上の場合"><span class="header-section-number">15.2</span> 3変数以上の場合</h2>
-<section id="pairs" class="level3" data-number="15.2.1">
-<h3 data-number="15.2.1" class="anchored" data-anchor-id="pairs"><span class="header-section-number">15.2.1</span> <code>pairs()</code></h3>
+<section id="変数以上の場合" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="変数以上の場合"><span class="header-section-number">12.3.2</span> 3変数以上の場合</h3>
+<section id="pairs" class="level4" data-number="12.3.2.1">
+<h4 data-number="12.3.2.1" class="anchored" data-anchor-id="pairs"><span class="header-section-number">12.3.2.1</span> <code>pairs()</code></h4>
 <p>3変数以上の相関関係を可視化する場合、ひとつひとつの変数のペアについて<code>plot()</code>で散布図を作成するのは手間がかかる。そこで、別の関数を用いて相関行列そのものを可視化することが一般的である。例えば、<code>pairs()</code>は<code>R</code>の<code>base</code>に組み込まれている関数のひとつである。引数として、相関行列を構成する変数が含まれた行列やデータフレームをそのまま引き渡せばよい。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(swiss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -499,8 +495,8 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="pairs.panels" class="level3" data-number="15.2.2">
-<h3 data-number="15.2.2" class="anchored" data-anchor-id="pairs.panels"><span class="header-section-number">15.2.2</span> <code>pairs.panels()</code></h3>
+<section id="pairs.panels" class="level4" data-number="12.3.2.2">
+<h4 data-number="12.3.2.2" class="anchored" data-anchor-id="pairs.panels"><span class="header-section-number">12.3.2.2</span> <code>pairs.panels()</code></h4>
 <p><code>psych</code>パッケージに含まれる<code>pairs.panels()</code>を使って相関行列を可視化することも可能である。</p>
 <ul>
 <li>上三角行列：相関係数</li>

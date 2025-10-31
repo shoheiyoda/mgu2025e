@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-16">
+<meta name="dcterms.date" content="2025-10-31">
 
 <title>8&nbsp; クロス集計表 – 2025年度　数量データ分析</title>
 <style>
@@ -287,35 +287,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">9</span> データ・変数</a>
+  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">8.1</span> データ・変数</a>
   <ul class="collapse">
-  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">9.1</span> データ</a></li>
-  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">9.2</span> 変数</a>
-  <ul class="collapse">
-  <li><a href="#回答者の性別-sex" id="toc-回答者の性別-sex" class="nav-link" data-scroll-target="#回答者の性別-sex"><span class="header-section-number">9.2.1</span> 回答者の性別: <code>sex</code></a></li>
-  <li><a href="#回答者の学歴-zq23a" id="toc-回答者の学歴-zq23a" class="nav-link" data-scroll-target="#回答者の学歴-zq23a"><span class="header-section-number">9.2.2</span> 回答者の学歴: <code>ZQ23A</code></a></li>
+  <li><a href="#データ" id="toc-データ" class="nav-link" data-scroll-target="#データ"><span class="header-section-number">8.1.1</span> データ</a></li>
+  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">8.1.2</span> 変数</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#分析" id="toc-分析" class="nav-link" data-scroll-target="#分析"><span class="header-section-number">10</span> 分析</a>
+  <li><a href="#分析" id="toc-分析" class="nav-link" data-scroll-target="#分析"><span class="header-section-number">8.2</span> 分析</a>
   <ul class="collapse">
-  <li><a href="#base" id="toc-base" class="nav-link" data-scroll-target="#base"><span class="header-section-number">10.1</span> {base}</a>
-  <ul class="collapse">
-  <li><a href="#クロス表の作成" id="toc-クロス表の作成" class="nav-link" data-scroll-target="#クロス表の作成"><span class="header-section-number">10.1.1</span> クロス表の作成</a></li>
-  <li><a href="#行パーセントと列パーセント" id="toc-行パーセントと列パーセント" class="nav-link" data-scroll-target="#行パーセントと列パーセント"><span class="header-section-number">10.1.2</span> 行パーセントと列パーセント</a></li>
-  <li><a href="#カイ二乗検定" id="toc-カイ二乗検定" class="nav-link" data-scroll-target="#カイ二乗検定"><span class="header-section-number">10.1.3</span> カイ二乗検定</a></li>
+  <li><a href="#base" id="toc-base" class="nav-link" data-scroll-target="#base"><span class="header-section-number">8.2.1</span> {base}</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">8.2.2</span> {tidyverse}</a></li>
   </ul></li>
-  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">10.2</span> {tidyverse}</a>
+  <li><a href="#クロス表の可視化" id="toc-クロス表の可視化" class="nav-link" data-scroll-target="#クロス表の可視化"><span class="header-section-number">8.3</span> クロス表の可視化</a>
   <ul class="collapse">
-  <li><a href="#クロス表の作成-1" id="toc-クロス表の作成-1" class="nav-link" data-scroll-target="#クロス表の作成-1"><span class="header-section-number">10.2.1</span> クロス表の作成</a></li>
-  <li><a href="#行パーセントと列パーセント-1" id="toc-行パーセントと列パーセント-1" class="nav-link" data-scroll-target="#行パーセントと列パーセント-1"><span class="header-section-number">10.2.2</span> 行パーセントと列パーセント</a></li>
-  <li><a href="#カイ二乗検定-1" id="toc-カイ二乗検定-1" class="nav-link" data-scroll-target="#カイ二乗検定-1"><span class="header-section-number">10.2.3</span> カイ二乗検定</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#クロス表の可視化" id="toc-クロス表の可視化" class="nav-link" data-scroll-target="#クロス表の可視化"><span class="header-section-number">11</span> クロス表の可視化</a>
-  <ul class="collapse">
-  <li><a href="#比率の可視化" id="toc-比率の可視化" class="nav-link" data-scroll-target="#比率の可視化"><span class="header-section-number">11.1</span> 比率の可視化</a></li>
-  <li><a href="#モザイクプロット" id="toc-モザイクプロット" class="nav-link" data-scroll-target="#モザイクプロット"><span class="header-section-number">11.2</span> モザイクプロット</a></li>
-  <li><a href="#バルーンプロット" id="toc-バルーンプロット" class="nav-link" data-scroll-target="#バルーンプロット"><span class="header-section-number">11.3</span> バルーンプロット</a></li>
+  <li><a href="#比率の可視化" id="toc-比率の可視化" class="nav-link" data-scroll-target="#比率の可視化"><span class="header-section-number">8.3.1</span> 比率の可視化</a></li>
+  <li><a href="#モザイクプロット" id="toc-モザイクプロット" class="nav-link" data-scroll-target="#モザイクプロット"><span class="header-section-number">8.3.2</span> モザイクプロット</a></li>
+  <li><a href="#バルーンプロット" id="toc-バルーンプロット" class="nav-link" data-scroll-target="#バルーンプロット"><span class="header-section-number">8.3.3</span> バルーンプロット</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -336,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-16</p>
+      <p class="date">2025-10-31</p>
     </div>
   </div>
   
@@ -348,10 +334,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="データ変数" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> データ・変数</h1>
-<section id="データ" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">9.1</span> データ</h2>
+<section id="データ変数" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="データ変数"><span class="header-section-number">8.1</span> データ・変数</h2>
+<section id="データ" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="データ"><span class="header-section-number">8.1.1</span> データ</h3>
 <p><a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/">東大社研・若年パネル調査の非制限公開疑似データ</a>を用いる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -372,13 +358,13 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <p>Q: 性別によって最終学歴に違いはあるのか？</p>
 </blockquote>
 </section>
-<section id="変数" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">9.2</span> 変数</h2>
-<section id="回答者の性別-sex" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="回答者の性別-sex"><span class="header-section-number">9.2.1</span> 回答者の性別: <code>sex</code></h3>
+<section id="変数" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">8.1.2</span> 変数</h3>
+<section id="回答者の性別-sex" class="level4" data-number="8.1.2.1">
+<h4 data-number="8.1.2.1" class="anchored" data-anchor-id="回答者の性別-sex"><span class="header-section-number">8.1.2.1</span> 回答者の性別: <code>sex</code></h4>
 </section>
-<section id="回答者の学歴-zq23a" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="回答者の学歴-zq23a"><span class="header-section-number">9.2.2</span> 回答者の学歴: <code>ZQ23A</code></h3>
+<section id="回答者の学歴-zq23a" class="level4" data-number="8.1.2.2">
+<h4 data-number="8.1.2.2" class="anchored" data-anchor-id="回答者の学歴-zq23a"><span class="header-section-number">8.1.2.2</span> 回答者の学歴: <code>ZQ23A</code></h4>
 <p><img src="Image/u001_ZQ23A.png" class="img-fluid"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用変数のみ取り出す</span></span>
@@ -470,12 +456,12 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </section>
 </section>
 </section>
-<section id="分析" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> 分析</h1>
-<section id="base" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="base"><span class="header-section-number">10.1</span> {base}</h2>
-<section id="クロス表の作成" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="クロス表の作成"><span class="header-section-number">10.1.1</span> クロス表の作成</h3>
+<section id="分析" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="分析"><span class="header-section-number">8.2</span> 分析</h2>
+<section id="base" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="base"><span class="header-section-number">8.2.1</span> {base}</h3>
+<section id="クロス表の作成" class="level4" data-number="8.2.1.1">
+<h4 data-number="8.2.1.1" class="anchored" data-anchor-id="クロス表の作成"><span class="header-section-number">8.2.1.1</span> クロス表の作成</h4>
 <p>{base}でクロス表を作成する方法はいくつかあるが、代表的なものに<code>xtabs()</code>と<code>table()</code>がある。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>DF <span class="sc">|&gt;</span> </span>
@@ -515,10 +501,10 @@ Sex     JHS/HS  VS  JC Univ
 </div>
 </div>
 </section>
-<section id="行パーセントと列パーセント" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="行パーセントと列パーセント"><span class="header-section-number">10.1.2</span> 行パーセントと列パーセント</h3>
-<section id="proportions" class="level4" data-number="10.1.2.1">
-<h4 data-number="10.1.2.1" class="anchored" data-anchor-id="proportions"><span class="header-section-number">10.1.2.1</span> <code>proportions()</code></h4>
+<section id="行パーセントと列パーセント" class="level4" data-number="8.2.1.2">
+<h4 data-number="8.2.1.2" class="anchored" data-anchor-id="行パーセントと列パーセント"><span class="header-section-number">8.2.1.2</span> 行パーセントと列パーセント</h4>
+<section id="proportions" class="level5" data-number="8.2.1.2.1">
+<h5 data-number="8.2.1.2.1" class="anchored" data-anchor-id="proportions"><span class="header-section-number">8.2.1.2.1</span> <code>proportions()</code></h5>
 <p>行パーセントや列パーセントを算出するためには<code>proportions()</code>を用いる。この関数は<code>margin</code>という引数を持ち、1が行パーセント、2が列パーセントを示す。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">proportions</span>(SexEdu_xtabs, <span class="at">margin =</span> <span class="dv">1</span>) <span class="co"># 行パーセント</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -607,8 +593,8 @@ Sex         JHS/HS         VS         JC       Univ        Sum
 </div>
 </div>
 </section>
-<section id="rowpercentscolpercents" class="level4" data-number="10.1.2.2">
-<h4 data-number="10.1.2.2" class="anchored" data-anchor-id="rowpercentscolpercents"><span class="header-section-number">10.1.2.2</span> <code>rowPercents()</code>・<code>colPercents()</code></h4>
+<section id="rowpercentscolpercents" class="level5" data-number="8.2.1.2.2">
+<h5 data-number="8.2.1.2.2" class="anchored" data-anchor-id="rowpercentscolpercents"><span class="header-section-number">8.2.1.2.2</span> <code>rowPercents()</code>・<code>colPercents()</code></h5>
 <p><code>RcmdrMisc</code>パッケージの<code>rowPercents()</code>や<code>colPercents()</code>を使っても行パーセントや列パーセントを算出できる。これらの関数の便利な点として、デフォルトで周辺度数を出力結果に返してくれる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RcmdrMisc)</span>
@@ -632,8 +618,8 @@ Sex     JHS/HS     VS     JC   Univ
 </div>
 </section>
 </section>
-<section id="カイ二乗検定" class="level3" data-number="10.1.3">
-<h3 data-number="10.1.3" class="anchored" data-anchor-id="カイ二乗検定"><span class="header-section-number">10.1.3</span> カイ二乗検定</h3>
+<section id="カイ二乗検定" class="level4" data-number="8.2.1.3">
+<h4 data-number="8.2.1.3" class="anchored" data-anchor-id="カイ二乗検定"><span class="header-section-number">8.2.1.3</span> カイ二乗検定</h4>
 <p>カイ二乗検定は<code>chi.test()</code>によって行う。この関数にはクロス表の<code>table</code>を引き渡すことができる。出力結果をオブジェクトに格納しておけば、期待値・残差・標準化残差などの出力値を後から取り出すことができる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>Result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(SexEdu_xtabs)</span>
@@ -676,11 +662,11 @@ Sex        JHS/HS        VS        JC      Univ
 <p>残差分析の結果、統計的独立の状態に比して、女性は専門学校や短大が多く、一方で男性は大学・大学院が多いようである。 すなわち、結論としては<strong>性別によって最終学歴に違いが存在する</strong>（より正確に言えば、「性別によって最終学歴の分布が同じとは言えない」）ということになる。</p>
 </section>
 </section>
-<section id="tidyverse" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">10.2</span> {tidyverse}</h2>
+<section id="tidyverse" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">8.2.2</span> {tidyverse}</h3>
 <p>はじめに、少なくともクロス表の分析に限って言えば、{tidyverse}での処理にこだわる必要はあまりない。{tidyverse}の中ではクロス集計表もテーブル形式ではなく、あくまでロング形式の<code>tibble</code>として表現されることが一般的であるからである<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。そのため、出力結果のわかりやすさの点で言えば<code>xtabs()</code>や<code>table()</code>の方が優れている（ように個人的には思う）。ただし、{tidyverse}で集計した場合はその結果を{ggplot}に引き渡してグラフを描画できるため、データの可視化の面では便利ではある。</p>
-<section id="クロス表の作成-1" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="クロス表の作成-1"><span class="header-section-number">10.2.1</span> クロス表の作成</h3>
+<section id="クロス表の作成-1" class="level4" data-number="8.2.2.1">
+<h4 data-number="8.2.2.1" class="anchored" data-anchor-id="クロス表の作成-1"><span class="header-section-number">8.2.2.1</span> クロス表の作成</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>tbl_SexEdu <span class="ot">&lt;-</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  DF <span class="sc">|&gt;</span> </span>
@@ -702,8 +688,8 @@ Sex        JHS/HS        VS        JC      Univ
 </div>
 </div>
 </section>
-<section id="行パーセントと列パーセント-1" class="level3" data-number="10.2.2">
-<h3 data-number="10.2.2" class="anchored" data-anchor-id="行パーセントと列パーセント-1"><span class="header-section-number">10.2.2</span> 行パーセントと列パーセント</h3>
+<section id="行パーセントと列パーセント-1" class="level4" data-number="8.2.2.2">
+<h4 data-number="8.2.2.2" class="anchored" data-anchor-id="行パーセントと列パーセント-1"><span class="header-section-number">8.2.2.2</span> 行パーセントと列パーセント</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 行パーセント（性別に見た学歴の分布）</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>Prop_bySex <span class="ot">&lt;-</span></span>
@@ -751,8 +737,8 @@ Sex        JHS/HS        VS        JC      Univ
 </div>
 </div>
 </section>
-<section id="カイ二乗検定-1" class="level3" data-number="10.2.3">
-<h3 data-number="10.2.3" class="anchored" data-anchor-id="カイ二乗検定-1"><span class="header-section-number">10.2.3</span> カイ二乗検定</h3>
+<section id="カイ二乗検定-1" class="level4" data-number="8.2.2.3">
+<h4 data-number="8.2.2.3" class="anchored" data-anchor-id="カイ二乗検定-1"><span class="header-section-number">8.2.2.3</span> カイ二乗検定</h4>
 <p>先に見た<code>chisq.test()</code>はデータフレームや<code>tibble</code>に対しても適用できる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ChiTest <span class="ot">&lt;-</span></span>
@@ -808,10 +794,10 @@ Sex        JHS/HS        VS        JC      Univ
 </section>
 </section>
 </section>
-<section id="クロス表の可視化" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> クロス表の可視化</h1>
-<section id="比率の可視化" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="比率の可視化"><span class="header-section-number">11.1</span> 比率の可視化</h2>
+<section id="クロス表の可視化" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="クロス表の可視化"><span class="header-section-number">8.3</span> クロス表の可視化</h2>
+<section id="比率の可視化" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="比率の可視化"><span class="header-section-number">8.3.1</span> 比率の可視化</h3>
 <p>クロス集計表を可視化する最も基礎的な方法のひとつは、行パーセントあるいは列パーセントを帯グラフにすることである。{tidyverse}で比率を算出し、<code>tibble</code>にその結果を格納しておくと、簡単に可視化ができる。</p>
 <div class="cell">
 <details class="code-fold">
@@ -843,8 +829,8 @@ Sex        JHS/HS        VS        JC      Univ
 </div>
 </div>
 </section>
-<section id="モザイクプロット" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="モザイクプロット"><span class="header-section-number">11.2</span> モザイクプロット</h2>
+<section id="モザイクプロット" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="モザイクプロット"><span class="header-section-number">8.3.2</span> モザイクプロット</h3>
 <p>行パーセントや列パーセントなどの比率を帯グラフにした場合、行あるいは列の周辺度数の大きさの違いは見えなくなってしまう。そこで、各セル度数の大きさを加味した可視化を可能にする方法としてモザイクプロットが挙げられる。モザイクプロットは以下の特徴を持つ</p>
 <ul>
 <li>タイルの各辺の長さが行／列の変数の周辺分布を表す</li>
@@ -916,8 +902,8 @@ Attaching package: 'ggmosaic'</code></pre>
 </div>
 </div>
 </section>
-<section id="バルーンプロット" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="バルーンプロット"><span class="header-section-number">11.3</span> バルーンプロット</h2>
+<section id="バルーンプロット" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="バルーンプロット"><span class="header-section-number">8.3.3</span> バルーンプロット</h3>
 <p>セル度数の大きさを可視化する別の方法としてバルーンプロットも挙げられる。これは、セル度数に比例したマーカーをクロス表のセル上にプロットするものである。</p>
 <p><code>balloonplot()</code>は{gplots}の中に含まれており、ライブラリから呼び出してから使う必要がある。</p>
 <div class="cell">

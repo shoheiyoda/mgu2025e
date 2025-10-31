@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-16">
+<meta name="dcterms.date" content="2025-10-31">
 
 <title>9&nbsp; エラボレイション – 2025年度　数量データ分析</title>
 <style>
@@ -287,12 +287,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#使用データ" id="toc-使用データ" class="nav-link active" data-scroll-target="#使用データ"><span class="header-section-number">10</span> 使用データ</a></li>
-  <li><a href="#エラボレーションの例" id="toc-エラボレーションの例" class="nav-link" data-scroll-target="#エラボレーションの例"><span class="header-section-number">11</span> エラボレーションの例</a></li>
-  <li><a href="#乗員の性別と生存割合の関係" id="toc-乗員の性別と生存割合の関係" class="nav-link" data-scroll-target="#乗員の性別と生存割合の関係"><span class="header-section-number">12</span> 乗員の性別と生存割合の関係</a></li>
-  <li><a href="#客室の階級と生存割合の関係" id="toc-客室の階級と生存割合の関係" class="nav-link" data-scroll-target="#客室の階級と生存割合の関係"><span class="header-section-number">13</span> 客室の階級と生存割合の関係</a></li>
-  <li><a href="#性別客室の階級生存割合の関係" id="toc-性別客室の階級生存割合の関係" class="nav-link" data-scroll-target="#性別客室の階級生存割合の関係"><span class="header-section-number">14</span> 性別・客室の階級・生存割合の関係</a></li>
-  <li><a href="#データの可視化data-visualization" id="toc-データの可視化data-visualization" class="nav-link" data-scroll-target="#データの可視化data-visualization"><span class="header-section-number">15</span> データの可視化（Data Visualization）</a></li>
+  <li><a href="#使用データ" id="toc-使用データ" class="nav-link active" data-scroll-target="#使用データ"><span class="header-section-number">9.1</span> 使用データ</a></li>
+  <li><a href="#エラボレーションの例" id="toc-エラボレーションの例" class="nav-link" data-scroll-target="#エラボレーションの例"><span class="header-section-number">9.2</span> エラボレーションの例</a>
+  <ul class="collapse">
+  <li><a href="#乗員の性別と生存割合の関係" id="toc-乗員の性別と生存割合の関係" class="nav-link" data-scroll-target="#乗員の性別と生存割合の関係"><span class="header-section-number">9.2.1</span> 乗員の性別と生存割合の関係</a></li>
+  <li><a href="#客室の階級と生存割合の関係" id="toc-客室の階級と生存割合の関係" class="nav-link" data-scroll-target="#客室の階級と生存割合の関係"><span class="header-section-number">9.2.2</span> 客室の階級と生存割合の関係</a></li>
+  <li><a href="#性別客室の階級生存割合の関係" id="toc-性別客室の階級生存割合の関係" class="nav-link" data-scroll-target="#性別客室の階級生存割合の関係"><span class="header-section-number">9.2.3</span> 性別・客室の階級・生存割合の関係</a></li>
+  </ul></li>
+  <li><a href="#データの可視化data-visualization" id="toc-データの可視化data-visualization" class="nav-link" data-scroll-target="#データの可視化data-visualization"><span class="header-section-number">9.3</span> データの可視化（Data Visualization）</a></li>
   </ul>
 </nav>
     </div>
@@ -312,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-16</p>
+      <p class="date">2025-10-31</p>
     </div>
   </div>
   
@@ -324,8 +326,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="使用データ" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> 使用データ</h1>
+<section id="使用データ" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="使用データ"><span class="header-section-number">9.1</span> 使用データ</h2>
 <p><code>R</code>のサンプルデータ<code>Titanic</code>を用いる。データの解説には</p>
 <blockquote class="blockquote">
 <p>Survival of Passengers on the Titanic</p>
@@ -414,8 +416,8 @@ $Survived
 <li><code>Survived</code>:生死</li>
 </ul>
 </section>
-<section id="エラボレーションの例" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> エラボレーションの例</h1>
+<section id="エラボレーションの例" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="エラボレーションの例"><span class="header-section-number">9.2</span> エラボレーションの例</h2>
 <p>以下では<code>Titanic</code>に含まれる4変数のうち、客室の階級、性別、生死の3変数を用いてエラボレーションを行っていく。具体的には、以下の問いに答えてみよう。</p>
 <blockquote class="blockquote">
 <p>タイタニック号の成人乗員の生存割合が客室の階級によって異なっていたことは（よく？）知られている。この2変数間（客室の階級・乗員の生死）の関係は乗員の性別によって異なるか？</p>
@@ -435,9 +437,8 @@ $Survived
 [1] "No"  "Yes"</code></pre>
 </div>
 </div>
-</section>
-<section id="乗員の性別と生存割合の関係" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> 乗員の性別と生存割合の関係</h1>
+<section id="乗員の性別と生存割合の関係" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="乗員の性別と生存割合の関係"><span class="header-section-number">9.2.1</span> 乗員の性別と生存割合の関係</h3>
 <p>乗員の性別によって生存者の割合がどれほど異なっていたかを見てみよう。そのためには、客室の階級（<code>Class</code>）を無視した、性別×生死の2元クロス表を作成する必要がある。最も愚直な方法は<code>Class</code>ごとに分割した性別×生死の2元クロス表を合併するというものである。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>TabSex_temp <span class="ot">&lt;-</span> TBL[<span class="st">"1st"</span>,,] <span class="sc">+</span> TBL[<span class="st">"2nd"</span>,,] <span class="sc">+</span> TBL[<span class="st">"3rd"</span>,,] <span class="sc">+</span> TBL[<span class="st">"Crew"</span>,,]</span>
@@ -473,8 +474,8 @@ Sex        No  Yes Total Count
 </div>
 <p>男性よりも女性の乗員の方が生存割合が高いことがわかる。</p>
 </section>
-<section id="客室の階級と生存割合の関係" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> 客室の階級と生存割合の関係</h1>
+<section id="客室の階級と生存割合の関係" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="客室の階級と生存割合の関係"><span class="header-section-number">9.2.2</span> 客室の階級と生存割合の関係</h3>
 <p>つぎに、客室の階級によって生存者の割合がどれほど異なっていたかを見てみよう。今度は性別（<code>Sex</code>）を無視した、客室の階級×生死の2元クロス表を作成する必要がある。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>TabClass <span class="ot">&lt;-</span> <span class="fu">apply</span>(TBL, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), sum)</span>
@@ -502,8 +503,8 @@ Class    No  Yes Total Count
 </div>
 <p>乗客の間では客室の階級が高いほど生存割合が高く、クルーの生存割合は客室が”3rd”の乗客とほぼ同じであることがわかる。</p>
 </section>
-<section id="性別客室の階級生存割合の関係" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> 性別・客室の階級・生存割合の関係</h1>
+<section id="性別客室の階級生存割合の関係" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="性別客室の階級生存割合の関係"><span class="header-section-number">9.2.3</span> 性別・客室の階級・生存割合の関係</h3>
 <p>最後に、客室の階級と生存割合との関係が性別によって異なるかを見てみる。そのためには、客室の階級ごとの生存割合を乗員の性別で分割して算出すればよい。そのためのコードの一例は以下の通りである。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowPercents</span>(TBL[,<span class="st">"Male"</span>,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -564,8 +565,9 @@ Crew 22.3   87.0</code></pre>
 </div>
 <p>客室の階級が”1st”の乗客の生存割合が最も高いことは男女で共通しているが、男性ではなぜか客室が”2nd”よりも”3rd”の乗客の方が生存割合が高い。また、性別を考慮しなかった場合にはクルーの生存割合は客室が”3rd’の乗客のそれとほぼ同程度であったが、性別を考慮した後ではクルーの方が生存割合が高いことがわかる。</p>
 </section>
-<section id="データの可視化data-visualization" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> データの可視化（Data Visualization）</h1>
+</section>
+<section id="データの可視化data-visualization" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="データの可視化data-visualization"><span class="header-section-number">9.3</span> データの可視化（Data Visualization）</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(PropSurv, </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"o"</span>, </span>

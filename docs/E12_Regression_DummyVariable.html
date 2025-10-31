@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-16">
+<meta name="dcterms.date" content="2025-10-31">
 
 <title>15&nbsp; ダミー変数 – 2025年度　数量データ分析</title>
 <style>
@@ -316,11 +316,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">16</span> データ・変数</a></li>
-  <li><a href="#名義ダミー変数nominal-dummy-variable" id="toc-名義ダミー変数nominal-dummy-variable" class="nav-link" data-scroll-target="#名義ダミー変数nominal-dummy-variable"><span class="header-section-number">17</span> 名義ダミー変数（nominal dummy variable）</a></li>
-  <li><a href="#順序ダミー変数ordered-dummy-variable" id="toc-順序ダミー変数ordered-dummy-variable" class="nav-link" data-scroll-target="#順序ダミー変数ordered-dummy-variable"><span class="header-section-number">18</span> 順序ダミー変数（ordered dummy variable）</a></li>
-  <li><a href="#anovaコーディングエフェクトコーディング" id="toc-anovaコーディングエフェクトコーディング" class="nav-link" data-scroll-target="#anovaコーディングエフェクトコーディング"><span class="header-section-number">19</span> ANOVAコーディング（エフェクトコーディング）</a></li>
-  <li><a href="#constastコーディング" id="toc-constastコーディング" class="nav-link" data-scroll-target="#constastコーディング"><span class="header-section-number">20</span> Constastコーディング</a></li>
+  <li><a href="#データ変数" id="toc-データ変数" class="nav-link active" data-scroll-target="#データ変数"><span class="header-section-number">15.1</span> データ・変数</a></li>
+  <li><a href="#名義ダミー変数nominal-dummy-variable" id="toc-名義ダミー変数nominal-dummy-variable" class="nav-link" data-scroll-target="#名義ダミー変数nominal-dummy-variable"><span class="header-section-number">15.2</span> 名義ダミー変数（nominal dummy variable）</a></li>
+  <li><a href="#順序ダミー変数ordered-dummy-variable" id="toc-順序ダミー変数ordered-dummy-variable" class="nav-link" data-scroll-target="#順序ダミー変数ordered-dummy-variable"><span class="header-section-number">15.3</span> 順序ダミー変数（ordered dummy variable）</a></li>
+  <li><a href="#anovaコーディングエフェクトコーディング" id="toc-anovaコーディングエフェクトコーディング" class="nav-link" data-scroll-target="#anovaコーディングエフェクトコーディング"><span class="header-section-number">15.4</span> ANOVAコーディング（エフェクトコーディング）</a></li>
+  <li><a href="#constastコーディング" id="toc-constastコーディング" class="nav-link" data-scroll-target="#constastコーディング"><span class="header-section-number">15.5</span> Constastコーディング</a></li>
   </ul>
 </nav>
     </div>
@@ -340,7 +340,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-16</p>
+      <p class="date">2025-10-31</p>
     </div>
   </div>
   
@@ -352,8 +352,8 @@ window.Quarto = {
 </header>
 
 
-<section id="データ変数" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> データ・変数</h1>
+<section id="データ変数" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="データ変数"><span class="header-section-number">15.1</span> データ・変数</h2>
 <p><a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/jlps/">東大社研・若年パネル調査の非制限公開疑似データ</a>を用いる。</p>
 <p>以下では次の問いに答えることを目的とする。</p>
 <blockquote class="blockquote">
@@ -400,8 +400,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="名義ダミー変数nominal-dummy-variable" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> 名義ダミー変数（nominal dummy variable）</h1>
+<section id="名義ダミー変数nominal-dummy-variable" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="名義ダミー変数nominal-dummy-variable"><span class="header-section-number">15.2</span> 名義ダミー変数（nominal dummy variable）</h2>
 <p>最初のダミー変数のコーディング方法は最も基本的なもので、<strong>あるカテゴリに該当する場合に1、それ以外の場合に0を取る変数</strong>を作成する。</p>
 <table class="caption-top table">
 <colgroup>
@@ -529,8 +529,8 @@ F-statistic: 4.241 on 2 and 327 DF,  p-value: 0.0152</code></pre>
 <p>ことがわかる。</p>
 <p>このように、参照カテゴリを変えれば、ダミー変数の推定値も変化する。これは比較対象となるカテゴリが変化しているので当然のことである。むしろ重要なことは、参照カテゴリを変えても回帰モデルのデータへの当てはまりには影響がないことである。例えば、上記の2つの回帰モデルの間で、決定係数（<span class="math inline">\(R^2\)</span>）が一致していることを確認されたい。</p>
 </section>
-<section id="順序ダミー変数ordered-dummy-variable" class="level1" data-number="18">
-<h1 data-number="18"><span class="header-section-number">18</span> 順序ダミー変数（ordered dummy variable）</h1>
+<section id="順序ダミー変数ordered-dummy-variable" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="順序ダミー変数ordered-dummy-variable"><span class="header-section-number">15.3</span> 順序ダミー変数（ordered dummy variable）</h2>
 <p>つぎに、ダミーコーディングする変数のカテゴリが順序性を持つ場合、<strong>ひとつ下のカテゴリを参照カテゴリにする（すなわちカテゴリごとに参照カテゴリが変わっていく）コーディング方法</strong>もある。例えば教育年数ごとに変数<code>Edu3Grp</code>のカテゴリを並べると、<code>JHS/HS</code>-<code>VS/JC</code>-<code>Univ</code>の順になる。そこで、<code>Edu3Grp</code>に順序づけられたダミーコーディングを施すと、以下の2つのダミー変数が作成される。</p>
 <ul>
 <li>VSJC_o: 「高専・短大」あるいは「大学」の場合に1、それ以外は0</li>
@@ -619,8 +619,8 @@ F-statistic: 4.241 on 2 and 327 DF,  p-value: 0.0152</code></pre>
 </ul>
 <p>ことがわかる。<code>HS_o</code>と<code>Univ_o</code>とでは参照カテゴリが変わっていることを再度確認してほしい。</p>
 </section>
-<section id="anovaコーディングエフェクトコーディング" class="level1" data-number="19">
-<h1 data-number="19"><span class="header-section-number">19</span> ANOVAコーディング（エフェクトコーディング）</h1>
+<section id="anovaコーディングエフェクトコーディング" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="anovaコーディングエフェクトコーディング"><span class="header-section-number">15.4</span> ANOVAコーディング（エフェクトコーディング）</h2>
 <p>ANOVAコーディングは、特定のカテゴリを参照カテゴリに設定せず、各カテゴリの係数の平均を0に固定し、そことの比較を行う方法である。言い換えると、<strong>カテゴリ平均のunweighted meanとの比較</strong>を行うためのダミーコーディングである。ANOVAコーディングの方法は以下の通りである。</p>
 <ul>
 <li>基準カテゴリを-1にする</li>
@@ -719,8 +719,8 @@ F-statistic: 4.241 on 2 and 327 DF,  p-value: 0.0152</code></pre>
 </ul>
 <p>ことがわかる。</p>
 </section>
-<section id="constastコーディング" class="level1" data-number="20">
-<h1 data-number="20"><span class="header-section-number">20</span> Constastコーディング</h1>
+<section id="constastコーディング" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="constastコーディング"><span class="header-section-number">15.5</span> Constastコーディング</h2>
 <p>最後に紹介するContrastコーディングは、変数のカテゴリ間に入れ子構造が存在する場合に有効なダミーコーディングのひとつである。例えば平均収入について、以下の2つの比較に関心があるとしよう。</p>
 <ul>
 <li>「四年制大学卒の人々」と「それ以外の人々」との間の収入格差</li>
