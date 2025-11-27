@@ -29,7 +29,7 @@ DF_org <- read_csv(FN_Data2Load)
 #### 回答者の性別: `sex`
 
 #### 回答者の学歴: `ZQ23A`
-![](Image/u001_ZQ23A.png)
+![](image/E5/u001_ZQ23A.png)
 
 ```{r}
 # 使用変数のみ取り出す
